@@ -1,16 +1,13 @@
 {
-  "addons": [
-
-  ],
-  "buildpacks": [
-
-  ],
+  "addons": [],
+  "buildpacks": [],
   "env": {
+    "NPM_CONFIG_PRODUCTION": {
+      "required": true
+    }
   },
-  "formation": {
-  },
+  "formation": {},
   "name": "mervels-bn-frontend",
-  "scripts": {
-  },
+  "scripts": {},
   "stack": "heroku-18"
 }
