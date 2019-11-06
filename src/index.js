@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/browser';
 import './index.css';
 import App from './App';
-import { SENTRY_DSN } from '../config';
+import { SENTRY_DSN } from './config';
 
 Sentry.init({ dsn: SENTRY_DSN });
 
