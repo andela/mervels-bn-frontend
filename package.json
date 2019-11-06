@@ -5,6 +5,10 @@
   "dependencies": {
     "@babel/core": "7.6.0",
     "@sentry/browser": "^5.7.1",
+    "@storybook/addon-actions": "^5.2.5",
+    "@storybook/addon-info": "^5.2.5",
+    "@storybook/addons": "^5.2.5",
+    "@storybook/react": "^5.2.5",
     "@svgr/webpack": "4.3.2",
     "@typescript-eslint/eslint-plugin": "^2.2.0",
     "@typescript-eslint/parser": "^2.2.0",
@@ -71,7 +75,10 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "storybook:dev": "start-storybook -s ./src/stories/images",
+    "prestorybook": "rimraf storybook-static && build-storybook -s ./src/stories/images",
+    "storybook": "open ./storybook-static/index.html"
   },
   "eslintConfig": {
     "extends": "react-app"
