@@ -1,0 +1,9 @@
+/* export constant action types */
+export default {
+    SIGN_UP: 'SIGN_UP',
+    SIGN_UP_ERROR: 'SIGN_UP_ERROR',
+    REVERIFY_ERROR: 'REVERIFY_ERROR',
+    REVERIFY_SUCCESS: 'REVERIFY_SUCCESS',
+    VERIFY_SUCCESS: 'VERIFY_SUCCESS',
+    VERIFY_ERROR: 'VERIFY_ERROR'
+};
