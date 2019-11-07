@@ -1,0 +1,61 @@
+@import "variables";
+
+@import "index";
+
+@import "reset";
+
+@import "small-default";
+@import "table.scss";
+@import "buttons.scss";
+@import "navbar.scss";
+// @import "card.scss";
+@import "input";
+@import "profile";
+
+@media only screen and (min-width: 560px) {
+  @import "medium";
+} // end media query
+
+@media only screen and (min-width: 1140px) {
+  @import "large";
+} // end media query
+
+@media only screen and (max-width: 560px) {
+  @import "small-default";
+}
+
+body {
+  background-color: whitesmoke;
+}
+.text-center {
+  text-align: center;
+}
+
+.page-header {
+  margin: 20px 0;
+}
+
+$sides: (top, bottom, left, right);
+
+@mixin padding-and-margin {
+  @for $i from 1 through 20 {
+    @each $side in $sides {
+      .m-#{$side + "-" + $i} {
+        margin-#{$side}: #{$i * 10}px;
+      }
+      .p-#{$side + "-" + $i} {
+        padding-#{$side}: #{$i * 10}px;
+      }
+    }
+  }
+}
+
+@include padding-and-margin;
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
