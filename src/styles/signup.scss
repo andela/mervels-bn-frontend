@@ -1,0 +1,22 @@
+.user-form {
+  div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    margin: 0px;
+    input {
+      width: 46%;
+    }
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.center-small {
+  width: 10px;
+  margin: auto;
+  font-size: 20px;
+}

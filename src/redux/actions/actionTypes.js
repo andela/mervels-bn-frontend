@@ -1,0 +1,7 @@
+/* export constant action types */
+export default {
+    SIGN_UP: 'SIGN_UP',
+    SIGN_UP_INTERNAL_ERROR: 'SIGN_UP_INTERNAL_ERROR',
+    SIGN_UP_CONFLICT: 'SIGN_UP_CONFLICT',
+    SIGN_UP_CONNECTION_ERROR: 'SIGN_UP_CONNECTION_ERROR' 
+};
