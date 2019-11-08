@@ -7,4 +7,6 @@ import { SENTRY_DSN } from './sentry_config';
 
 Sentry.init({ dsn: SENTRY_DSN });
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<App />
+, document.getElementById('root'));

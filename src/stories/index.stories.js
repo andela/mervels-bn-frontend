@@ -10,6 +10,6 @@ storiesOf('Home page | Main app/Applicaton', module)
     .add('welcome', () => (<Welcome/>))
     .add('home page', () => (<App/>));
     
-storiesOf('Building components | Button', module)
+storiesOf('Building blocks | Button', module)
     .add('Non lickable', () => (<Button>Non clickable</Button>))
     .add('clickable', () => (<Button onClick={action('clicked')}>Click Me</Button>));

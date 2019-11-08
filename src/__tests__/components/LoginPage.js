@@ -5,9 +5,9 @@ import { shallow, mount } from 'enzyme';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { LoginPage } from '../../components/LoginPage';
-import { LOGIN_SUCCESS } from '../../redux/actions/actionType';
+import { LOGIN_SUCCESS } from '../../redux/actions/actionTypes';
 import { socialAuth, localAuth } from '../../redux/actions/login';
-import API  from '../../api/userApi';
+import API  from '../../config/axiosInstance';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -16,17 +16,12 @@ let wrapper;
 const props = {
   localAuth: jest.fn(),
   socialAuth: jest.fn(),
-  user: {
-
-    isLoggedIn: false,
-    message: null,
-    error: 'null'
-  },
+  user: {},
   history: {},
   location: {
-    pathname: "/login", 
-    search: "?code=eyJzdGF0dXMiOjIwMCwibWVzc2FnZSI6IlN1Y2Nlc3NmdWxseSBsb2dnZWQgaW4iLCJkYXRhIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBaQ0k2TVRBc0ltWnBjbk4wVG1GdFpTSTZJa1JoZG1seklpd2liR0Z6ZEU1aGJXVWlPaUpMWVdKcGMzZGhJaXdpWlcxaGFXeEJiR3h2ZDJWa0lqcDBjblZsTENKMWMyVnlVbTlzWlhNaU9pSlNaWEYxWlhOMFpYSWlMQ0pwWVhRaU9qRTFOek0wT0RFMk9USXNJbVY0Y0NJNk1UVTNNelE0TlRJNU1uMC5hT01aSnBPR011dlpIdnBOS19kdzR3eXo1d3hvSElSb3JDUWp0ZVZZZUR3In0=", 
-    hash: "", 
+    pathname: "/login",
+    search: "?code=eyJzdGF0dXMiOjIwMCwibWVzc2FnZSI6IlN1Y2Nlc3NmdWxseSBsb2dnZWQgaW4iLCJkYXRhIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBaQ0k2TVRBc0ltWnBjbk4wVG1GdFpTSTZJa1JoZG1seklpd2liR0Z6ZEU1aGJXVWlPaUpMWVdKcGMzZGhJaXdpWlcxaGFXeEJiR3h2ZDJWa0lqcDBjblZsTENKMWMyVnlVbTlzWlhNaU9pSlNaWEYxWlhOMFpYSWlMQ0pwWVhRaU9qRTFOek0wT0RFMk9USXNJbVY0Y0NJNk1UVTNNelE0TlRJNU1uMC5hT01aSnBPR011dlpIdnBOS19kdzR3eXo1d3hvSElSb3JDUWp0ZVZZZUR3In0=",
+    hash: "",
     state: undefined
   }
 };
@@ -62,7 +57,7 @@ describe('LoginPAGE', () => {
     };
     wrapper = mount(<LoginPage localAuth={mockLoginfn} user={user} />);
     wrapper.find('.loginForm').simulate(
-      'submit', 
+      'submit',
       {preventDefault() {}}
     );
     expect(mockLoginfn.mock.calls.length).toBe(1);
@@ -94,7 +89,7 @@ describe('Login dispatch actions', () => {
     };
     store.dispatch(socialAuth(payload));
     const actions = store.getActions();
-    const expectedPayload = { 
+    const expectedPayload = {
       type: LOGIN_SUCCESS,
       payload: {
       status: 200,
@@ -149,7 +144,7 @@ describe('Login dispatch actions', () => {
         }
       }
     };
-    
+
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.reject(errorResp);
@@ -177,9 +172,9 @@ describe('LoginPage intergration test', () => {
       error: null
     },
     location: {
-      pathname: "/login", 
-      search: "?code=eyJzdGF0dXMiOjIwMCwibWVzc2FnZSI6IlN1Y2Nlc3NmdWxseSBsb2dnZWQgaW4iLCJkYXRhIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBaQ0k2TVRBc0ltWnBjbk4wVG1GdFpTSTZJa1JoZG1seklpd2liR0Z6ZEU1aGJXVWlPaUpMWVdKcGMzZGhJaXdpWlcxaGFXeEJiR3h2ZDJWa0lqcDBjblZsTENKMWMyVnlVbTlzWlhNaU9pSlNaWEYxWlhOMFpYSWlMQ0pwWVhRaU9qRTFOek0wT0RFMk9USXNJbVY0Y0NJNk1UVTNNelE0TlRJNU1uMC5hT01aSnBPR011dlpIdnBOS19kdzR3eXo1d3hvSElSb3JDUWp0ZVZZZUR3In0=", 
-      hash: "", 
+      pathname: "/login",
+      search: "?code=eyJzdGF0dXMiOjIwMCwibWVzc2FnZSI6IlN1Y2Nlc3NmdWxseSBsb2dnZWQgaW4iLCJkYXRhIjoiZXlKaGJHY2lPaUpJVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBaQ0k2TVRBc0ltWnBjbk4wVG1GdFpTSTZJa1JoZG1seklpd2liR0Z6ZEU1aGJXVWlPaUpMWVdKcGMzZGhJaXdpWlcxaGFXeEJiR3h2ZDJWa0lqcDBjblZsTENKMWMyVnlVbTlzWlhNaU9pSlNaWEYxWlhOMFpYSWlMQ0pwWVhRaU9qRTFOek0wT0RFMk9USXNJbVY0Y0NJNk1UVTNNelE0TlRJNU1uMC5hT01aSnBPR011dlpIdnBOS19kdzR3eXo1d3hvSElSb3JDUWp0ZVZZZUR3In0=",
+      hash: "",
       state: undefined
     }
   };
@@ -199,7 +194,7 @@ describe('LoginPage intergration test', () => {
     wrapper.find('Input[name="email"]').simulate('change', Eevent);
     wrapper.find('Input[name="password"]').simulate('change', Pevent);
     wrapper.find('.loginForm').simulate(
-      'submit', 
+      'submit',
       {preventDefault() {}}
     );
     expect(wrapper.instance().state).toEqual({ email: 'email@gmail.com', password: 'pass1@word', });

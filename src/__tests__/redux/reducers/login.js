@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../../redux/actions/actionType';
+import { LOGIN_FAILURE, LOGIN_SUCCESS } from '../../../redux/actions/actionTypes';
 import loginReducer from '../../../redux/reducers/login';
 
 const initialState = {

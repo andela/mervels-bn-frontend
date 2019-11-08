@@ -1,2 +1,3 @@
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+/* eslint-disable import/prefer-default-export */
+export const FETCH_REQUESTS = "FETCH_REQUESTS";
+export const FETCH_REQUESTS_FAILED = "FETCH_REQUESTS_FAILED";

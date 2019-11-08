@@ -1,0 +1,77 @@
+.center-small {
+  width: 10px;
+  margin: auto;
+  font-size: 20px;
+}
+
+.input-error {
+  font-size: 15px;
+  display: block;
+  text-align: left;
+  color: red;
+}
+
+.signup-form {
+  font-size: 30px;
+  width: 40%;
+  margin: 20px auto;
+  .signup-btn {
+    width: 20%;
+    margin: auto;
+    display: block;
+    padding: 0px;
+  }
+  p{
+    font-size: 13px;
+  }
+}
+.signup-page {
+  .barefoot-logo {
+    width: 8%;
+    margin: 20px auto;
+    display: block;
+  }
+  margin: 20px auto;
+  width: 100%;
+}
+
+@media screen and (min-width: 1020px) {
+  .signup-form {
+    width: 30%;
+    .signup-btn {
+      width: 30%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .signup-form {
+    width: 40%;
+    .signup-btn {
+      width: 30%;
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .signup-page {
+    .barefoot-logo {
+      width: 20%;
+      margin: 20px auto;
+      display: block;
+    }
+  }
+
+  .signup-form {
+    font-size: 15px;
+    width: 60%;
+    .signup-btn {
+      width: 60%;
+      height: 30px;
+    }
+    input {
+      font-size: 13px;
+      height: 25px;
+    }
+  }
+}

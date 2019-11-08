@@ -1,5 +1,6 @@
-import { LOGIN_FAILURE, LOGIN_SUCCESS } from './actionType';
-import API from '../../api/userApi';
+import { toast } from 'react-toastify';
+import { LOGIN_FAILURE, LOGIN_SUCCESS } from './actionTypes';
+import API from '../../config/axiosInstance';
 
 export const loginSucess = (payload) => ({
   type: LOGIN_SUCCESS,
@@ -18,6 +19,7 @@ export const localAuth = (payload) => async (dispatch) => {
     dispatch(loginSucess(res.data));
   }
   catch (err) {
+    toast.error(err.response.data.message);
     dispatch(loginFailure(err.response.data.message));
   }
 };

@@ -1,6 +1,8 @@
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
+/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -13,12 +15,12 @@ import logo from '../logo/logo@2x.png';
 export class LoginPage extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       email: null,
       password: null
     };
-  } 
+  }
 
   componentDidMount() {
     this.setState((prevState) => ({...prevState}));
@@ -59,7 +61,7 @@ export class LoginPage extends Component {
       [e.target.name]: e.target.value
     });
   };
-  
+
   handleSubmit = (e) => {
     const { localAuth } = this.props;
     const { email, password } = this.state;
@@ -78,7 +80,7 @@ export class LoginPage extends Component {
             <div className="local">
                 <img src={logo} alt="logo" />
             <form className="loginForm" onSubmit={this.handleSubmit}>
-              <Input 
+              <Input
                 name="email"
                 inputType="email"
                 placeholder="Email"
@@ -92,10 +94,9 @@ export class LoginPage extends Component {
                 placeholder="Password"
                 onChange={this.handleInput}
                 value={password}
-                required
               />
             <div className="forgot">
-                <a  href="/">Forgot your password?</a>
+                <a  href="/forgotPassword">Forgot your password?</a>
             </div>
             <button className="btn btn-primary" type="submit">Login</button>
             </form>
