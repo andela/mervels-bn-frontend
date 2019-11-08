@@ -11,6 +11,11 @@
 // @import "card.scss";
 @import "input";
 @import "profile";
+@import "./styles.scss";
+@import "./signup.scss";
+@import "./call4verify.scss";
+@import "./reverify.scss";
+@import "./verify.scss";
 
 @media only screen and (min-width: 560px) {
   @import "medium";
@@ -28,12 +33,27 @@ body {
   background-color: whitesmoke;
   // background: #eff4f8;
 }
-// body,
-// html {
-//   height: 100%;
-// }
+li {
+  list-style: none;
+}
+.backdrop {
+  background: #eceaea;
+  padding: 12px 0;
+  box-shadow: 0 0 15px #00000030;
+}
+#circle {
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  display: inline-block;
+  background: greenyellow;
+  border-radius: 50%;
+}
 .text-center {
   text-align: center;
+}
+.text-danger {
+  color: red;
 }
 
 .page-header {

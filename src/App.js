@@ -18,6 +18,7 @@ import VerifyEmailPage from "./components/VerifyEmailPage";
 import ReverifyPage from "./components/ReverifyPage";
 import ProfilePage from './components/ProfilePage';
 import ServerErrorPage from './components/500Page';
+import requestsPage from './components/requestsPage';
 
 const store = configureStore();
 
@@ -36,9 +37,9 @@ const App = () => {
           <Route path="/call4verify" component={CallForVerify} />
           <Route path="/verify" component={VerifyEmailPage} />
           <Route path="/reverify" component={ReverifyPage} />
-
           <PrivateRoute  path="/profile" component={ProfilePage} />
           <PrivateRoute  path="/500" component={ServerErrorPage} />
+          <PrivateRoute  path="/requests" component={requestsPage} />
         </Switch>
       </Router>
     </div>
