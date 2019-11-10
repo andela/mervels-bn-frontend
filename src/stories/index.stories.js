@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Button, Welcome } from '@storybook/react/demo';
 import App from '../App';
-import '../App.scss';
+import '../styles/App.scss';
 
 
 storiesOf('Home page | Main app/Applicaton', module)

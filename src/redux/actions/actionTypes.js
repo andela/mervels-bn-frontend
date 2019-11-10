@@ -3,6 +3,8 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const GET_PROFILE_ERROR = 'GET_PROFILE_ERROR';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
 export default {
     SIGN_UP: 'SIGN_UP',

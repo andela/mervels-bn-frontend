@@ -1,4 +1,3 @@
-
 /* eslint-disable no-debugger */
 /* eslint-disable react/forbid-prop-types */
 /* eslint-disable react/jsx-props-no-spreading */
@@ -10,7 +9,7 @@ import PropTypes from 'prop-types';
 function PrivateRoute({component:Component , ...rest}){
     return (
         <Route {...rest} render={props=>(
-            localStorage.getItem('bareFootToken') ?
+            localStorage.getItem('bareFootToken') !== null ?
             (<Component {...props} />) :
             (<Redirect to={{
                 pathname:'/login',

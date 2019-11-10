@@ -1,5 +1,5 @@
 @import "variables";
-
+@import "./login.scss";
 @import "index";
 
 @import "reset";
@@ -26,7 +26,12 @@
 
 body {
   background-color: whitesmoke;
+  // background: #eff4f8;
 }
+// body,
+// html {
+//   height: 100%;
+// }
 .text-center {
   text-align: center;
 }

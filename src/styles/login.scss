@@ -1,0 +1,235 @@
+$colors: (
+  primary: #3359de,
+  back: #f6f7fb,
+  back_ground: #eff4f8,
+  whitey: #fff,
+  google: #d83025
+);
+$shadow: 0 2px 5px rgba(104, 104, 104, 0.8);
+
+@function color($name) {
+  @return map-get($colors, $name);
+}
+$Mediumscreen: 515px;
+$Smallscreen: 451px;
+$Smallestscreen: 347px;
+$microscreen: 297px;
+
+@mixin medium {
+  @media (max-width: #{$Mediumscreen}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: #{$Smallscreen}) {
+    @content;
+  }
+}
+@mixin smallest {
+  @media (max-width: #{$Smallestscreen}) {
+    @content;
+  }
+}
+@mixin micro {
+  @media (max-width: #{$microscreen}) {
+    @content;
+  }
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > div {
+    width: 600px;
+    text-align: center;
+    padding: 10px;
+    height: 100vh;
+    padding-top: 70px;
+    @include medium {
+      padding-top: 30px;
+    }
+  }
+}
+.local {
+  background: color(back_ground);
+  position: relative;
+  text-align: center;
+  .loginForm {
+    margin-top: 20px;
+  }
+  input {
+    margin-top: 15px;
+    margin-left: 15px;
+    height: 45px;
+    width: 60%;
+    font-size: 15px;
+    color: black;
+    padding-left: 10px;
+    border: 1px solid #a5aab5;
+    border-radius: 4px;
+    @include medium {
+      font-size: 10px;
+    }
+    @include small {
+      margin-top: 10px;
+      height: 30px;
+    }
+  }
+  input:focus {
+    outline-width: 0;
+    background: RGB(231, 240, 254);
+    border-color: color(primary);
+  }
+  .forgot {
+    text-align: center;
+    a {
+      color: color(primary);
+      text-decoration: none;
+    }
+    @include small {
+      font-size: 10px;
+    }
+  }
+  button {
+    margin-top: 20px;
+    width: 60%;
+  }
+  .social-btn {
+    width: 60%;
+  }
+  .foot-message {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 50px;
+    width: 100%;
+    padding-top: 10px;
+    background: color(back);
+    @include medium {
+      font-size: 10px;
+    }
+  }
+  img {
+    height: 120px;
+    @include medium {
+      height: 100px;
+    }
+    @include small {
+      height: 90px;
+    }
+    @include smallest {
+      height: 60px;
+    }
+  }
+
+  .social {
+    margin-top: 10px;
+    > div {
+      margin-bottom: 0px;
+    }
+  }
+  h2 {
+    text-align: center;
+    border: 1px solid black;
+    width: 20px;
+  }
+}
+
+.social-btn {
+  background: white;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 5px;
+  @include medium {
+    font-size: 13px;
+    // padding: 8px 10px;
+  }
+  @include small {
+    font-size: 12px;
+  }
+}
+
+.btnn {
+  height: 40px;
+  margin: 8px;
+  color: white;
+  outline: 0;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  font-weight: normal;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: background-color 0.6s ease;
+  &:hover {
+    cursor: pointer;
+    transition: ease-in-out 0.3;
+  }
+  @include small {
+    height: 30px;
+  }
+  @include medium {
+    height: 35px;
+  }
+  @include micro {
+    height: 78px;
+  }
+}
+
+.btnn-primary {
+  background-color: #3579f7;
+  &:hover {
+    background-color: #306fe4da;
+  }
+}
+
+.socialbtn {
+  position: relative;
+  img {
+    float: left;
+    background: white;
+    margin: 8px 0 0 60px;
+    width: 25px;
+    height: 25px;
+    @include medium {
+      width: 15px;
+      height: 15px;
+      margin: 10px 0 0 50px;
+    }
+    @include small {
+      width: 14px;
+      height: 14px;
+      margin: 10px 0 0 15px;
+    }
+    @include smallest {
+      margin: 10px 0 0 10px;
+    }
+  }
+  .google {
+    color: color(google);
+  }
+  .fb {
+    color: color(primary);
+  }
+}
+.m-1 {
+  float: left;
+  color: black;
+  text-transform: none;
+  margin-top: 10px;
+  padding-left: 20px;
+  @include small {
+    padding-left: 5px;
+  }
+  @include smallest {
+    padding-left: 5px;
+  }
+}
+.log {
+  font-size: 15px;
+  @include medium {
+    font-size: 10px;
+  }
+}
