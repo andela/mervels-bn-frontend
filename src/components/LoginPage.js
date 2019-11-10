@@ -1,43 +1,128 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-debugger */
+/* eslint-disable no-shadow */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
-import React, {useState, useEffect} from "react";
-import PropTypes from "prop-types";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import SocialAuth from './shared/socialAuth';
+import Input from './shared/input';
+import { localAuth, socialAuth } from '../redux/actions/login';
+import logo from '../logo/logo@2x.png';
 
-function LoginPage({history, location}) {
+export class LoginPage extends Component {
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      email: null,
+      password: null
+    };
+  } 
 
-  useEffect(()=>{
-    // Redirect to home if logged in already
-    if(localStorage.getItem("logged_in")){
+  componentDidMount() {
+    this.setState((prevState) => ({...prevState}));
+    this.checkLoggedIn();
+    const { location, socialAuth } = this.props;
+    if(location !== undefined) {
+    const base64encoded = location.search.split('&')[0].split('?code=')[1];
+    if (base64encoded) {
+      const decoded = JSON.parse(atob(base64encoded));
+      socialAuth(decoded);
+    }
+  }
+  }
+
+  componentDidUpdate() {
+    const { user, history } = this.props;
+    if (user.isLoggedIn === true ) {
+      const token = localStorage.getItem('bareFootToken');
+      if(token) {
+        history.push('/');
+      }
+    }
+    if(user.error) {
+      toast.error(user.error);
+    }
+  }
+
+  checkLoggedIn = () => {
+    const { history } = this.props;
+    const token = localStorage.getItem('bareFootToken');
+    if(token !== null) {
       history.push('/');
     }
-  },[history]);
+  }
 
-  const handleClick = () => {
-    localStorage.setItem("logged_in", true);
-    if(!location.state){
-      history.push("/");
-    }else{
-      // Redirect to page that was trying to login
-      const redirectTo = location.state.redirectTo.path;
-      history.push(redirectTo);
-    }
+  handleInput = async (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
+  
+  handleSubmit = (e) => {
+    const { localAuth } = this.props;
+    const { email, password } = this.state;
+    e.preventDefault();
+    const user = {
+      userEmail: email,
+      userPassword: password,
+    };
+    localAuth(user);
+  }
 
-  return (
-      <div>
-      <h6>Click Button to Login</h6>
-      <button type="button" onClick={handleClick} className="btn-sample">
-        Press To Login
-      </button>
+  render() {
+    const { password, email } =this.state;
+    return (
+      <div className="login-container">
+            <div className="local">
+                <img src={logo} alt="logo" />
+            <form className="loginForm" onSubmit={this.handleSubmit}>
+              <Input 
+                name="email"
+                inputType="email"
+                placeholder="Email"
+                onChange={this.handleInput}
+                value={email}
+                required
+              />
+              <Input
+                name="password"
+                inputType="password"
+                placeholder="Password"
+                onChange={this.handleInput}
+                value={password}
+                required
+              />
+            <div className="forgot">
+                <a  href="/">Forgot your password?</a>
+            </div>
+            <button className="btn btn-primary" type="submit">Login</button>
+            </form>
+            <div className="social">
+              <SocialAuth />
+            </div>
+        <div className="foot-message">Dont have a Barefoot Nomad account? <a href="/">Sign up now!</a></div>
+        </div>
     </div>
-  );
-
+    );
+  }
 }
 
 LoginPage.propTypes = {
+  localAuth: PropTypes.func.isRequired,
+  socialAuth: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  location: PropTypes.object,
   history: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired
 };
 
-export default LoginPage;
+const mapStateToProps = ({ loginReducer }) => ({
+  user: loginReducer,
+});
+
+export default connect(
+  mapStateToProps,
+  { localAuth, socialAuth }
+)(LoginPage);
