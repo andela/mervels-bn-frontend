@@ -11,16 +11,20 @@ import PrivateRoute from "./PrivateRoute";
 import HomePage from "./components/HomePage";
 import DashboardPage from "./components/DashboardPage";
 import SignupPage from "./components/signupPage";
+import NotificationPage from './components/NotificationPage';
+
 
 const store = configureStore();
 
 const App = () => {
+
   return (
     <Provider store={store}>
       <div className="App">
       <Router>
         <Switch>
           <Route  path="/login" component={LoginPage} />
+          <PrivateRoute  path="/notifications" component={NotificationPage} />
           <PrivateRoute  path="/home" component={HomePage} />
           <PrivateRoute exact path="/" component={LoggedInDashboard} />
           <PrivateRoute  path="/dashboard" component={DashboardPage} />

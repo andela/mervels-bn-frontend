@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 function PrivateRoute({component:Component , ...rest}){
     return (
         <Route {...rest} render={props=>(
-            localStorage.getItem('logged_in') === 'true' ?
+            localStorage.getItem('logged_in') !== null ?
             (<Component {...props} />) :
             (<Redirect to={{
                 pathname:'/login',

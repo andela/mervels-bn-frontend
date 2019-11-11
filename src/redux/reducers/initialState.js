@@ -1,7 +1,11 @@
 const initialState = {
     user: {
         data: {},
-        errors: {} 
+        errors: {}
+    },
+    notifications: {
+        unread: 0,
+        notifications: []
     }
 };
 
