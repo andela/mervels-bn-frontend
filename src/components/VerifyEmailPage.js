@@ -26,7 +26,7 @@ class VerifyPage extends Component {
         const {verifyData} = nextProps;
         if(verifyData.data) {
             const {userToken} = verifyData.data;
-            localStorage.setItem("barefootToken", userToken);
+            localStorage.setItem("bareFootToken", userToken);
             localStorage.setItem("logged_in", "true");
             nextProps.history.push("/home");
             toast.success("Email verified successfully");

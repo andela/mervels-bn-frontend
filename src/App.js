@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import configureStore from './redux/store';
 import "./styles/App.scss";
-import LoginPage from "./components/LoginPage";
+import Login from "./components/LoginPage";
 import LoggedInDashboard from "./components/LoggedInDashboard";
 import PrivateRoute from "./PrivateRoute";
 import HomePage from "./components/HomePage";
@@ -15,7 +15,7 @@ import DashboardPage from "./components/DashboardPage";
 import SignupPage from "./components/signupPage";
 import CallForVerify from "./components/CallForVerify";
 import VerifyEmailPage from "./components/VerifyEmailPage";
- import ReverifyPage from "./components/ReverifyPage";
+import ReverifyPage from "./components/ReverifyPage";
 import ProfilePage from './components/ProfilePage';
 import ServerErrorPage from './components/500Page';
 
@@ -28,8 +28,8 @@ const App = () => {
       <div className="App">
       <Router>
         <Switch>
-          <Route  path="/login" component={LoginPage} />
-          <PrivateRoute  path="/home" component={HomePage} />
+          <Route  path="/login" component={Login} />
+          <Route  path="/home" component={HomePage} />
           <PrivateRoute exact path="/" component={LoggedInDashboard} />
           <PrivateRoute  path="/dashboard" component={DashboardPage} />
           <Route path="/signUp" component={SignupPage} />
