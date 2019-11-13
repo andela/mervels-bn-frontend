@@ -1,0 +1,102 @@
+.call4verif-container {
+  border: 0.5px solid whitesmoke;
+  padding: 20px;
+  background-color: white;
+  .c4v-title {
+    display: inline;
+    margin: auto;
+    font-size: 30px;
+  }
+  text-align: center;
+  p {
+    font-size: 16px;
+  }
+}
+.c4v {
+  width: 65%;
+  margin: 20px auto;
+  font-size: 20px;
+  .notice-exp {
+    color: #7d7d7d;
+  }
+
+  .barefoot-logo {
+    width: 15%;
+    display: block;
+    margin: 20px auto;
+  }
+  .verify-ok {
+    display: block;
+    width: 20%;
+    margin: auto;
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .c4v {
+    width: 85%;
+    margin: 20px auto;
+    font-size: 20px;
+    .notice-exp {
+      color: #7d7d7d;
+    }
+
+    .barefoot-logo {
+      width: 20%;
+      display: block;
+      margin: 20px auto;
+    }
+    .c4v-title {
+      font-size: 25px;
+    }
+    .verify-ok {
+      display: inline-block;
+      width: 40%;
+      margin: auto;
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .c4v {
+    width: 100%;
+    margin: 20px auto;
+    font-size: 20px;
+    .notice-exp {
+      color: #7d7d7d;
+    }
+    .call4verif-container {
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    .barefoot-logo {
+      width: 28%;
+      display: block;
+      margin: 20px auto;
+    }
+    .c4v-title {
+      font-size: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
+    .verify-ok {
+      display: block;
+      width: 50%;
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+      }
+    }
+  }
+}
