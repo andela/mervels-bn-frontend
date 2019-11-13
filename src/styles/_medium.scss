@@ -1,0 +1,30 @@
+@mixin medium-grid {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+  }
+  @for $x from 1 through 12 {
+    .col-#{$x} {
+      grid-column: span #{$x} / auto;
+      display: inline-block;
+    }
+  }
+}
+
+$offset: 8.333333%;
+
+@mixin offset {
+  @for $i from 1 through 11 {
+    .offset-#{$i} {
+      margin-left: $offset * $i;
+    }
+  }
+}
+
+@include medium-grid;
+@include offset;
+
+.navbar {
+  display: flex;
+}

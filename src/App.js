@@ -1,12 +1,12 @@
+/* eslint-disable import/no-named-as-default */
 import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Switch } from "react-router";
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "./App.scss";
-import "./styles/index.scss";
 import configureStore from './redux/store';
+import "./styles/App.scss";
 import LoginPage from "./components/LoginPage";
 import LoggedInDashboard from "./components/LoggedInDashboard";
 import PrivateRoute from "./PrivateRoute";
@@ -16,6 +16,8 @@ import SignupPage from "./components/signupPage";
 import CallForVerify from "./components/CallForVerify";
 import VerifyEmailPage from "./components/VerifyEmailPage";
  import ReverifyPage from "./components/ReverifyPage";
+import ProfilePage from './components/ProfilePage';
+import ServerErrorPage from './components/500Page';
 
 const store = configureStore();
 
@@ -35,6 +37,8 @@ const App = () => {
           <Route path="/verify" component={VerifyEmailPage} />
           <Route path="/reverify" component={ReverifyPage} />
 
+          <PrivateRoute  path="/profile" component={ProfilePage} />
+          <PrivateRoute  path="/500" component={ServerErrorPage} />
         </Switch>
       </Router>
     </div>

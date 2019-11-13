@@ -1,0 +1,37 @@
+.card {
+  width: 20vw;
+  height: 14rem;
+  margin: 50px;
+  padding: 0.5rem 0.5rem;
+  background-color: white;
+  box-shadow: 0 0 15px #00000030;
+  border-radius: 4px;
+}
+.card-info {
+  margin: 40px 0px;
+  text-align: center;
+}
+
+.card-title {
+  // margin-bottom: 8px;
+}
+.card-info-item {
+  margin: 0px 10px;
+}
+
+.card-info-item:last-child {
+  margin: 10px 0;
+}
+.card-info-item:nth-child(2),
+.card-info-item:nth-child(3),
+.card-info-item:nth-child(4) {
+  margin: 10px 0;
+}
+.card-lable {
+  font-weight: bold;
+  font-size: 15px;
+}
+.cicle {
+  background-color: yellow;
+  clip-path: circle(50% at 50% 50%);
+}

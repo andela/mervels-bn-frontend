@@ -548,10 +548,10 @@ module.exports = function(webpackEnv) {
         }
       ),
       isEnvProduction && new webpack.DefinePlugin({
-        "process.env.baseUrl": JSON.stringify("https://mervels-bn-backend-staging.herokuapp.com")
+        "process.env.baseUrl": JSON.stringify("https://mervels-bn-backend-staging.herokuapp.com/api/v1")
       }),
       isEnvDevelopment && new webpack.DefinePlugin({
-        "process.env.baseUrl": JSON.stringify("http://localhost:3000")
+        "process.env.baseUrl": JSON.stringify("http://localhost:3000/api/v1")
       }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.

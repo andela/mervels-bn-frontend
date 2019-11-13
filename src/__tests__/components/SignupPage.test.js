@@ -37,7 +37,7 @@ describe('signUp', () => {
         const mainInput = wrapper.find("[name='firstName']");
         const firstName = mainInput.find("input[name='firstName']");
         firstName.simulate('change', { target: { value: 'ba' } });
-        const pError = mainInput.find('.input-error');
+        const pError = mainInput.find('.form-error'); 
         expect(pError).toHaveLength(1);
     });
     it('should submit a form with all info', () => {

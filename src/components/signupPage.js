@@ -61,14 +61,14 @@ class SignUpPage extends Component {
 
     render() { 
         const {firstName, lastName, userEmail, userPassword, confirm, errors} = this.state;
-        return ( <div className="signup-page">
+        return ( <div className="signup-page m-top-10">
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
             <form className="signup-form" onSubmit = {this.handleSubmit}>
-            <Input placeholder="First Name" error={errors.firstName} required={{required: 'required'}} onChange={this.handleChange} name="firstName" className="frm-input full-width" type="text" value={firstName}/>
-            <Input placeholder="Last Name" error={errors.lastName} required={{required: 'required'}} onChange={this.handleChange} name="lastName" className="frm-input full-width" type="text" value={lastName}/>
-            <Input placeholder="Email" error={errors.userEmail} required={{required: 'required'}} onChange={this.handleChange} name= "userEmail" className="frm-input full-width" type="email" value={userEmail}/>
-            <Input placeholder="Password" error={errors.userPassword} required={{required: 'required'}} onChange={this.handleChange} name="userPassword" className="frm-input full-width" type="password" value={userPassword}/>
-            <Input placeholder="Confirm Password" error={errors.confirm} required={{required: 'required'}} onChange={this.handleChange} name="confirm" className="frm-input full-width" type="password" value={confirm}/>
+            <Input placeholder="First Name" error={errors.firstName} required={{required: 'required'}} onChange={this.handleChange} name="firstName" classes="input full-width" inputType="text" value={firstName}/>
+            <Input placeholder="Last Name" error={errors.lastName} required={{required: 'required'}} onChange={this.handleChange} name="lastName" classes="input full-width" inputType="text" value={lastName}/>
+            <Input placeholder="Email" error={errors.userEmail} required={{required: 'required'}} onChange={this.handleChange} name= "userEmail" classes="input full-width" inputType="email" value={userEmail}/>
+            <Input placeholder="Password" error={errors.userPassword} required={{required: 'required'}} onChange={this.handleChange} name="userPassword" classes="input full-width" inputType="password" value={userPassword}/>
+            <Input placeholder="Confirm Password" error={errors.confirm} required={{required: 'required'}} onChange={this.handleChange} name="confirm" classes="input full-width" inputType="password" value={confirm}/>
             <button type="submit" className="btn btn-primary signup-btn">Sign Up</button>
             </form>
             <div className="center-small">OR</div>

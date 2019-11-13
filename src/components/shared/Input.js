@@ -1,52 +1,49 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/button-has-type */
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({
-  type,
-  className,
-  onChange,
-  placeholder,
-  value,
-  name,
-  required,
-  error
-}) => (
-    <>
-  <input
-    name={name}
-    type={type}
-    value={value}
-    className={className}
-    onChange={onChange}
-    placeholder={placeholder}
-    {...required}
-  />
-  <br />
-    <p className='input-error'>{error}</p>
-  <br />
-  </>
-);
-
-Input.propTypes = {
-  name: PropTypes.string,
-  type: PropTypes.string,
-  className: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.string,
-  // eslint-disable-next-line react/require-default-props
-  required: PropTypes.object,
-  error: PropTypes.string,
+const Input = ({inputType, name, placeholder, classes, value, onChange, error, disabled, required}) => {
+    return(
+        <>
+            <input
+                id={name}
+                type={inputType}
+                className={classes}
+                name={name}
+                placeholder={placeholder}
+                onChange={onChange}
+                value={value}
+                autoComplete='on'
+                disabled={disabled}
+                {...required}
+            /><br />
+            <p className='form-error'>{error}</p>
+            <br />
+        </>
+    );
 };
 
 Input.defaultProps = {
-  name: '',
-  type: 'text',
-  className: 'input',
-  placeholder: '',
-  value: '',
-  error: '',
+    inputType: 'text',
+    classes: 'input',
+    error: '',
+    placeholder: '',
+    value: '',
+    disabled: ''
+};
+
+Input.propTypes = {
+    inputType: PropTypes.string,
+    value: PropTypes.string,
+    classes: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    disabled: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    error: PropTypes.string,
+    placeholder: PropTypes.string,
+    // eslint-disable-next-line react/require-default-props
+  required: PropTypes.object
 };
 
 export default Input;
