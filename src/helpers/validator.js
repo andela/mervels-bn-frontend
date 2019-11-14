@@ -1,5 +1,7 @@
 /* eslint-disable no-useless-escape */
+/* eslint-disable no-param-reassign */
 import * as yup from 'yup';
+import moment from 'moment';
 
 const messages = {
     short: 'Too short',
@@ -27,6 +29,32 @@ const schema = {
     userEmail: yup.string().email(messages.validEmail).required(messages.required),
     userPassword: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
     password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required)
+};
+
+export const validateRequest = (payload) => {
+    const travelDates = payload.trips.map((trip) => trip.travelDate);
+    const accommodations = payload.trips.map((trip) => trip.accommodation);
+    const locations = payload.trips.map((trip) => trip.location);
+    // Add profile info validations!
+    if(accommodations.includes('') || locations.includes('') || !payload.reason || !payload.from){
+        return 'Please fill all fields';
+    }   
+    if (moment().isAfter(travelDates[0]) === true) {
+      	return 'Travel Dates must be later than today';
+    }
+    if (payload.returnDate !== undefined) {
+      	if (moment(travelDates[travelDates.length - 1]).isAfter(payload.returnDate) === true) {
+        	return 'The Return Date must be later than travel date';
+      	}
+    }
+    if (travelDates.length > 1) {
+      	for (let date = 0; date < travelDates.length - 1; date += 1) {
+        	if (moment(travelDates[date]).isAfter(travelDates[date + 1]) === true) {
+          		return 'Travel Dates must be in order';
+        	}
+      	}
+    }
+    return null;
 };
 
 

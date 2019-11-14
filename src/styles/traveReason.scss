@@ -1,0 +1,20 @@
+.trv-reason {
+  // background-color: white;
+  width: 100%;
+  // border: 1px solid #707070;
+  border-radius: 3px;
+  // padding: 5px;
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin: 5px;
+  line-height: 30px;
+}
+
+.travel-reacon-container {
+  font-size: 17px;
+  .title-reason {
+    font-size: 19px;
+    padding: 5px;
+    color: #2753a5;
+    font-weight: normal;
+  }
+}

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { mount , configure } from 'enzyme';
+import { mount , configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import configureMockStore from 'redux-mock-store';
@@ -22,7 +22,7 @@ describe('RequestView Component', () => {
            },
            filtered: {}
      },
-      fetchRequests: jest.fn,
+      fetchRequests: jest.fn(),
       history: { push: jest.fn() },
       match:{
         path:'/approvals'
@@ -150,37 +150,87 @@ describe('RequestView Component', () => {
     wrapper.setProps({ ...props, ...newProps});
       expect(wrapper).toHaveLength(1);
     });
-    it('should render RequestView error component', () => {
-        // const obj = props.requests;
-        const newProps = {
-            requests:{
-                error:{
-                    error: "Authentication Error",
-                    message: "Invalid or expired token used",
-                    status: 401
+    it('should render RequestView component', () => {
+      const newProps = {
+        requests: {
+          error: null,
+            filtered: {},
+            requests: {
+              message: "Your requests were retrieved successfully",
+              status: 200,
+              data: [{
+                "id": 2,
+                "from": "KIGALI, RWANDA",
+                "travelDate": [
+                  "2019-10-01", "2019-10-02"
+                ],
+                "returnDate": null,
+                "reason": "Business Travel",
+                "status": "Approved",
+                "user": 3,
+                "passportName": "Robben Bahati",
+                "passportNumber": "121HU3H3U32",
+                "gender": "MALE",
+                "role": "Requester",
+                "createdAt": "2019-11-11T05:13:44.754Z",
+                "updatedAt": "2019-11-11T05:13:44.754Z",
+                "accommodations": [{
+                  "id": 2,
+                  "name": "MARIOT",
+                  "status": "Unavailable",
+                  "imageUrl": null,
+                  "amenities": null,
+                  "locationId": 1,
+                  "description": null,
+                  "services": null,
+                  "createdAt": "2019-11-11T05:13:44.822Z",
+                  "updatedAt": "2019-11-11T05:13:44.822Z",
+                  "AccommodationRequests": {
+                    "requestId": 2,
+                    "accommodationId": 2,
+                    "createdAt": "2019-11-11T05:13:44.845Z",
+                    "updatedAt": "2019-11-11T05:13:44.845Z"
+                  },
+                  "Location": {
+                    "id": 1,
+                    "country": "RWANDA",
+                    "city": "KIGALI",
+                    "createdAt": "2019-11-11T05:13:44.791Z",
+                    "updatedAt": "2019-11-11T05:13:44.791Z"
+                  }
                 },
-                requests:{},
-                filtered: {}
-          },
-        };
-        wrapper.setProps({ ...props, ...newProps});
-        expect(wrapper.find(`h3.text-center`).length).toEqual(1);
-    });
-    it('should render RequestView error component', () => {
-        const newProps = {
-            requests:{
-                error:{
-                    error: "Authentication Error",
-                    message: "Invalid or expired token used",
-                    status: 401
-                },
-                requests:{},
-                filtered: {}
-          },
-        };
-        wrapper.setProps({ ...props, ...newProps});
-        expect(wrapper.find(`h3.text-center`).length).toEqual(1);
-    });
+                {
+                  "id": 2,
+                  "name": "MARIOT",
+                  "status": "Unavailable",
+                  "imageUrl": null,
+                  "amenities": null,
+                  "locationId": 1,
+                  "description": null,
+                  "services": null,
+                  "createdAt": "2019-11-11T05:13:44.822Z",
+                  "updatedAt": "2019-11-11T05:13:44.822Z",
+                  "AccommodationRequests": {
+                    "requestId": 2,
+                    "accommodationId": 2,
+                    "createdAt": "2019-11-11T05:13:44.845Z",
+                    "updatedAt": "2019-11-11T05:13:44.845Z"
+                  },
+                  "Location": {
+                    "id": 1,
+                    "country": "RWANDA",
+                    "city": "KIGALI",
+                    "createdAt": "2019-11-11T05:13:44.791Z",
+                    "updatedAt": "2019-11-11T05:13:44.791Z"
+                  }
+                }]
+              }]
+            },
+        },
+      };
+      wrapper.setProps({ ...props, ...newProps});
+        expect(wrapper).toHaveLength(1);
+      });
     it('should render RequestView Network error', () => {
         const newProps = {
             requests:{
@@ -275,7 +325,7 @@ describe('RequestPage intergration test', () => {
     wrapper = mount(<RequestViewTest store={store} {...prop} />);
     const Pevent = {target: {name: "query", value: 2}};
     wrapper.find('input[name="query"]').simulate('change', Pevent);
-    expect(wrapper.instance().state).toEqual({ parameter: null, query: 2, currentPage: 1, requestsPerPage: 2 });
+    expect(wrapper.instance().state).toEqual({ parameter: null, query: 2, currentPage: 1, requestsPerPage: 2, isCreating: false });
   });
   test('should test handle search', () => {
     const mockLoginfn = jest.fn();
@@ -294,5 +344,40 @@ describe('RequestPage intergration test', () => {
     wrapper.find('#catsel').simulate('change', Eevent);
     wrapper.find('#search').simulate('click');
     expect(mockLoginfn.mock.calls.length).toBe(1);
+  });
+});
+
+let wrapperShallow;
+
+describe('Request Page Component', () => {
+  const props = {
+    requests:{
+         error:null,
+         filtered: {},
+         requests:{
+             message: "Your requests were retrieved successfully",
+             status: 200,
+             data:[{
+               id: 1
+             }]
+         }
+   },
+    fetchRequests: jest.fn(),
+    history: { push: jest.fn() },
+  };
+
+  beforeEach(() => {
+    wrapperShallow = shallow(
+      <RequestViewTest fetchRequests={jest.fn()} match={{ path: '' }} history={props.history} requests={props.requests} isCreating={false} />
+    );
+  });
+  it('should start creating a request', () => {
+    wrapperShallow.find('Button[ButtonId="create-start"]').props().onClick();
+    expect(wrapperShallow.instance().state).toHaveProperty('isCreating');
+  });
+
+  it('should trigger viewing a single request', () => {
+    wrapperShallow.find('TableComponent').props().viewRequest({ target: { id: 1 } });
+    expect(wrapperShallow.instance().state).toHaveProperty('isCreating');
   });
 });

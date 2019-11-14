@@ -3,8 +3,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Select = ({name, selected, classes, options, onChange, error, disabled}) => {
-    const data = options.map((element) => (<option value={element} selected={selected === element}>{element}</option>));
+const Select = ({name, ids, selected, classes, options, onChange, error, disabled}) => {
+    const message = options.length > 1 ? 'Select One...': 'None Available';
+    const data = options.map((element, index) => (<option value={ ids.length > 0 && index > 0 ? ids[index]: element } selected={selected === element}>{element || message}</option>));
     return(
         <>
             <select
@@ -23,14 +24,17 @@ const Select = ({name, selected, classes, options, onChange, error, disabled}) =
 
 Select.defaultProps = {
     classes: 'input',
+    disabled: '',
+    ids: ''
 };
 
 Select.propTypes = {
     selected: PropTypes.string.isRequired,
     options: PropTypes.arrayOf.isRequired,
+    ids: PropTypes.array,
     classes: PropTypes.string,
     name: PropTypes.string.isRequired,
-    disabled: PropTypes.string.isRequired,
+    disabled: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     error: PropTypes.string.isRequired,
 };

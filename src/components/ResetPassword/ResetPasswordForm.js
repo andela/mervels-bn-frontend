@@ -11,7 +11,7 @@ import Button from "../shared/Button";
 export const ResetFormTemplate = ({ handleChange, handleSubmit, email, submitting }) => (
   <form onSubmit={handleSubmit} name="emailForm">
     <label htmlFor="email">
-      <p>
+      <p className="reset-form-paragraph">
         Inorder to reset password please provide an email linked to your barefoot
         nomad account below
       </p>
@@ -30,13 +30,13 @@ export const ResetFormTemplate = ({ handleChange, handleSubmit, email, submittin
 
 export const ResetEmailSentTemplate = ({ email }) => (
   <div>
-    <p>Kindly check your email: <strong>{email}</strong> for Password reset information</p>
+    <p className="reset-form-paragraph">Kindly check your email: <strong>{email}</strong> for Password reset information</p>
   </div>
 );
 
 export const ResetEmailComplete = () => (
   <div>
-    <p>Password Reset Successfully.</p>
+    <p className="reset-form-paragraph">Password Reset Successfully.</p>
   </div>
 );
 
