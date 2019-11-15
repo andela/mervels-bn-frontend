@@ -20,7 +20,7 @@ describe('Signup action', () => {
     afterEach(() => { 
         moxios.uninstall(axiosInstance);
     });
-    it('should successfully signup', async () => {
+    it('should successfully signup', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -42,10 +42,11 @@ describe('Signup action', () => {
         await store.dispatch(signupAction(createdUser));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP);    
+        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP); 
+        done();   
     });
 
-    it('should handle duplicate signup', async () => {
+    it('should handle duplicate signup', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -67,10 +68,11 @@ describe('Signup action', () => {
         await store.dispatch(signupAction(createdUser));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR);     
+        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR); 
+        done();    
     });
 
-    it('should handle valication errors from server', async () => {
+    it('should handle valication errors from server', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -92,10 +94,11 @@ describe('Signup action', () => {
         await store.dispatch(signupAction(createdUser));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR);     
+        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR); 
+        done();    
     });
 
-    it('should handle server errors', async () => {
+    it('should handle server errors', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -117,6 +120,7 @@ describe('Signup action', () => {
         await store.dispatch(signupAction(createdUser));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR);     
+        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR); 
+        done();    
     }); 
 });   

@@ -18,8 +18,8 @@ const signupAction = ({userEmail, userPassword, firstName, lastName})=>(dispatch
         }
     // eslint-disable-next-line no-unused-vars
     }).catch((error) => {
-        dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status: null, message: "Connection error"}});
-    });
+        dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status: 501, message: 'Connection error'}});
+       });
 };
 
 export default signupAction;

@@ -83,7 +83,7 @@ class RequestView extends React.Component{
 
     viewRequest = (e) => {
         const { history } = this.props;
-        history.push(`request/${e.target.id}`);
+        history.push(`/request/${e.target.id}`);
     }
 
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
@@ -130,6 +130,7 @@ class RequestView extends React.Component{
                 const table = <TableComponent
                 items={currentRequests}
                 viewRequest={this.viewRequest}
+                destination="request"
                 currentPage={currentPage}
                 requestsPerPage={requestsPerPage}
                 totalRequests={items.length}
