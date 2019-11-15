@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Input from '../../../components/shared/Input';
+import Input from '../../../components/shared/input';
 
 describe('Input component unit test', () => {
     it('render profile component', () => {

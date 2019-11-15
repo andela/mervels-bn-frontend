@@ -75,11 +75,14 @@ describe("Reset Password Form", () => {
     });
 
     test("should render Reset Email Sent Template", done => {
-      const Eevent = { target: { name: "email", value: "email@gmail.com" } };
-      wrapper.find('Input[name="email"]').simulate("change", Eevent);
-      expect(wrapper.find("form").length).toBe(0);
+        mockUseEffect();
+        const Eevent = { target: { name: "email", value: "email@gmail.com" } };
+        wrapper.find('Input[name="email"]').simulate("change", Eevent);
+
+      expect(wrapper.find("div").length).toBeGreaterThan(0);
       done();
     });
+
     test("should test onChange inputs Password Reset Form inputs ", done => {
       const history = createMemoryHistory("/resetPassword/10/123123asdsa");
       const newProps = {
@@ -109,10 +112,6 @@ describe("Reset Password Form", () => {
 
       const Fevent = { target: { name: "passwordForm" } };
       wrapper.find('[name="passwordForm"]').simulate("submit", Fevent);
-
-
-      // const PasEvent = { target: { name: "password", value: "@sadsa.cons" } };
-      // wrapper.find('Input[name="password"]').simulate("change", PasEvent);
 
       expect(wrapper.find("form").length).toBe(1);
       done();

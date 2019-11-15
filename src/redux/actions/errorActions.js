@@ -6,6 +6,7 @@
 import * as types from "./actionTypes";
 
 export function networkError(error) {
+
   return {
     type: types.NETWORK_ERROR,
     errors: error
@@ -21,6 +22,7 @@ export function serverError(error) {
 }
 
 export function handleError(error) {
+
   return function(dispatch) {
     error.response
       ? dispatch(serverError(error.response))

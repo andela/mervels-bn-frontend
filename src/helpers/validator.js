@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import * as yup from 'yup';
 
 const messages = {
@@ -24,8 +25,8 @@ const schema = {
     department: yup.string().min(3, messages.department),
     gender: yup.string().min(3, messages.gender),
     userEmail: yup.string().email(messages.validEmail).required(messages.required),
-    // eslint-disable-next-line no-useless-escape
     userPassword: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
+    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required)
 };
 
 
@@ -37,4 +38,4 @@ export default (key, value) => {
             error: err.errors[0]
         };
     });
-}; 
+};

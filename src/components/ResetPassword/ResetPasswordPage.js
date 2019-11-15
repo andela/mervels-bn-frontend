@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable no-lone-blocks */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-nested-ternary */
@@ -5,16 +6,17 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-debugger */
 /* eslint-disable no-use-before-define */
-/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { toast } from "react-toastify";
+import PropTypes from 'prop-types';
 import {
   sendResetPassword,
   resetPassword
 } from "../../redux/actions/resetPassword";
 import "../../styles/resetPassword.scss";
+import validator from '../../helpers/validator';
 import logo from '../../logo/logo@2x.png';
 
 
@@ -37,21 +39,30 @@ export function ResetPasswordPage({
   const [password, setPassword] = useState();
   const [newPassword, setNewPassword] = useState();
   const [emailSent, setEmailSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [validationError, setErrors] = useState({
+    email: undefined,
+    password: undefined,
+    match: undefined
+  });
 
   React.useEffect(() => {
     redirect();
   }, [errors]);
 
-  const handleChange = event => {
-    switch (event.target.name) {
+  const handleChange =  async({target}) => {
+    const { error } = await validator(target.name, target.value);
+
+    switch (target.name) {
       case "email":
-        setEmail(event.target.value);
+        setEmail(target.value);
         break;
       case "password":
-        setPassword(event.target.value);
+         setPassword(target.value);
+        setErrors({...validationError, password: error});
         break;
       case "newPassword":
-        setNewPassword(event.target.value);
+         setNewPassword(target.value);
         break;
       default:
         break;
@@ -61,9 +72,22 @@ export function ResetPasswordPage({
   const handleSubmit = event => {
     event.preventDefault();
     const formName = event.target.name;
-    formName === "emailForm"
-      ? sendResetPassword({ email })
-      : resetPassword({ password, newPassword, userId, userToken });
+    const hasErrors = Object.values(validationError).some(val=> val!==undefined);
+
+    if(formName === 'emailForm'){
+      if (email !== undefined && email.length > 5 ){
+        setSubmitting(true);
+        sendResetPassword({ email });
+      }else {
+        setSubmitting(false);
+        toast.error('Email cannot be empty');
+      }
+    }else if(!hasErrors && password === newPassword){
+        resetPassword({ password, newPassword, userId, userToken });
+      }else {
+        toast.error('Validation Error Passwords do not match');
+      }
+
   };
 
   function redirect() {
@@ -92,6 +116,8 @@ export function ResetPasswordPage({
           <ResetFormTemplate
             handleChange={handleChange}
             handleSubmit={handleSubmit}
+            submitting={submitting}
+
           />
         ) : (
           <ResetEmailSentTemplate email={email} />
@@ -100,6 +126,7 @@ export function ResetPasswordPage({
         <PasswordResetFormTemplate
           handleChange={handleChange}
           handleSubmit={handleSubmit}
+          error={validationError}
         />
       )}
       </div>
@@ -107,7 +134,7 @@ export function ResetPasswordPage({
   );
 }
 
-function mapStateToProps({ resetPassword, errors }, ownProps={}) {
+function mapStateToProps({ resetPassword, errors }, ownProps) {
   const  userId  = (ownProps.match) ? ownProps.match.params.userId : "";
   const  userToken  = (ownProps.match) ? ownProps.match.params.userToken : "";
   return {
@@ -117,6 +144,17 @@ function mapStateToProps({ resetPassword, errors }, ownProps={}) {
     message: resetPassword.message
   };
 }
+
+/** PropTypes  */
+ResetPasswordPage.propTypes = {
+  sendResetPassword: PropTypes.func.isRequired,
+  resetPassword: PropTypes.func.isRequired,
+  userId: PropTypes.string,
+  userToken: PropTypes.string,
+  message: PropTypes.string,
+  errors: PropTypes.object,
+  history: PropTypes.object
+};
 
 export default connect(
   mapStateToProps,

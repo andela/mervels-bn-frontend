@@ -144,7 +144,6 @@ describe('Login dispatch actions', () => {
         }
       }
     };
-
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.reject(errorResp);

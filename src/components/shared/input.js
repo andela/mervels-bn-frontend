@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
 import React from 'react';
@@ -29,12 +30,12 @@ Input.defaultProps = {
     classes: 'input',
     error: '',
     placeholder: '',
-    value: '',
     disabled: ''
 };
 
 Input.propTypes = {
     inputType: PropTypes.string,
+    // eslint-disable-next-line react/require-default-props
     value: PropTypes.string,
     classes: PropTypes.string,
     name: PropTypes.string.isRequired,

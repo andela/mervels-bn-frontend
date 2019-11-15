@@ -5,9 +5,10 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import Input from "../shared/input";
+import Button from "../shared/Button";
 
 
-export const ResetFormTemplate = ({ handleChange, handleSubmit, email }) => (
+export const ResetFormTemplate = ({ handleChange, handleSubmit, email, submitting }) => (
   <form onSubmit={handleSubmit} name="emailForm">
     <label htmlFor="email">
       <p>
@@ -22,7 +23,8 @@ export const ResetFormTemplate = ({ handleChange, handleSubmit, email }) => (
           required
         />
     </label>
-    <button className="btn btn-primary" type="submit">Reset Password</button>
+    <Button ButtonId="reset-password" submitting={submitting} buttonType="submit"  classes="btn btn-primary" text="Reset Password" />
+    {/* <button className="btn btn-primary" type="submit">Reset Password</button> */}
   </form>
 );
 
@@ -38,7 +40,7 @@ export const ResetEmailComplete = () => (
   </div>
 );
 
-export const PasswordResetFormTemplate = ({ handleChange, handleSubmit }) => (
+export const PasswordResetFormTemplate = ({ handleChange, handleSubmit, error }) => (
   <div>
     <form onSubmit={handleSubmit} name="passwordForm">
       <h2>Password Reset Form</h2>
@@ -48,12 +50,14 @@ export const PasswordResetFormTemplate = ({ handleChange, handleSubmit }) => (
         placeholder="Enter Password"
         onChange={handleChange}
         autoComplete="off"
+        error={error.password}
         required
       />
       <Input
         name="newPassword"
         inputType="password"
         placeholder="Confirm Password"
+        autoComplete="off"
         onChange={handleChange}
         required
       />

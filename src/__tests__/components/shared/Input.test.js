@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from '../../../config/enzyme.config';
-import Input from '../../../components/shared/Input';
+import Input from '../../../components/shared/input';
 
 describe('Input component', () => {
     it('renders input component without crashing', () => {
