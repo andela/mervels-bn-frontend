@@ -25,6 +25,7 @@ export const sendResetPassword = (email) => async(dispatch) => {
         const response = await api.post(`/auth/forgotPassword`, email);
         dispatch(resetPasswordSent(response.data));
     }catch(error){
+
         dispatch(handleError(error));
     }
 };

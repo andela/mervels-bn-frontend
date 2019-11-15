@@ -1,12 +1,10 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/forbid-prop-types */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import SocialAuth from './shared/socialAuth';
 import Input from './shared/input';
 import { localAuth, socialAuth } from '../redux/actions/login';
@@ -42,9 +40,6 @@ export class LoginPage extends Component {
       if(token) {
         history.push('/');
       }
-    }
-    if(user.error) {
-      toast.error(user.error);
     }
   }
 
@@ -94,11 +89,12 @@ export class LoginPage extends Component {
                 placeholder="Password"
                 onChange={this.handleInput}
                 value={password}
+                required
               />
             <div className="forgot">
                 <a  href="/forgotPassword">Forgot your password?</a>
             </div>
-            <button className="btn btn-primary" type="submit">Login</button>
+            <button className="btnn btnn-primary log" type="submit">Login</button>
             </form>
             <div className="social">
               <SocialAuth />

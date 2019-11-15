@@ -29,12 +29,12 @@ Input.defaultProps = {
     classes: 'input',
     error: '',
     placeholder: '',
-    value: '',
     disabled: ''
 };
 
 Input.propTypes = {
     inputType: PropTypes.string,
+    // eslint-disable-next-line react/require-default-props
     value: PropTypes.string,
     classes: PropTypes.string,
     name: PropTypes.string.isRequired,

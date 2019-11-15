@@ -107,7 +107,7 @@ export function ResetPasswordPage({
   );
 }
 
-function mapStateToProps({ resetPassword, errors }, ownProps={}) {
+function mapStateToProps({ resetPassword, errors }, ownProps) {
   const  userId  = (ownProps.match) ? ownProps.match.params.userId : "";
   const  userToken  = (ownProps.match) ? ownProps.match.params.userToken : "";
   return {

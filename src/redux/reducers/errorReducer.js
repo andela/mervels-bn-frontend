@@ -10,7 +10,7 @@ export default function  errorReducer(state = initialState, actions) {
       return { ...state,  status: 408, message: "Can't connect to Server"  };
     }
     if(types.SERVER_ERROR === actions.type){
-      return { ...state,  status: actions.errors.status || 500, message: actions.errors.errors.message|| actions.errors.error };
+      return { ...state,  status: actions.errors.status || 500, message: actions.errors.message|| actions.errors.errors };
     }
     return { ...state};
 }

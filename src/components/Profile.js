@@ -1,5 +1,5 @@
-/* eslint-disable react/forbid-prop-types */
 /* eslint-disable import/no-unresolved */
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
