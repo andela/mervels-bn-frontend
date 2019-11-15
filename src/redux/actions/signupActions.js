@@ -17,8 +17,6 @@ const signupAction = ({userEmail, userPassword, firstName, lastName})=>(dispatch
                 dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status: 500, message: "Internal server error"}});
         }
     // eslint-disable-next-line no-unused-vars
-    }).catch((error) => {
-        dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status: null, message: "Connection error"}});
     });
 };
 

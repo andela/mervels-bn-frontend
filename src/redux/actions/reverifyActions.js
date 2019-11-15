@@ -18,8 +18,6 @@ const reverify = ({userEmail}) => (dispatch) => {
                 dispatch({type: actionTypes.REVERIFY_ERROR, error: {status: 500, message: 'Server error'}});
         }
     // eslint-disable-next-line no-unused-vars
-    }).catch((error) => {
-        dispatch({type: actionTypes.REVERIFY_ERROR, error: {status: 501, message: 'Connection error'}});
     });
 };
 export default reverify;

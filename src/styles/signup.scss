@@ -1,7 +1,7 @@
 .center-small {
   width: 10px;
   margin: auto;
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .input-error {
@@ -25,7 +25,12 @@
     font-size: 13px;
   }
 }
+
 .signup-page {
+  margin-bottom: 0px;
+  form {
+    margin-bottom: 0px;
+  }
   .barefoot-logo {
     width: 8%;
     margin: 20px auto;
@@ -33,6 +38,21 @@
   }
   margin: 20px auto;
   width: 100%;
+  .socialbtn {
+    position: relative;
+    width: 25%;
+    margin: auto;
+    a {
+      width: 100%;
+    }
+  }
+
+  .foot-message {
+    font-size: 13px;
+    position: relative;
+    top: 20vh;
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 1020px) {
@@ -40,6 +60,17 @@
     width: 30%;
     .signup-btn {
       width: 30%;
+    }
+    .foot-message {
+      font-size: 15px;
+      position: relative;
+      top: 16vh;
+      text-align: center;
+    }
+  }
+  .signup-page {
+    .socialbtn {
+      width: 28%;
     }
   }
 }
@@ -49,6 +80,18 @@
     width: 40%;
     .signup-btn {
       width: 30%;
+    }
+    .foot-message {
+      font-size: 15px;
+      position: relative;
+      top: 20vh;
+      text-align: center;
+    }
+  }
+
+  .signup-page {
+    .socialbtn {
+      width: 55%;
     }
   }
 }
@@ -72,6 +115,12 @@
     input {
       font-size: 13px;
       height: 25px;
+    }
+    .foot-message {
+      font-size: 13px;
+      position: relative;
+      top: 29vh;
+      text-align: center;
     }
   }
 }
