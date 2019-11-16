@@ -7,7 +7,7 @@ configure({ adapter: new Adapter() });
 
 let wrapper;
 
-describe('RequestView Component', () => {
+describe('ApprovalsPage Component', () => {
     const props = {
       approvals:{
            error:null,

@@ -16,7 +16,7 @@ const fetchFails = (error) => ({
 export const fetchRequestApprovals = () => async (dispatch) => {
     try{
         const token = `Bearer ${localStorage.getItem('bareFootToken')}`;
-        const response = await axios.get(`${baseURL}/requests/pending`, {
+        const response = await axios.get(`${baseURL}api/v1/requests/pending`, {
         method: 'GET',
         headers: {
             'Authorization': `${token}`,

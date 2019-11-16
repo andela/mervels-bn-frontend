@@ -325,7 +325,7 @@ describe('RequestPage intergration test', () => {
     wrapper = mount(<RequestViewTest store={store} {...prop} />);
     const Pevent = {target: {name: "query", value: 2}};
     wrapper.find('input[name="query"]').simulate('change', Pevent);
-    expect(wrapper.instance().state).toEqual({ parameter: null, query: 2, currentPage: 1, requestsPerPage: 2, isCreating: false });
+    expect(wrapper.instance().state).toEqual({ parameter: null, query: 2, currentPage: 1, requestsPerPage: 5, isCreating: false });
   });
   test('should test handle search', () => {
     const mockLoginfn = jest.fn();
