@@ -13,20 +13,22 @@ import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
 
 
-function NotificationPage({
-  unread,
+function NotificationPane({
+  userId,
   notifications,
   getNotifications,
   updateNotification,
-  classes
+  classes,
 }) {
   useEffect(() => {
     getNotifications();
 
     socket.on("created", function(data) {
-      updateNotification(data);
+
+      if(data.userId === userId){ updateNotification(data); }
+
     });
-  }, [getNotifications, updateNotification]);
+  }, [getNotifications, userId, updateNotification]);
 
   const formatDate = date => {
     const options = {
@@ -78,14 +80,15 @@ function NotificationPage({
   );
 }
 
-const mapStateToProps = ({ notification }) => {
+const mapStateToProps = ({ notification, profile }) => {
   return {
     unread: notification.unread,
-    notifications: notification.notifications
+    notifications: notification.notifications,
+    userId: profile.data.userId
   };
 };
 
 export default connect(
   mapStateToProps,
   { getNotifications, updateNotification }
-)(NotificationPage);
+)(NotificationPane);

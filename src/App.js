@@ -14,7 +14,7 @@ import HomePage from "./components/HomePage";
 import DashboardPage from "./components/DashboardPage";
 // eslint-disable-next-line import/no-named-as-default
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
-import NotificationPage from './components/NotificationPage';
+import NotificationPane from './components/NotificationPane';
 import PageNotFound from "./components/PageNotFound";
 import SignupPage from "./components/signupPage";
 import CallForVerify from "./components/CallForVerify";
@@ -42,7 +42,7 @@ const App = () => {
               component={ResetPasswordPage}
             />
             <Route path="/forgotPassword" component={ResetPasswordPage} />
-            <PrivateRoute  path="/notifications" component={NotificationPage} />
+            <PrivateRoute  path="/notifications" component={NotificationPane} />
             <Route path="/signUp" component={SignupPage} />
             <Route path="/call4verify" component={CallForVerify} />
             <Route path="/verify" component={VerifyEmailPage} />

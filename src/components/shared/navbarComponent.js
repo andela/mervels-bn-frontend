@@ -7,7 +7,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 import useStyles from "./iconStyles";
 import Notifications from "../Notifications";
-import NotificationPage from "../NotificationPage";
+import NotificationPane from "../NotificationPane";
 
 
 const Navbar = () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-      <NotificationPage classes={showPane} />
+      <NotificationPane classes={showPane} />
     </>
   );
 };
