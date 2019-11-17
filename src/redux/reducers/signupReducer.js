@@ -1,11 +1,11 @@
 import actionTypes from '../actions/actionTypes';
-import initialState from './initialState';
 
-const signupReducer = (state = initialState, action) => {
+const signupReducer = (state =  {data: null, error: null}, action) => {
     switch(action.type) {
         case actionTypes.SIGN_UP:
-            console.log(">>>>>>>>", process.env.baseUrl);
-            return {...state, user: {...state.user, data: action.userDetails}};
+            return {...state, error: null, data: action.userDetails};
+        case actionTypes.SIGN_UP_ERROR:
+                return {...state, data: null, error: action.error};
         default:
             return state;
     }

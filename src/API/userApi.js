@@ -1,10 +1,15 @@
 /* eslint-disable import/prefer-default-export */
 import axios from 'axios';
-
-const { baseUrl } = process.env;
+import { baseURL } from '../config/index';
 
 export function signUp(userDetails){
-    console.log("called>>>>>>>>>>>");
-    return axios.post(`${baseUrl}/api/v1/auth/signup`, userDetails).then((data) => data).catch((error) => {throw error;});
+    return axios.post(`${baseURL}/auth/signup`, userDetails).then((data) => data).catch((error) => {return error.response.data;});
 };
 
+export function reverify(userEmail) {
+    return axios.post(`${baseURL}/auth/createLink`, userEmail).then((data) => data).catch((error) => {return error.response.data;});
+};
+
+export function verify(token) {
+    return axios.patch(`${baseURL}/auth/verify/?token=${token}`).then((data) => data).catch((error) => { return {status: error.response.status};});
+};

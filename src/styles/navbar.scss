@@ -1,0 +1,24 @@
+@import "./variables";
+
+.navbar {
+  //   width: 100%;
+  //   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 20px;
+  background-color: $primaryColor;
+  color: $navbarFontColor;
+  box-shadow: 0 0 15px #00000030;
+}
+.navbar-brand {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}

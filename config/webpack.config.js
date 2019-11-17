@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 /* eslint-disable global-require */
@@ -526,7 +527,6 @@ module.exports = function(webpackEnv) {
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         {
-
           inject: true,
             template: paths.appHtml,
           ...(isEnvProduction
@@ -548,10 +548,10 @@ module.exports = function(webpackEnv) {
         }
       ),
       isEnvProduction && new webpack.DefinePlugin({
-        "process.env.baseUrl": JSON.stringify("https://mervels-bn-backend-staging.herokuapp.com")
+        "process.env.baseUrl": JSON.stringify("https://mervels-bn-backend-staging.herokuapp.com/api/v1")
       }),
       isEnvDevelopment && new webpack.DefinePlugin({
-        "process.env.baseUrl": JSON.stringify("http://localhost:4000")
+        "process.env.baseUrl": JSON.stringify("http://localhost:4000/api/v1")
       }),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.

@@ -1,32 +1,11 @@
 html {
   background-color: whitesmoke;
 }
+
 .App {
-  width: 50%;
-  margin: auto;
-  color: black;
-  text-align: center;
+  box-sizing: border-box;
 }
 
-h6 {
-  color: rgb(48, 48, 48);
-}
-
-.btn-sample {
-  width: 120px;
-  height: 50px;
-  border: none;
-  background-color: rgba(60, 60, 243, 0.644);
-  color: white;
-  font-weight: bold;
-  border-radius: 20px;
-}
-
-.btn-sample:hover {
-  cursor: pointer;
-  background-color: rgba(31, 31, 141, 0.644);
-}
-
-.btn-sample:focus {
-  outline: none;
+img {
+  clip-path: circle();
 }
