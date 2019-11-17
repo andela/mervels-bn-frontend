@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import moment from 'moment';
 import { GET_PROFILE, GET_PROFILE_ERROR, UPDATE_PROFILE, UPDATE_PROFILE_ERROR } from '../actions/actionTypes';
 
@@ -15,7 +16,9 @@ const initialState = {
         currency: '',
         gender: '',
         location: '',
-        image: ''
+        image: '',
+        userId: '',
+        role: ''
     },
     error: ''
 };
@@ -35,7 +38,9 @@ export default  (state = initialState, action) => {
                 language: action.data.userProfile.language,
                 currency: action.data.userProfile.currency,
                 gender: action.data.userProfile.gender,
-                location: action.data.userProfile.location
+                location: action.data.userProfile.location,
+                userId: action.data.userProfile.userId,
+                role: action.data.userRoles
             }};
         case GET_PROFILE_ERROR:
             return { ...state, status:'fetch_error', error: action.error };

@@ -1,61 +1,91 @@
+/* eslint-disable func-names */
 /* eslint-disable no-debugger */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import { getNotifications, updateNotification } from "../redux/actions/notificationActions";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import {
+  getNotifications,
+  updateNotification
+} from "../redux/actions/notificationActions";
 import { socket } from "../config/sockets";
-import placeholder  from '../assets/pic.png';
-import '../styles/notification.scss';
+import placeholder from "../assets/pic.png";
 
 
+function NotificationPage({
+  unread,
+  notifications,
+  getNotifications,
+  updateNotification,
+  classes
+}) {
+  useEffect(() => {
+    getNotifications();
 
-function NotificationPage({unread, notifications, getNotifications, updateNotification}) {
+    socket.on("created", function(data) {
+      updateNotification(data);
+    });
+  }, [getNotifications, updateNotification]);
 
-    useEffect(()=>{
-        getNotifications();
+  const formatDate = date => {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    };
+    const newDate = new Date(date).toLocaleTimeString("en-us", options);
 
-        socket.on('created', function(data) {
-            updateNotification(data);
-         });
-    },[getNotifications, updateNotification]);
+    return newDate;
+  };
+  return (
+    <div className={classes}>
+      <div id="myModal" className="modal">
+        <div className="modal-content effect1">
+          <div className="modal-body">
+            {notifications &&
+              notifications.map(notification => (
+                <div className="item" key={notification.id}>
+                  <span className="image">
+                    <img src={placeholder} alt="placeholder" />
+                  </span>
+                  <a href="/home" className="content">
+                  {/* <span className="content"> */}
+                    <span className="details">{notification.notification}</span>
+                    <span className="date">
+                      {formatDate(notification.createdAt)}
+                    </span>
+                  {/* </span> */}
+                  </a>
 
-    return(
-        <div>
-            <button type='button'>Show Notifications</button>
-            <div className="notification">
-                <span>Unread : {unread}</span>
-            <div className="body effect1">
-                {notifications && notifications.map(notification => (
-                        <div className="item" key={notification.id}>
-                            <span className="image">
-                                <img src={placeholder} alt='placeholder' />
-                            </span>
-                        <span className="content">
-                            <span className="details">
-                                {notification.notification}
-                            </span>
-                            <span className="date">
-                                12/12/2019
-                            </span>
-                        </span>
-                 </div>
-
-                ))}
-            </div>
+                </div>
+              ))}
+          </div>
+          <div className="modal-footer">
+            <a href="/">
+              <span>View all notifications</span>
+            </a>
+            <a href="/">
+              <span>Mark all as read</span>
+            </a>
+          </div>
         </div>
-        </div>
-    );
-                // }
+      </div>
+    </div>
+  );
 }
 
-const mapStateToProps = ({notification}) =>{
-    return {
-        unread: notification.unread,
-        notifications: notification.notifications
-    };
+const mapStateToProps = ({ notification }) => {
+  return {
+    unread: notification.unread,
+    notifications: notification.notifications
+  };
 };
 
-
-export default connect(mapStateToProps, { getNotifications, updateNotification })(NotificationPage);
+export default connect(
+  mapStateToProps,
+  { getNotifications, updateNotification }
+)(NotificationPage);
