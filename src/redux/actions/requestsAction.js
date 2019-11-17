@@ -3,7 +3,9 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { FETCH_REQUESTS, FETCH_REQUESTS_FAILED } from './actionType';
 
-const baseUrl ='https://mervels-bn-backend-staging.herokuapp.com';
+import { baseURL } from '../../config/index';
+
+const baseUrl = baseURL ;
 const fetchSuccess = (payload) => ({
     type: FETCH_REQUESTS,
     payload,
@@ -16,7 +18,7 @@ const fetchFail = (error) => ({
 export const fetchRequests = () => async (dispatch) => {
     try{
         const token = `Bearer ${localStorage.getItem('bareFootToken')}`;
-        const response = await axios.get(`${baseUrl}/api/v1/requests/my-requests`, {
+        const response = await axios.get(`${baseUrl}api/v1/requests/my-requests`, {
         method: 'GET',
         headers: {
             'Authorization': `${token}`,

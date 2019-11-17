@@ -4,9 +4,8 @@ import types from '../actions/actionTypes';
 
 export default function notificaitonReducer(state = initialState.notifications, actions) {
     if(actions.type === types.NOTIFICATION_GET){
-        return {...state, ...actions.data.data};
+        return {...state, notifications:actions.data.data.notifications, unread: actions.data.data.unread};
     }if (actions.type === types.NOTIFICATION_UPDATE){
-        console.log(actions);
         const unread  = state.unread + 1;
         const {notifications} = state;
         notifications.push(actions.data);

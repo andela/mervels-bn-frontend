@@ -28,7 +28,6 @@ function NotificationPage({unread, notifications, getNotifications, updateNotifi
                 <span>Unread : {unread}</span>
             <div className="body effect1">
                 {notifications && notifications.map(notification => (
-
                         <div className="item" key={notification.id}>
                             <span className="image">
                                 <img src={placeholder} alt='placeholder' />
