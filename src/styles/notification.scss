@@ -190,8 +190,18 @@ $SmallScreen: 551px;
     height: 20%;
     color: rgb(139, 139, 139);
   }
+
+  p {
+    text-align: center;
+    margin: 15px;
+    color: rgb(139, 139, 139);
+  }
 }
 
 .item :hover {
   cursor: pointer;
+}
+
+.unread {
+  background-color: #edf4ff;
 }

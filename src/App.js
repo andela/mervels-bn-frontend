@@ -23,6 +23,7 @@ import ReverifyPage from "./components/ReverifyPage";
 import ProfilePage from "./components/ProfilePage";
 import ServerErrorPage from "./components/500Page";
 import requestsPage from "./components/requestsPage";
+import singleRequestPage from "./components/singleRequestPage";
 
 const store = configureStore();
 
@@ -49,7 +50,8 @@ const App = () => {
             <Route path="/reverify" component={ReverifyPage} />
             <Route path="/404" component={PageNotFound} />
             <PrivateRoute path="/profile" component={ProfilePage} />
-            <PrivateRoute path="/requests" component={requestsPage} />
+            <PrivateRoute exact path="/requests" component={requestsPage} />
+            <PrivateRoute path="/requests/:requestId" component={singleRequestPage} />
             <PrivateRoute path="/500" component={ServerErrorPage} />
             <PrivateRoute exact path="/" component={LoggedInDashboard} />
             <Redirect to="/404" />

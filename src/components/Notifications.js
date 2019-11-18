@@ -23,7 +23,8 @@ class Notifications extends React.Component {
     const { getProfile, getNotifications } = this.props;
 
     // Gets User Profile
-    getProfile();
+    const { profile } = this.props;
+    if(profile.data.status !== '') getProfile();
 
     // Gets Users Notifications
     getNotifications();
@@ -54,6 +55,7 @@ Notifications.propTypes = {
   getNotifications: PropTypes.func.isRequired,
   handlePane: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   unread: PropTypes.string.isRequired,
 };
 export default connect(
