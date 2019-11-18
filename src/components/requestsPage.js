@@ -1,18 +1,28 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+/* eslint-disable no-lonely-if */
+/* eslint-disable default-case */
+/* eslint-disable no-shadow */
 /* eslint-disable react/forbid-prop-types */
-/* eslint-disable no-useless-constructor */
 import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
-import { ToastContainer} from 'react-toastify';
 import TableComponent from './shared/tableComponent';
-import { fetchRequests }  from '../redux/actions/requestsAction';
+import { fetchRequests, getPending, getPast, searchRequests }  from '../redux/actions/requestsAction';
 import 'react-toastify/dist/ReactToastify.css';
+import RequestPanel from './headerPanel';
+import { searchMessage } from '../helpers/search';
+
 
 
 class RequestView extends React.Component{
     constructor(props) {
         super(props);
+        this.state = {
+            currentPage: 1,
+            requestsPerPage: 2,
+            parameter: null,
+            query: null
+        };
     }
 
     componentDidMount(){
@@ -26,54 +36,108 @@ class RequestView extends React.Component{
         if (requests !== prevProps.requests) {
             if(requests.error){
                 if(requests.error.status === 401){
-                    setTimeout(() => {
                         // eslint-disable-next-line react/prop-types
                         history.push('/login');
-                      }, 3000);
                 }
             }
-            }
         }
+    }
 
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleRequests = (value) => {
+      const { fetchRequests: getRequests, getPending, getPast } = this.props;
+      switch (value) {
+        case 'ALL':
+          getRequests(); 
+          break;  
+        case 'PENDING':
+          getPending(); 
+          break; 
+        case 'PAST':
+          getPast(); 
+          break; 
+      }
+    }
+
+    setCurrentPage = (pageNumber) =>{
+        this.setState({
+            currentPage: pageNumber,
+        });
+    }
+
+    paginate = (pageNumber) => this.setCurrentPage(pageNumber)
+
+    handleSearch = () => {
+        const { parameter, query } = this.state;
+        const { searchRequests } = this.props;
+        if(parameter && query ) {
+            searchRequests(parameter, query);
+        }
+    }
 
     render(){
-        const { requests } = this.props;
+        const { parameter, currentPage } = this.state;
+        let { requestsPerPage } = this.state;
+        if(!requestsPerPage || requestsPerPage <= 0) {
+            requestsPerPage = 1;
+        }
+        const { requests, match } = this.props;
+        const { message, type } = searchMessage(parameter);
         let items;
         let display;
+
+        const indexOfLastRequest = currentPage * requestsPerPage;
+        const indexOfFirstRequest = indexOfLastRequest - requestsPerPage;
         display= <div>
                     <h2 className="text-center">Data Loading ...</h2>
                 </div>;
+        let obj;
+        if (Object.keys(requests.filtered).length !== 0){
+            obj = requests.filtered;
+        }else {
+            obj = requests.requests;
+        }
+        
         if(requests.error !== null){
             display = <div>
                <h3 className="text-center text-danger">{requests.error.status === 401 ? "Invalid Session" :requests.error.message}</h3>
          </div>;
-        }else{
-            const obj =requests.requests;
-            if (Object.keys(obj).length !== 0 && obj.constructor === Object) {
+        }else {
+                if(Object.keys(obj).length !== 0 && obj.constructor === Object) {
                 items =obj.data;
-                const table =<TableComponent items={items}/>;
+                const currentRequests = items.slice(indexOfFirstRequest, indexOfLastRequest);
+                const table = <TableComponent
+                items={currentRequests}
+                route={match.path}
+                currentPage={currentPage}
+                requestsPerPage={requestsPerPage}
+                totalRequests={items.length}
+                paginate={this.paginate}
+                />;
 
                 display = items && items.length ? table :<p className="text-center backdrop">you currently have no requests</p>;
             }
         }
+
         return(
             <>
+                <RequestPanel
+                    title={requests.title} 
+                    onClick={this.handleRequests} 
+                    onChange={this.handleChange} 
+                    holder={message} type={type} 
+                    search={this.handleSearch}
+                />
                 <div className="grid sm p-bottom-3">
                     <div className="col-10 offset-3">
-                    <h1 className="page-header text-center">Request Table</h1>
+                    <div className="page-header text-center"  />
                    {display}
                     </div>
-                    <ToastContainer
-                position="top-right"
-                autoClose={1000}
-                hideProgressBar
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnVisibilityChange
-                draggable
-                pauseOnHover
-                />
                 </div>
             </>
         );
@@ -81,7 +145,10 @@ class RequestView extends React.Component{
 }
 RequestView.propTypes ={
     fetchRequests: propTypes.func.isRequired,
+    searchRequests: propTypes.func.isRequired,
     requests: propTypes.object.isRequired,
+    getPending: propTypes.func.isRequired,
+    getPast: propTypes.func.isRequired,
 };
 export const mapStateToProps = (state) => {
     return {
@@ -91,7 +158,10 @@ export const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-    fetchRequests
+    fetchRequests,
+    getPending,
+    searchRequests,
+    getPast
 };
 
 export { RequestView as RequestViewTest };
