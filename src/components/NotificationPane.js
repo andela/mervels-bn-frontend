@@ -8,27 +8,30 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import {
   getNotifications,
-  updateNotification,markReadAll
+  updateNotification,
+  markReadAll,
+  markOneAsRead
 } from "../redux/actions/notificationActions";
 import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
 
-
-function NotificationPane({
+export function NotificationPane({
   userId,
   notifications,
   getNotifications,
   updateNotification,
   markReadAll,
-  classes,
+  markOneAsRead,
+  handlePane,
+  classes
 }) {
   useEffect(() => {
     getNotifications();
 
     socket.on("created", function(data) {
-
-      if(data.userId === userId){ updateNotification(data); }
-
+      if (data.userId === userId) {
+        updateNotification(data);
+      }
     });
   }, [getNotifications, userId, updateNotification]);
 
@@ -46,10 +49,18 @@ function NotificationPane({
     return newDate;
   };
 
-  const handleReadAll = (event) =>{
+  const handleReadAll = event => {
     markReadAll();
   };
 
+  const handleReadOne = ({ target }) => {
+    const {read, id} = target.dataset;
+    // eslint-disable-next-line no-unused-expressions
+    (read === 'false') ? markOneAsRead(id): '';
+    handlePane();
+
+  };
+  // {`/requests/${notification.requestId}`}
 
   return (
     <div className={classes}>
@@ -58,34 +69,44 @@ function NotificationPane({
           <div className="modal-body">
             {notifications &&
               notifications.map(notification => (
-                <div className={`item ${!notification.read && 'unread'}`} key={notification.id}>
+                <div
+                  className={`item ${!notification.read && "unread"}`}
+                  key={notification.id}
+                >
                   <span className="image">
                     <img src={placeholder} alt="placeholder" />
                   </span>
-                  <a href={`/requests/${notification.requestId}`} className="content">
-                  {/* <span className="content"> */}
-                    <span className="details">{notification.notification}</span>
-                    <span className="date">
+                  <a href={`/requests/${notification.requestId}`} id={`not${notification.id}`} onClick={handleReadOne} className="content">
+                    <span
+                      className="details"
+                      data-id = {`${notification.id}`}
+                      data-read={`${notification.read}`}
+                    >
+                      {notification.notification}
+                    </span>
+                    <span
+                      className="date"
+                      data-id={`${notification.id}`}
+                      data-read={`${notification.read}`}
+                    >
                       {formatDate(notification.createdAt)}
                     </span>
-                  {/* </span> */}
                   </a>
-
                 </div>
               ))}
-              {notifications.length === 0 &&
-                <div className="item" >
-                  <span className="content">
-                    <p>No New Notifications</p>
-                  </span>
-                </div>
-              }
+            {notifications.length === 0 && (
+              <div className="item">
+                <span className="content">
+                  <p>No New Notifications</p>
+                </span>
+              </div>
+            )}
           </div>
           <div className="modal-footer">
-            <a href="#" >
+            <a href="#">
               <span>View all notifications</span>
             </a>
-            <a href="#" onClick={handleReadAll}>
+            <a href="#" id="read-all" onClick={handleReadAll}>
               <span>Mark all as read</span>
             </a>
           </div>
@@ -105,5 +126,5 @@ const mapStateToProps = ({ notification, profile }) => {
 
 export default connect(
   mapStateToProps,
-  { getNotifications, updateNotification, markReadAll }
+  { getNotifications, updateNotification, markReadAll, markOneAsRead }
 )(NotificationPane);

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable no-useless-constructor */
@@ -49,7 +50,7 @@ const Navbar = () => {
           </li>
         </ul>
       </nav>
-      <NotificationPane classes={showPane} />
+      <NotificationPane classes={showPane} handlePane={togglePane} />
     </>
   );
 };

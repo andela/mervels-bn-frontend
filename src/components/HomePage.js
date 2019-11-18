@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import Navbar from './shared/navbarComponent';
+
 
 
 class HomePage extends React.Component {
@@ -8,7 +8,7 @@ class HomePage extends React.Component {
     render(){
         return(
             <div>
-                <Navbar />
+                <p>Home Page</p>
             </div>
         );
     }

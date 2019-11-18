@@ -110,10 +110,6 @@ describe("Reset Password Form", () => {
       const Fevent = { target: { name: "passwordForm" } };
       wrapper.find('[name="passwordForm"]').simulate("submit", Fevent);
 
-
-      // const PasEvent = { target: { name: "password", value: "@sadsa.cons" } };
-      // wrapper.find('Input[name="password"]').simulate("change", PasEvent);
-
       expect(wrapper.find("form").length).toBe(1);
       done();
     });

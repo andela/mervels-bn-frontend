@@ -8,13 +8,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getProfile } from "../redux/actions/profileAction";
 import {
-  getNotifications,
-  updateNotification
+  getNotifications
 } from "../redux/actions/notificationActions";
 // import placeholder from "../assets/pic.png";
 
 
-class Notifications extends React.Component {
+export class Notifications extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -34,8 +33,8 @@ class Notifications extends React.Component {
     const { classes, handlePane } = this.props;
     return (
       <div>
-        <Badge className={classes.margin} badgeContent={this.props.unread} onClick={handlePane} color="secondary">
-          <NotificationsIcon name="notification" className={classes.iconHover} />
+        <Badge className={classes.margin} id="noti-icon"  badgeContent={this.props.unread} onClick={handlePane} color="secondary">
+          <NotificationsIcon name="notification" className={classes.iconHover} onClick={handlePane}  />
         </Badge>
       </div>
     );
@@ -62,7 +61,6 @@ export default connect(
   mapStateToProps,
   {
     getProfile,
-    getNotifications,
-    updateNotification
+    getNotifications
   }
 )(Notifications);

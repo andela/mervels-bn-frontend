@@ -24,6 +24,7 @@ import ProfilePage from "./components/ProfilePage";
 import ServerErrorPage from "./components/500Page";
 import requestsPage from "./components/requestsPage";
 import singleRequestPage from "./components/singleRequestPage";
+import Navbar from "./components/shared/navbarComponent";
 
 const store = configureStore();
 
@@ -33,6 +34,7 @@ const App = () => {
     <Provider store={store}>
       <ToastContainer />
       <div className="App">
+        {localStorage.getItem('bareFootToken') && <Navbar />}
         <Router>
           <Switch>
             <Route path="/login" component={Login} />
