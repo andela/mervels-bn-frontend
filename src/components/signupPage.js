@@ -1,18 +1,19 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable import/no-unresolved */
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import signup from '../redux/actions/signupActions';
-import Input from './shared/Input';
+import Input from './shared/input';
 import validator from '../helpers/validator';
 
 class SignUpPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             errors: {
                 firstName: undefined,
                 lastName: undefined,
@@ -20,7 +21,7 @@ class SignUpPage extends Component {
                 userPassword: undefined,
                 confirm: undefined,
                 match: undefined
-            } 
+            }
         };
     }
 
@@ -59,7 +60,7 @@ class SignUpPage extends Component {
         }
     }
 
-    render() { 
+    render() {
         const {firstName, lastName, userEmail, userPassword, confirm, errors} = this.state;
         return ( <div className="signup-page m-top-10">
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
@@ -73,7 +74,7 @@ class SignUpPage extends Component {
             </form>
             <div className="center-small">OR</div>
         </div> );
-    } 
+    }
 };
 
 SignUpPage.propTypes = {

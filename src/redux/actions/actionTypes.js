@@ -6,6 +6,14 @@ export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
+/** Error Types  */
+export const SERVER_ERROR = 'SERVER_ERROR';
+export const NETWORK_ERROR = 'NETWORK_ERROR';
+
+/** Password Reset  */
+export const RESET_PASSWORD_SENT = 'RESET_PASSWORD_SENT';
+export const PASSWORD_RESET_SUCCESS = 'PASSWORD_RESET_SUCCESS';
+
 export default {
     SIGN_UP: 'SIGN_UP',
     SIGN_UP_ERROR: 'SIGN_UP_ERROR',

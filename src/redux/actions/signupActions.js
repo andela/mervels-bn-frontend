@@ -13,7 +13,7 @@ const signupAction = ({userEmail, userPassword, firstName, lastName})=>(dispatch
             case 422:
                     dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status:422, message: data.message}});
                     break;
-            default: 
+            default:
                 dispatch({type: actionTypes.SIGN_UP_ERROR, error: {status: 500, message: "Internal server error"}});
         }
     // eslint-disable-next-line no-unused-vars
@@ -23,4 +23,4 @@ const signupAction = ({userEmail, userPassword, firstName, lastName})=>(dispatch
 };
 
 export default signupAction;
- 
+

@@ -1,13 +1,14 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import Button from './shared/Button';
-import Input from './shared/Input';
+import Input from './shared/input';
 import Select from './shared/Select';
 
-const Profile = ({ 
+const Profile = ({
     updating,
     uploading,
     image,

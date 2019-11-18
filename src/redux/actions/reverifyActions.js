@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import actionTypes from './actionTypes';
 import * as userApi from '../../API/userApi';
 

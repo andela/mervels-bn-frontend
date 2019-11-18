@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-shadow */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/destructuring-assignment */
@@ -7,12 +8,12 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {toast} from 'react-toastify';
 import reverify from '../redux/actions/reverifyActions';
-import Input from './shared/Input';
+import Input from './shared/input';
 
 class ReverifyPage extends Component {
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             userEmail: ''
         };
     }
@@ -35,7 +36,7 @@ class ReverifyPage extends Component {
                 toast.error("Server error. Try again later");
             }
             const button = await document.querySelector('button');
-            button.innerHTML = "Send"; 
+            button.innerHTML = "Send";
 
         }
     }
@@ -52,7 +53,7 @@ class ReverifyPage extends Component {
             button.innerHTML = "Sending ...";
     }
 
-    render() { 
+    render() {
         const {userEmail} = this.state;
         return ( <div className="reverify-page">
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
@@ -62,7 +63,7 @@ class ReverifyPage extends Component {
             <button type="submit" className="btn btn-primary reverify-btn">Send</button>
             </form>
         </div> );
-    } 
+    }
 };
 
 ReverifyPage.propTypes = {
