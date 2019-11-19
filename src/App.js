@@ -19,11 +19,13 @@ import SignupPage from "./components/signupPage";
 import CallForVerify from "./components/CallForVerify";
 import VerifyEmailPage from "./components/VerifyEmailPage";
 import ReverifyPage from "./components/ReverifyPage";
-import ProfilePage from "./components/ProfilePage";
-import ServerErrorPage from "./components/500Page";
-import requestsPage from "./components/requestsPage";
+import ProfilePage from './components/ProfilePage';
+import ServerErrorPage from './components/500Page';
+import requestsPage from './components/requestsPage';
+import ApprovalsPage from './components/approvalsPage';
 import singleRequestPage from "./components/singleRequestPage";
 import Navbar from "./components/shared/navbarComponent";
+import AccessForbiddenPage from './components/AccessForbiddenPage';
 
 const store = configureStore();
 
@@ -54,6 +56,8 @@ const App = () => {
             <PrivateRoute path="/requests/:requestId" component={singleRequestPage} />
             <PrivateRoute path="/500" component={ServerErrorPage} />
             <PrivateRoute exact path="/" component={LoggedInDashboard} />
+            <PrivateRoute  path="/approvals" component={ApprovalsPage} />
+            <PrivateRoute  path="/AccessForbidden" component={AccessForbiddenPage} />
             <Redirect to="/404" />
           </Switch>
           <ToastContainer autoClose={3000} hideProgressBar />

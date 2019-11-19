@@ -184,8 +184,6 @@ describe('LoginPage intergration test', () => {
       error: null
     });
   });
-  beforeEach(() => moxios.install());
-  afterEach(() => moxios.install());
   test('should render login page', () => {
     wrapper = mount(<LoginPage store={store} {...prop} />);
     const Eevent = {target: {name: "email", value: "email@gmail.com"}};

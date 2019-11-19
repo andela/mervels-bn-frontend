@@ -9,6 +9,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 import useStyles from "./iconStyles";
 import Notifications from "../Notifications";
 import NotificationPane from "../NotificationPane";
+import logo from "../../logo/logo-long.png";
 
 
 const Navbar = () => {
@@ -35,9 +36,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="navbar">
-        <a className="navbar-brand" href="/home">
-          BarefootNomad
-        </a>
+        <a className="navbar-brand" href="/home"><img alt="BareFoot Nomad" src={logo} /></a>
         <ul>
           <li className={classes.root}>
             <Notifications classes={classes} handlePane={togglePane} />
