@@ -7,7 +7,6 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import Profile from './Profile';
 import validator from '../helpers/validator';
-import NavBar from './shared/navbarComponent';
 import { getProfile, updateProfile, updateProfilePicture as updatePicture } from '../redux/actions/profileAction';
 
 export class ProfileComponent extends React.Component {
@@ -77,7 +76,7 @@ export class ProfileComponent extends React.Component {
         };
     }
 
-    uploadPicture(e) { 
+    uploadPicture(e) {
         const { updatePicture } = this.props;
         const data = new FormData();
         const image = e.target.files[0];
@@ -155,7 +154,6 @@ export class ProfileComponent extends React.Component {
         } = this.state;
             return (
                 <>
-                    <NavBar />
                     <Profile
                         updating={updating}
                         uploading={uploading}

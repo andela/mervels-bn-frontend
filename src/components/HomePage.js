@@ -1,13 +1,18 @@
 import React from 'react';
-import Navbar from './shared/navbarComponent';
+import { connect } from "react-redux";
 
-function HomePage() {
-    return(
-        <>
-        <Navbar/>
-        <h6>Home Page only when logged in</h6>
-        </>
-    );
+
+
+class HomePage extends React.Component {
+
+    render(){
+        return(
+            <div>
+                <p>Home Page</p>
+            </div>
+        );
+    }
+
 }
 
-export default HomePage;
+export default connect() (HomePage);

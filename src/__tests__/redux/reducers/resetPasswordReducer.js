@@ -5,7 +5,7 @@ const initialState = {
     message: ""
   };
 
-describe('Reducers', () => {
+describe('Reset Passwor Reducers', () => {
   it('should update the state when calling RESET PASSWORD SENT', () => {
     const payload = {
       message: 'Reset Password Sent',

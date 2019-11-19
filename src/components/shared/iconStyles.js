@@ -3,11 +3,10 @@ import { blueGrey } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
     root: {
-      '& > svg': {
-        margin: theme.spacing(2),
-        fontSize: 35
-      },
+      margin: theme.spacing(2),
+      fontSize: 35
     },
+    fontSize: 35,
     iconHover: {
       '&:hover': {
         color: blueGrey[100],

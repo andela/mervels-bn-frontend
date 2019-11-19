@@ -7,6 +7,7 @@ import reverifyData from "./reverifyReducer";
 import verifyData from "./verifyReducer";
 import profileReducer from './profileReducer';
 import requestsReducers from './requestsReducers';
+import notification from './notificationReducer';
 
 export default combineReducers({
   loginReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   reverifyData,
   verifyData,
   profile: profileReducer,
-  requests: requestsReducers
+  requests: requestsReducers,
+  notification
 });

@@ -5,7 +5,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { ToastContainer} from 'react-toastify';
-import Navbar from './shared/navbarComponent';
 import TableComponent from './shared/tableComponent';
 import { fetchRequests }  from '../redux/actions/requestsAction';
 import 'react-toastify/dist/ReactToastify.css';
@@ -59,7 +58,6 @@ class RequestView extends React.Component{
         }
         return(
             <>
-                <Navbar />
                 <div className="grid sm p-bottom-3">
                     <div className="col-10 offset-3">
                     <h1 className="page-header text-center">Request Table</h1>

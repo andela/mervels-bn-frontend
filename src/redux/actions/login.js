@@ -14,7 +14,7 @@ export const loginFailure = (payload) => ({
 
 export const localAuth = (payload) => async (dispatch) => {
   try {
-    const res = await API.post('/auth/signin', payload);
+    const res = await API.post('/api/v1/auth/signin', payload);
     localStorage.setItem('bareFootToken', res.data.data);
     dispatch(loginSucess(res.data));
   }

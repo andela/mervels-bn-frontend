@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 function LoggedInDashboard({history}) {
     const handleLogout = () =>{
-        localStorage.removeItem("logged_in");
+        localStorage.removeItem("bareFootToken");
         history.push('/login');
     };
     return(
