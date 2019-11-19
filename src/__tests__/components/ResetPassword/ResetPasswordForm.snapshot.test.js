@@ -38,6 +38,7 @@ describe('Reset Password Form', () => {
             <PasswordResetFormTemplate
                 onChange={jest.fn()}
                 onSubmit={jest.fn()}
+                error={{password:undefined}}
             />
         );
         expect(wrapper).toMatchSnapshot();

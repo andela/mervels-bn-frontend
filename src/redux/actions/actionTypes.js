@@ -6,7 +6,6 @@ export const UPDATE_PROFILE_ERROR = 'UPDATE_PROFILE_ERROR';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 
-
 /** Error Types  */
 export const SERVER_ERROR = 'SERVER_ERROR';
 export const NETWORK_ERROR = 'NETWORK_ERROR';
