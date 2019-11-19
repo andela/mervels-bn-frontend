@@ -12,8 +12,8 @@ export const getProfile = () => async(dispatch) => {
             }
         };
 
-        const response = await api.get('/profile', config);
-        const picture = await api.get('/profile/picture', config);
+        const response = await api.get('/api/v1/profile', config);
+        const picture = await api.get('/api/v1/profile/picture', config);
 
         if(response.data.data.userProfile === null) response.data.data.userProfile = {};
 
@@ -51,8 +51,8 @@ export const updateProfile = (data) => async(dispatch) => {
                 Authorization: token,
             }
         };
-        const response = await api.patch('/profile', data, config);
-        const picture = await api.get('/profile/picture', config);
+        const response = await api.patch('/api/v1/profile', data, config);
+        const picture = await api.get('/api/v1/profile/picture', config);
 
         if(response.data.data.userProfile === null) response.data.data.userProfile = {};
 
@@ -86,8 +86,8 @@ export const updateProfilePicture = (data) => async(dispatch) => {
             }
         };
 
-        const response = await api.get('/profile', config);
-        const picture = await api.patch('/profile/picture', data, config);
+        const response = await api.get('/api/v1/profile', config);
+        const picture = await api.patch('/api/v1/profile/picture', data, config);
 
         const payload = { ...response.data.data, image: picture.data.data };
 
