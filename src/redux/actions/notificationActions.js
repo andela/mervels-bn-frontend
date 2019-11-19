@@ -54,7 +54,6 @@ export function markReadAll() {
 export function markOneAsRead(notificationId) {
     return async function (dispatch) {
         try {
-            debugger;
             const response = await api.patch(`/api/v1/notifications/mark-as-read?id=${notificationId}`, null, config);
             dispatch(markOneReadSuccess(notificationId));
         }
