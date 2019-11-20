@@ -22,7 +22,7 @@ export function passwordResetSuccess(response) {
 
 export const sendResetPassword = (email) => async(dispatch) => {
     try{
-        const response = await api.post(`/auth/forgotPassword`, email);
+        const response = await api.post(`api/v1/auth/forgotPassword`, email);
         dispatch(resetPasswordSent(response.data));
     }catch(error){
 
@@ -33,7 +33,7 @@ export const sendResetPassword = (email) => async(dispatch) => {
 export const resetPassword = (data) => async(dispatch) =>{
     try{
         const {userId , userToken, password, newPassword } = data;
-        const url = `/auth/resetPassword/${userId}/${userToken}`;
+        const url = `/api/v1/auth/resetPassword/${userId}/${userToken}`;
         const response = await api.put(url, {password, newPassword });
 
         dispatch(resetPasswordSent(response.data));

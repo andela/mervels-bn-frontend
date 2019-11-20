@@ -23,7 +23,7 @@ import ProfilePage from './components/ProfilePage';
 import ServerErrorPage from './components/500Page';
 import requestsPage from './components/requestsPage';
 import ApprovalsPage from './components/approvalsPage';
-import singleRequestPage from "./components/singleRequestPage";
+import singleReqeuest from './components/ViewRequest';
 import Navbar from "./components/shared/navbarComponent";
 import AccessForbiddenPage from './components/AccessForbiddenPage';
 
@@ -35,34 +35,29 @@ const App = () => {
     <Provider store={store}>
       <ToastContainer />
       <div className="App">
-        {localStorage.getItem('bareFootToken') && <Navbar />}
-        <Router>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/home" component={HomePage} />
-            <PrivateRoute path="/dashboard" component={DashboardPage} />
-            <Route
-              path="/resetPassword/:userId/:userToken"
-              component={ResetPasswordPage}
-            />
-            <Route path="/forgotPassword" component={ResetPasswordPage} />
-            <Route path="/signUp" component={SignupPage} />
-            <Route path="/call4verify" component={CallForVerify} />
-            <Route path="/verify" component={VerifyEmailPage} />
-            <Route path="/reverify" component={ReverifyPage} />
-            <Route path="/404" component={PageNotFound} />
-            <PrivateRoute path="/profile" component={ProfilePage} />
-            <PrivateRoute exact path="/requests" component={requestsPage} />
-            <PrivateRoute path="/requests/:requestId" component={singleRequestPage} />
-            <PrivateRoute path="/500" component={ServerErrorPage} />
-            <PrivateRoute exact path="/" component={LoggedInDashboard} />
+      {localStorage.getItem('bareFootToken') && <Navbar />}
+      <Router>
+        <Switch>
+          <Route  path="/login" component={Login} />
+          <Route  path="/home" component={HomePage} />
+          <PrivateRoute exact path="/" component={LoggedInDashboard} />
+          <Route path="/forgotPassword" component={ResetPasswordPage} />
+          <PrivateRoute  path="/dashboard" component={DashboardPage} />
+          <Route path="/signUp" component={SignupPage} />
+          <Route path="/call4verify" component={CallForVerify} />
+          <Route path="/404" component={PageNotFound} />
+          <Route path="/verify" component={VerifyEmailPage} />
+          <Route path="/reverify" component={ReverifyPage} />
+          <PrivateRoute  path="/profile" component={ProfilePage} />
+          <PrivateRoute  path="/500" component={ServerErrorPage} />
+          <PrivateRoute  path="/requests" component={requestsPage} />
+          <PrivateRoute  path="/request/:id" component={singleReqeuest} />
             <PrivateRoute  path="/approvals" component={ApprovalsPage} />
             <PrivateRoute  path="/AccessForbidden" component={AccessForbiddenPage} />
-            <Redirect to="/404" />
-          </Switch>
-          <ToastContainer autoClose={3000} hideProgressBar />
-        </Router>
-      </div>
+          <Redirect to="/404" />
+        </Switch>
+      </Router>
+    </div>
     </Provider>
   );
 };

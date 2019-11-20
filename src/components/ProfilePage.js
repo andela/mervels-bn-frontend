@@ -81,7 +81,7 @@ export class ProfileComponent extends React.Component {
         const data = new FormData();
         const image = e.target.files[0];
         const allowedTypes = ['image/png', 'image/jpeg'];
-        if(!allowedTypes.includes(image.type)){
+        if(!image || !allowedTypes.includes(image.type)){
             return toast.error('Please choose an image with format JPEG or PNG', {
                 position: toast.POSITION.TOP_RIGHT
             });

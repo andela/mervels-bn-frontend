@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import useStyles from './iconStyles';
 import TooltipComponent from './TooltipComponent';
 
-export default function TableComponent({ items, totalRequests, requestsPerPage, paginate, currentPage, route }) {
+export default function TableComponent({ items, totalRequests, requestsPerPage, paginate, currentPage, route, viewRequest }) {
     const classes = useStyles();
     return (
         <>
@@ -27,33 +27,35 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                 </thead>
                 <tbody className="table-body">
                 {items.map((request, index) =>
-            <tr className="table-row" key={request.id.toString()}>
-                    <td className="table-col">{index+1}</td>
-                    <td className="table-col text-center ">
+            <tr className="table-row" onClick={viewRequest} id={request.id} key={request.id.toString()}>
+                    <td className="table-col" id={request.id}>{index+1}</td>
+                    <td className="table-col text-center " id={request.id}>
                         <a href={`/approvals/${request.id}`}>
                             <TooltipComponent passportName={request.passportName} />
                         </a>
                     </td>
-                    <td className="table-col">
+                    <td className="table-col" id={request.id}>
                         {moment(request.createdAt).format("MMM Do YY")}
                     </td>
-                    <td className="table-col">{request.from}</td>
-                    <td className="table-col">
-                    <ul>
-                        {request.accommodations.map((item) =>
-                        <li key={item.id.toString()}>
-                            {item.Location.country},{item.Location.city}
-                        </li>)}
-                    </ul>
+                    <td className="table-col" id={request.id}>{request.from}</td>
+                    <td className="table-col" id={request.id}>
+                        {request.accommodations.map((item, idx) =>
+                            <>
+                                { idx > 0 ? <div className='line' /> : '' }
+                                <li id={request.id} key={item.id.toString()}>
+                                    {item.Location.country},{item.Location.city}
+                                </li>
+                            </>
+                        )}
                     </td>
-                    <td className="table-col">
+                    <td className="table-col" id={request.id}>
                         {request.travelDate.map((item, _index) =>
                         <li key={_index.toString()}>
                             {moment(item).format("MMM Do YY")}
                         </li>)}</td>
-                    <td className="table-col">{moment(request.returnDate).format("MMM Do YY")}</td>
-                    <td className="table-col">{request.status}
-                <div id="circle"className={request.status === 'Approved'? 'approved':'rejected'}></div>
+                    <td className="table-col" id={request.id}>{moment(request.returnDate).format("MMM Do YY") === 'Invalid date' ? '-' : moment(request.returnDate).format("MMM Do YY")}</td>
+                    <td className="table-col" id={request.id}>{request.status}
+                <div id="circle" className={request.status === 'Approved'? 'approved':'rejected'}></div>
                 </td>
                 </tr>
             )}

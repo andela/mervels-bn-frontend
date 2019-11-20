@@ -1,0 +1,12 @@
+.accomodation-image {
+  background-color: #fafcff;
+  border: 1px #86affc solid;
+  border-radius: 4px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.accommodation-selected {
+  background-color: #dfe9f8;
+}

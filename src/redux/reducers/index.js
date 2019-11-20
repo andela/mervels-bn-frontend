@@ -7,6 +7,7 @@ import reverifyData from "./reverifyReducer";
 import verifyData from "./verifyReducer";
 import profileReducer from './profileReducer';
 import requestsReducers from './requestsReducers';
+import requestReducer from './requestReducer';
 import notification from './notificationReducer';
 import approvalsReducers from './requestApprovalsReducer';
 
@@ -20,5 +21,6 @@ export default combineReducers({
   profile: profileReducer,
   requests: requestsReducers,
   notification,
-  approvals: approvalsReducers
+  approvals: approvalsReducers,
+  request: requestReducer
 });

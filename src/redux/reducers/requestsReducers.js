@@ -15,7 +15,7 @@ export default (state = initialState, action) => {
         case FETCH_REQUESTS:
             return { ...state, requests: action.payload.data, title: action.payload.title, filtered: {}, error: null };
         case FETCH_PENDING:
-            filtered = { ...requests, data:requests.data.filter((request) => request.status === 'pending') };
+            filtered = { ...requests, data:requests.data.filter((request) => request.status === 'Pending') };
             return { ...state, filtered, title: action.payload.title, error: null };
         case FETCH_PAST:
             filtered = { 

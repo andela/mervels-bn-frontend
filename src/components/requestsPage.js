@@ -8,10 +8,11 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import TableComponent from './shared/tableComponent';
 import { fetchRequests, getPending, getPast, searchRequests }  from '../redux/actions/requestsAction';
-import 'react-toastify/dist/ReactToastify.css';
 import RequestPanel from './headerPanel';
 import { searchMessage } from '../helpers/search';
-
+import Button from './shared/Button';
+import { Spinner } from './shared/Spinner';
+import CreateRequest from './CreateOrEditRequest';
 
 
 class RequestView extends React.Component{
@@ -21,7 +22,8 @@ class RequestView extends React.Component{
             currentPage: 1,
             requestsPerPage: 2,
             parameter: null,
-            query: null
+            query: null,
+            isCreating: false
         };
     }
 
@@ -36,8 +38,9 @@ class RequestView extends React.Component{
         if (requests !== prevProps.requests) {
             if(requests.error){
                 if(requests.error.status === 401){
-                        // eslint-disable-next-line react/prop-types
-                        history.push('/login');
+                    localStorage.removeItem('bareFootToken');
+                    // eslint-disable-next-line react/prop-types
+                    history.push('/login');
                 }
             }
         }
@@ -69,6 +72,16 @@ class RequestView extends React.Component{
             currentPage: pageNumber,
         });
     }
+    
+    toggleCreating = () => {
+        const { isCreating } = this.state;
+        this.setState({ isCreating: !isCreating });
+    }
+
+    viewRequest = (e) => {
+        const { history } = this.props;
+        history.push(`request/${e.target.id}`);
+    }
 
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
 
@@ -81,12 +94,12 @@ class RequestView extends React.Component{
     }
 
     render(){
-        const { parameter, currentPage } = this.state;
+        const { parameter, currentPage, isCreating } = this.state;
         let { requestsPerPage } = this.state;
         if(!requestsPerPage || requestsPerPage <= 0) {
             requestsPerPage = 1;
         }
-        const { requests, match } = this.props;
+        const { requests, history } = this.props;
         const { message, type } = searchMessage(parameter);
         let items;
         let display;
@@ -94,7 +107,7 @@ class RequestView extends React.Component{
         const indexOfLastRequest = currentPage * requestsPerPage;
         const indexOfFirstRequest = indexOfLastRequest - requestsPerPage;
         display= <div>
-                    <h2 className="text-center">Data Loading ...</h2>
+                    <Spinner className='spinner-center' />
                 </div>;
         let obj;
         if (Object.keys(requests.filtered).length !== 0){
@@ -113,7 +126,7 @@ class RequestView extends React.Component{
                 const currentRequests = items.slice(indexOfFirstRequest, indexOfLastRequest);
                 const table = <TableComponent
                 items={currentRequests}
-                route={match.path}
+                viewRequest={this.viewRequest}
                 currentPage={currentPage}
                 requestsPerPage={requestsPerPage}
                 totalRequests={items.length}
@@ -133,6 +146,13 @@ class RequestView extends React.Component{
                     holder={message} type={type} 
                     search={this.handleSearch}
                 />
+                <div className='grid'>
+                    <div className='col-10 offset-3'>
+                        <Button buttonType='button' ButtonId='create-start' classes={`btn m-top-3 m-bottom-1 ${ isCreating ? 'btn-danger' : 'btn-primary' }`} text={isCreating? '✖ Close' : '✙ New Request'} onClick={this.toggleCreating} />
+                    </div>
+                    <div className='col-2' />
+                    { isCreating? <CreateRequest history={history} /> : ''}
+                </div>
                 <div className="grid sm p-bottom-3">
                     <div className="col-10 offset-3">
                     <div className="page-header text-center"  />
@@ -149,6 +169,9 @@ RequestView.propTypes ={
     requests: propTypes.object.isRequired,
     getPending: propTypes.func.isRequired,
     getPast: propTypes.func.isRequired,
+    history: propTypes.objectOf({
+        push: propTypes.func.isRequired
+    }).isRequired
 };
 export const mapStateToProps = (state) => {
     return {

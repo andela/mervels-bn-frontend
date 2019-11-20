@@ -1,0 +1,30 @@
+.req-elem {
+  text-align: left;
+  padding: 4px;
+}
+
+.req-details {
+  overflow-y: scroll;
+  max-height: 70vh;
+  th {
+    letter-spacing: 2px;
+    text-align: left;
+    padding-left: 25px;
+    color: rgb(22, 30, 54);
+  }
+  table {
+    tr {
+      background-color: rgba(255, 255, 255, 0.3);
+      color: #2e61be;
+    }
+    tr:hover {
+      background-color: rgba(221, 221, 221, 0.2);
+      color: #2753a5;
+    }
+
+    td,
+    th {
+      border-bottom-color: rgb(136, 135, 135);
+    }
+  }
+}
