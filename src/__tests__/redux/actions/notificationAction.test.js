@@ -131,7 +131,7 @@ describe('Notification Actions', () => {
                     }
                 }
             });
-            await flushAllPromises();
+            await flushAllPromises(); 
         });
         await store.dispatch(markReadAll());
         const calledActions = store.getActions();
