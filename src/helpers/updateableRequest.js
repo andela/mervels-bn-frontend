@@ -1,5 +1,4 @@
 const updateableRequest = (request) => {
-    // console.log(request.travelDate.length === 1);
     if(request.travelDate.length === 1 && !request.returnDate) {
         return {
             type: 'oneWayTrip',

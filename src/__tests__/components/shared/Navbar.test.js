@@ -35,7 +35,6 @@ describe("Navbar with redux store", () => {
          />
       </Provider>
     );
-    // console.log(wrapper.find('#noti-icon').debug());
     done();
   });
 });
