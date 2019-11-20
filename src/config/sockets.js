@@ -8,7 +8,7 @@ import {
 } from "../redux/actions/notificationActions";
 
 // const { baseUrl } = process.env;
-const  baseUrl  = 'http://localhost:4000';
+// const  baseUrl  = 'http://localhost:4000';
 
 export let socket = null;
 
