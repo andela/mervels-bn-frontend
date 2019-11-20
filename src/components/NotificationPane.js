@@ -14,7 +14,6 @@ import {
   markReadAll,
   markOneAsRead
 } from "../redux/actions/notificationActions";
-// import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
 
 const { baseUrl } = process.env;
@@ -68,7 +67,6 @@ export function NotificationPane({
 
 
   };
-  // {`/requests/${notification.requestId}`}
 
   return (
     <div className={classes}>
