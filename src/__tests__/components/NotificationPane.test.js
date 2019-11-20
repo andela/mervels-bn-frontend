@@ -1,12 +1,15 @@
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import {shallow , mount} from '../../config/enzyme.config';
 import NotificationPane ,{NotificationPane as NotificationPaneNoStore} from '../../components/NotificationPane';
 import { notificationsList } from "../../__mock_data__/notifications";
-import { connect } from "../../config/sockets";
+
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -55,16 +58,21 @@ describe('Test Notification Pane with no store', ()=>{
         done();
     });
     it('Should mark one notifications as read', (done)=>{
+        const history = createMemoryHistory('/');
         const mockHandleReadOne = jest.fn();
         // eslint-disable-next-line no-unused-vars
-        const wrapper = mount(<NotificationPaneNoStore
+        const wrapper = mount(
+        <Router>
+            <NotificationPaneNoStore
              notifications={notificationsList}
               getNotifications={jest.fn()}
               updateNotification={jest.fn()}
               handlePane={jest.fn()}
               markOneAsRead={jest.fn()}
               handleReadOne={mockHandleReadOne}
-              />);
+              history={history}
+              />)
+        </Router>);
 
         wrapper.find("#not59").simulate("click");
 
@@ -80,7 +88,6 @@ describe('Test Notification Pane with redux store', ()=>{
         notification: {unread: 2, notifications: notificationsList},
         profile: {data: {status: 'Fetch success', userId: 2}},
     });
-    connect(); // Connects Sockets for notifications
 
     it('Should display notification pane successfully with no notifications', done=>{
         const wrapper = mount(
@@ -94,21 +101,3 @@ describe('Test Notification Pane with redux store', ()=>{
     });
 
 });
-
-// describe('Test Notification Pane with redux store and sockets ', ()=>{
-//     const store = mockStore({
-//         notification: {unread: 2, notifications: notificationsList},
-//         profile: {data: {status: 'Fetch success', userId: 2}},
-//     });
-//     connect(); // Connects Sockets for notifications
-
-//     it('Should display notification pane successfully with no notifications', ()=>{
-//         const wrapper = mount(
-//             <Provider store={store}>
-//                 <NotificationPane getNotifications={jest.fn()} />
-//             </Provider>
-//         );
-//         expect(wrapper).toHaveLength(1);
-//     });
-
-// });

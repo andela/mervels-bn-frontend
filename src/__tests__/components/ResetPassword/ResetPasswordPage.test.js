@@ -140,7 +140,6 @@ describe("Reset Password Form", () => {
         errors: {message: "Server Error", status: "500" }
       });
 
-      // mockUseEffect();
       const Eevent = { target: { name: "email", value: "email@gmail.com" } };
       const Fevent = { target: { name: "emailForm" } };
 
