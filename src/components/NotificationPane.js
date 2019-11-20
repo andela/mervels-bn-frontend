@@ -7,14 +7,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import io from 'socket.io-client';
 import {
   getNotifications,
   updateNotification,
   markReadAll,
   markOneAsRead
 } from "../redux/actions/notificationActions";
-import { socket } from "../config/sockets";
+// import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
+
+const { baseUrl } = process.env;
+
+const socket = io.connect(baseUrl);
 
 export function NotificationPane({
   userId,
