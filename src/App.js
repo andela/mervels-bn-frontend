@@ -12,7 +12,6 @@ import LoggedInDashboard from "./components/LoggedInDashboard";
 import PrivateRoute from "./PrivateRoute";
 import HomePage from "./components/HomePage";
 import DashboardPage from "./components/DashboardPage";
-// eslint-disable-next-line import/no-named-as-default
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
 import PageNotFound from "./components/PageNotFound";
 import SignupPage from "./components/signupPage";

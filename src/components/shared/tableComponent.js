@@ -64,7 +64,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                     Showing <span className="special">{currentPage}</span> of {Math.ceil(totalRequests/requestsPerPage)}
                 </td>
                 <td className="table-col">
-                <Pagination requestsPerPage={requestsPerPage} currentPage={currentPage} totalRequests={totalRequests} paginate={paginate} route={route}/>
+                <Pagination requestsPerPage={requestsPerPage} currentPage={currentPage} totalRequests={totalRequests} paginate={paginate}/>
                 </td>
             </tr>
                 </tbody>

@@ -20,7 +20,7 @@ class RequestView extends React.Component{
         super(props);
         this.state = {
             currentPage: 1,
-            requestsPerPage: 2,
+            requestsPerPage: 5,
             parameter: null,
             query: null,
             isCreating: false
@@ -47,7 +47,10 @@ class RequestView extends React.Component{
     }
 
     handleChange = (e) => {
+        let resetPage = {};
+        if(e.target.name === 'requestsPerPage') resetPage = {currentPage: 1};
         this.setState({
+            ...resetPage,
             [e.target.name]: e.target.value
         });
     }

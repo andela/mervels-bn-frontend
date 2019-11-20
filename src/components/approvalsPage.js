@@ -43,7 +43,7 @@ class ApprovalsPage extends React.Component{
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
 
     render(){
-        const { approvals, match } = this.props;
+        const { approvals } = this.props;
         const { requestsPerPage, currentPage  } = this.state;
         let items;
         let display;
@@ -64,7 +64,6 @@ class ApprovalsPage extends React.Component{
                 const currentRequests = items.slice(indexOfFirstRequest, indexOfLastRequest);
                 const table =<TableComponent
                 items={currentRequests}
-                route={match.path}
                 currentPage={currentPage}
                 requestsPerPage={requestsPerPage}
                 totalRequests={items.length}
