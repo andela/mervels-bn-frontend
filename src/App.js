@@ -36,8 +36,8 @@ const App = () => {
     <Provider store={store}>
       <ToastContainer />
       <div className="App">
-      {localStorage.getItem('bareFootToken') && <Navbar />}
       <Router>
+      {localStorage.getItem('bareFootToken') && <Navbar />}
         <Switch>
           <Route  path="/login" component={Login} />
           <Route  path="/home" component={HomePage} />
