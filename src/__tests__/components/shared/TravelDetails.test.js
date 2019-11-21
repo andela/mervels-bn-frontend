@@ -15,33 +15,29 @@ const mockedStore = configureStore([thunk]);
 
 describe("ReVerify Email component", () => {
     describe("Unit tests", () => {
+        const render = (params, fn=mount) => {
+            const defaultProps = {
+                request
+            };
+            const props = {...defaultProps, ...params };
+            // eslint-disable-next-line import/no-named-as-default-member
+            return fn(<TravelDetails {...props }/>);
+        };
+
         it("should render successfully", () => {
-            const render = (params, fn=mount) => {
-                const defaultProps = {
-                    request
-                };
-                const props = {...defaultProps, ...params };
-                // eslint-disable-next-line import/no-named-as-default-member
-                return fn(<TravelDetails {...props }/>);
-            };
             const wrapper = render();
             const page = wrapper.find('.req-details');
             expect(page).toHaveLength(1);
             expect(wrapper).toHaveLength(1); 
         });  
+
         it("should render successfully - two", () => {
-            const render = (params, fn=mount) => {
-                const defaultProps = {
-                    request: requestTwo
-                };
-                const props = {...defaultProps, ...params };
-                // eslint-disable-next-line import/no-named-as-default-member
-                return fn(<TravelDetails {...props }/>);
-            };
-            const wrapper = render();
+            const wrapper = render({request: requestTwo});
             const page = wrapper.find('.req-details');
             expect(page).toHaveLength(1);
             expect(wrapper).toHaveLength(1); 
-        });  
+        });
     });
+
+    
 });

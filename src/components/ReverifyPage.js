@@ -59,7 +59,7 @@ class ReverifyPage extends Component {
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
             <form className="reverify-form" onSubmit = {this.handleSubmit}>
                 <p style={{fontSize: "16px"}}>Your verification link has expired. Enter your email to receive a new one</p>
-            <Input placeholder="Email" required={{required: 'required'}} onChange={this.handleChange} name="userEmail" classes="frm-input full-width" inputType="email" value={userEmail}/>
+            <Input placeholder="Email" required={{required: 'required'}} onChange={this.handleChange} name="userEmail" classes="frm-input input full-width" inputType="email" value={userEmail}/>
             <button type="submit" className="btn btn-primary reverify-btn">Send</button>
             </form>
         </div> );

@@ -11,7 +11,7 @@ import Notifications, {Notifications as NotificationNoStore} from '../../compone
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
-
+ 
 describe("Notification with no Store component/>", () => {
     const render = (params, fn=mount) => {
         const defaultProps = {

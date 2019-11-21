@@ -42,6 +42,11 @@ class ApprovalsPage extends React.Component{
 
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
 
+    viewRequest = (e) => {
+        const { history } = this.props;
+        history.push(`/approvals/${e.target.id}`);
+    }
+
     render(){
         const { approvals } = this.props;
         const { requestsPerPage, currentPage  } = this.state;
@@ -68,6 +73,8 @@ class ApprovalsPage extends React.Component{
                 requestsPerPage={requestsPerPage}
                 totalRequests={items.length}
                 paginate={this.paginate}
+                viewRequest={this.viewRequest}
+                destination='approvals'
                 />;
 
                 display = items && items.length ? table :<p className="text-center backdrop">you currently have no requests</p>;

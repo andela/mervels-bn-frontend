@@ -21,7 +21,7 @@ describe('Signup action', () => {
         moxios.uninstall(axiosInstance);
     });
 
-    it('should successfully verify', async () => {
+    it('should successfully verify', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -37,10 +37,11 @@ describe('Signup action', () => {
         await store.dispatch(verifyAction(token));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_SUCCESS);    
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_SUCCESS); 
+        done();   
     });
 
-    it('should successfully verify', async () => {
+    it('should successfully verify', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -55,10 +56,11 @@ describe('Signup action', () => {
         await store.dispatch(verifyAction(token));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);    
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();    
     });
 
-    it('should successfully verify', async () => {
+    it('should successfully verify', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -73,10 +75,11 @@ describe('Signup action', () => {
         await store.dispatch(verifyAction(token));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);    
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();    
     });
 
-    it('should successfully verify', async () => {
+    it('should successfully verify', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -91,7 +94,8 @@ describe('Signup action', () => {
         await store.dispatch(verifyAction(token));
         await flushPromises();
         const calledActions = store.getActions();
-        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);    
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();    
     });
     
 });   
