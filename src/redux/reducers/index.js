@@ -13,6 +13,7 @@ import singleRequest from './SingleRequestReducer';
 import notification from './notificationReducer';
 import approvalsReducers from './requestApprovalsReducer';
 import superAdminReducers from './superAdminReducers';
+import addedSupplier from './addSupplierReducer';
 
 export default combineReducers({
   loginReducer,
@@ -28,5 +29,6 @@ export default combineReducers({
   request: requestReducer,
   approveReject,
   singleRequest,
-  superAdminReducers
+  superAdminReducers,
+  addedSupplier,
 });

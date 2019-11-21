@@ -38,7 +38,7 @@ class ApprovalsPage extends React.Component{
         this.setState({
             currentPage: pageNumber,
         });
-    }
+    } 
 
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
 

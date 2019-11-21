@@ -41,7 +41,7 @@ describe('Signup action', () => {
         done();   
     });
 
-    it('should successfully verify', async (done) => {
+    it('should handle verify 401 error', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -60,7 +60,7 @@ describe('Signup action', () => {
         done();    
     });
 
-    it('should successfully verify', async (done) => {
+    it('should handle 409 error', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -79,7 +79,7 @@ describe('Signup action', () => {
         done();    
     });
 
-    it('should successfully verify', async (done) => {
+    it('should handle server error', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
@@ -97,5 +97,27 @@ describe('Signup action', () => {
         expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
         done();    
     });
+
+  
+    it('should handle connection error', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 501,
+                error: {
+                    status: 501,
+                    message: 'any message',
+                    data: {} 
+                }
+            }); 
+            await flushPromises();
+        });
+        const token = "generic usertoken"; 
+
+        await store.dispatch(verifyAction(token));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();    
+    });
     
-});   
+});    

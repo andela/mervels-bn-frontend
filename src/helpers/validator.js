@@ -13,13 +13,14 @@ const messages = {
     validEmail: 'Please include an @ sign in the email',
     validPassword: 'Password must be atleast 8 characters with atleast a special letter and a capital letter',
     validLong: 'Reason must be atleast 30 characters',
+    alphanum: 'Has to start with a letter'
 };
 
 const schema = {
     passportName: yup.string().min(3, messages.short),
     passportNumber: yup.string().min(3, messages.short),
-    firstName: yup.string().min(3, messages.short).required(messages.required),
-    lastName: yup.string().min(3, messages.short).required(messages.required),
+    firstName: yup.string().matches(/^[a-zA-Z]/, messages.alphanum).min(3, messages.short).required(messages.required),
+    lastName: yup.string().matches(/^[a-zA-Z]/, messages.alphanum).min(3, messages.short).required(messages.required),
     birthDate: yup.date().max('01-01-2002', messages.maxDate),
     phoneNumber: yup.string().matches(/^[0-9]{10}$/, messages.phone),
     language: yup.string().min(3, messages.short),
@@ -65,7 +66,7 @@ export const validateRequest = (payload) => {
 export default (key, value) => {
     const newSchema = yup.object().shape({ [key]: schema[key] });
     const toCheck = { [key]: value };
-    return newSchema.validate(toCheck).catch((err) => {
+    return newSchema.nullable().validate(toCheck).catch((err) => {
         return {
             error: err.errors[0]
         };

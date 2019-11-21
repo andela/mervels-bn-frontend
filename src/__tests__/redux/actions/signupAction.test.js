@@ -123,4 +123,30 @@ describe('Signup action', () => {
         expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR); 
         done();    
     }); 
+
+    it('should handle connection errors', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 501,
+                error: {
+                    status: 501,
+                    message: 'any message',
+                    data: {}
+                }
+            });
+        });
+        const createdUser = {
+            userEmail: "barefoot@barefoot.com",
+            userPassword: "Root1123#",
+            firstName: "Bahati",
+            lastName: "Robben"
+        };
+
+        await store.dispatch(signupAction(createdUser));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.SIGN_UP_ERROR); 
+        done();    
+    }); 
 });   

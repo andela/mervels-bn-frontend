@@ -60,4 +60,24 @@ describe('get request action', () => {
         expect(calledActions[0].type).toEqual(GET_REQUEST_ERROR); 
         done();   
     });
+
+    it('should handle connection errors', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 501,
+                error: {
+                    status: 501,
+                    data: {}
+                }
+            }); 
+        });
+        const requestId = 2;
+
+        await store.dispatch(getRequestAction(requestId));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(GET_REQUEST_ERROR); 
+        done();   
+    });
 });   
