@@ -28,7 +28,6 @@ class ApproveReject extends Component {
 
     componentDidMount() {
         // eslint-disable-next-line react/destructuring-assignment
-        
         const {location}  = this.props;
         const requestId = location.pathname.split('approvals/')[1];
         const {getSingleRequest} = this.props;

@@ -14,6 +14,7 @@ import Button from './shared/Button';
 import ConfirmModal from './shared/confirmModal';
 import { Spinner } from './shared/Spinner';
 import { getSingleRequest, deleteRequest } from '../redux/actions/requestActions';
+import CommentsCompoment from './shared/commentsCompoment';
 
 export class ViewRequest extends Component {
     constructor(props) {
@@ -115,6 +116,7 @@ export class ViewRequest extends Component {
                 </div>
                 <div className="travel-reason-2-container col-7">
                     <TravelReason reason={payload.reason}/>
+                    <CommentsCompoment/>
                 </div>
                 <div className='col-1' />
             </div> : 

@@ -46,10 +46,12 @@
 
 .visible {
   display: block;
+  position: relative;
 }
 
 .hidden {
   display: none;
+  position: relative;
 }
 
 .back-approvals {
