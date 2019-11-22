@@ -1,7 +1,7 @@
 import {getRequest} from '../../API/managerApi';
 import {GET_REQUEST_SUCCESS, GET_REQUEST_ERROR} from './actionTypes';
 
-const getSingleRequest = (requestId) => (dispatch) => {
+const getSingleRequest = (requestId) => async (dispatch) => {
    return getRequest(requestId).then((data) => {
        switch(data.status) {
            case 200:

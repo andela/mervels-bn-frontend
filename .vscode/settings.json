@@ -1,4 +1,5 @@
 {
   "eslint.autoFixOnSave": true,
-  "eslint.enable": true
+  "eslint.enable": true,
+  "liveServer.settings.port": 5501
 }
