@@ -15,6 +15,7 @@ import approvalsReducers from './requestApprovalsReducer';
 import dashboardReducer from './dashboardReducer';
 import superAdminReducers from './superAdminReducers';
 import addedSupplier from './addSupplierReducer';
+import commentReducer from './commentReducers';
 
 export default combineReducers({
   loginReducer,
@@ -33,4 +34,5 @@ export default combineReducers({
   singleRequest,
   superAdminReducers,
   addedSupplier,
+  commentReducer
 });

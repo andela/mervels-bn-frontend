@@ -29,7 +29,7 @@ export class ViewRequest extends Component {
 
     componentDidMount() {
         const { getSingleRequest: fetchRequest, match: { params }, history } = this.props;
-        if(!params.id) history.push('/requests'); 
+        if(!params.id) history.push('/requests');
         fetchRequest(params.id);
     }
 
@@ -82,12 +82,12 @@ export class ViewRequest extends Component {
         deleteTripRequest(match.params.id);
     }
 
-    render() { 
+    render() {
         const { request, updating, formattedRequest, showModal } = this.state;
         const { match } = this.props;
         const payload = request;
         delete payload.passportName;
-        return (updating) ? 
+        return (updating) ?
         (
             <>
                 <div className='grid'>
@@ -101,7 +101,7 @@ export class ViewRequest extends Component {
         <>
             { showModal ? <ConfirmModal confirm={this.deleteRequest} closeModal={this.toggleModal}>
                 <p>Are you sure you want to delete this request?</p>
-            </ConfirmModal> : '' } 
+            </ConfirmModal> : '' }
             { request ?  <div className="single-request-container grid m-2">
                 <div className='col-1' />
                 <div className='col-3 center'>
@@ -116,7 +116,7 @@ export class ViewRequest extends Component {
                 </div>
                 <div className="travel-reason-2-container col-7">
                     <TravelReason reason={payload.reason}/>
-                    <CommentsCompoment/>
+                    <CommentsCompoment requestId={match.params.id}/>
                 </div>
                 <div className='col-1' />
             </div> : 

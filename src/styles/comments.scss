@@ -1,74 +1,46 @@
-.comment {
-  padding: 9px;
+.comment-container {
+  padding: 20px;
   margin: 6px;
   border-radius: 6px;
-  box-shadow: 0 0 15px #00000030;
+  .comments {
+    height: auto;
+    min-height: 101%;
+    height: 200px;
+    overflow: scroll;
+  }
+  .comment {
+    padding: 28px 9px;
+    margin: 6px;
+    box-shadow: 0 0 15px #00000030;
+    border-radius: 10px;
+  }
+  .comment-title {
+    margin-bottom: 15px;
+  }
   .comment-details {
     .comment-details-owner {
       color: #3366cc;
-      padding-right: 25vw;
+      padding-right: 15vw;
       font-size: large;
       font-weight: 600;
     }
     .comment-details-time {
       color: #4d4b4b;
+      font-size: 0.8em;
       font-weight: 400;
-      line-height: 4vh;
     }
   }
   .comment-body {
-    // text-align: justify;
-    // letter-spacing:2px;
-    padding-bottom: 20px;
+    padding: 8px;
+    font-weight: 100;
   }
 }
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #3498db;
+.comment-actions {
+  margin: 30vw;
+  padding: 3px;
+  border-radius: 4px;
   color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Dropdown button on hover & focus */
-.dropbtn:hover,
-.dropbtn:focus {
-  background-color: #2980b9;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {
-  display: block;
+  background-color: rgb(230, 89, 105);
+  box-shadow: 0 0 15px #00000030;
 }

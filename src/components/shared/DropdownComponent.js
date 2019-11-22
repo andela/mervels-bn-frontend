@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+import { faAngleUp, faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import onClickOutside from "react-onclickoutside";
 
@@ -31,12 +32,12 @@ class DropdownComponent extends Component {
         const{ list } = this.props;
         const{ listOpen, headerTitle } = this.state;
         return (
-            <div className="dd-wrapper">
-                <div className="dd-header" onClick={() => this.toggleList()}>
-                    <div className="dd-header-title">{headerTitle}</div>
+            <div className="dropdown">
+                <div className="dropdown-header" onClick={() => this.toggleList()}>
+                    <div className="dropdown-header-title">{headerTitle}</div>
                         {listOpen
-                        ? <FontAwesomeIcon icon="coffee" /> 
-                        : <FontAwesomeIcon name="angle-down" size="2x"/>
+                        ? <FontAwesomeIcon icon={faAngleUp} />
+                        : <FontAwesomeIcon icon={faAngleDown} />
                         }
                 </div>
                     {listOpen && <ul className="dd-list">
