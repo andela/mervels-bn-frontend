@@ -20,6 +20,6 @@ const verify = (token) => (dispatch) => {
     // eslint-disable-next-line no-unused-vars
     }).catch((error) => {
         dispatch({type: actionTypes.VERIFY_ERROR, error: {status: 501, message: 'Connection error'}});
-    });
+       }); ;
 };
 export default verify;

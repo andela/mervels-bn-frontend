@@ -11,7 +11,8 @@ const messages = {
     department: 'You have to choose a department',
     gender: 'You have to choose a gender',
     validEmail: 'Please include an @ sign in the email',
-    validPassword: 'Password must be atleast 8 characters with atleast a special letter and a capital letter'
+    validPassword: 'Password must be atleast 8 characters with atleast a special letter and a capital letter',
+    validLong: 'Reason must be atleast 30 characters',
 };
 
 const schema = {
@@ -28,7 +29,8 @@ const schema = {
     gender: yup.string().min(3, messages.gender),
     userEmail: yup.string().email(messages.validEmail).required(messages.required),
     userPassword: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
-    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required)
+    password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
+    reasonComment: yup.string().min(30, messages.validLong),
 };
 
 export const validateRequest = (payload) => {

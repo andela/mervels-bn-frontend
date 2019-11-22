@@ -32,7 +32,7 @@ export function markOneReadSuccess(notificationId){
 export function getNotifications() {
     return async function (dispatch) {
         try {
-            const response = await api.get(`/api/v1/notifications`, config);
+            const response = await api.get(`api/v1/notifications`, config);
             dispatch(loadNotificationSuccess(response));
         }
         catch (error) {
@@ -43,7 +43,7 @@ export function getNotifications() {
 export function markReadAll() {
     return async function (dispatch) {
         try {
-            const response = await api.patch(`/api/v1/notifications/mark-as-read`, null, config);
+            const response = await api.patch(`api/v1/notifications/mark-as-read`, null, config);
             dispatch(markReadAllSuccess());
         }
         catch (error) {
@@ -54,7 +54,7 @@ export function markReadAll() {
 export function markOneAsRead(notificationId) {
     return async function (dispatch) {
         try {
-            const response = await api.patch(`/api/v1/notifications/mark-as-read?id=${notificationId}`, null, config);
+            const response = await api.patch(`api/v1/notifications/mark-as-read?id=${notificationId}`, null, config);
             dispatch(markOneReadSuccess(notificationId));
         }
         catch (error) {

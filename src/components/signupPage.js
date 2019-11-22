@@ -9,6 +9,7 @@ import {toast} from 'react-toastify';
 import signup from '../redux/actions/signupActions';
 import Input from './shared/input';
 import validator from '../helpers/validator';
+import SocialAuth from './shared/socialAuth';
 
 class SignUpPage extends Component {
     constructor(props) {
@@ -71,8 +72,11 @@ class SignUpPage extends Component {
             <Input placeholder="Password" error={errors.userPassword} required={{required: 'required'}} onChange={this.handleChange} name="userPassword" classes="input full-width" inputType="password" value={userPassword}/>
             <Input placeholder="Confirm Password" error={errors.confirm} required={{required: 'required'}} onChange={this.handleChange} name="confirm" classes="input full-width" inputType="password" value={confirm}/>
             <button type="submit" className="btn btn-primary signup-btn">Sign Up</button>
+            <div className="foot-message">Already have a Barefoot Nomad account? <a href="/login">Login</a></div>
             </form>
             <div className="center-small">OR</div>
+            <SocialAuth/>
+            
         </div> );
     }
 };

@@ -30,8 +30,6 @@ describe("Verify Email component", () => {
 
     it("should render successfully", () => {
         const wrapper = render();
-        const {verify} = wrapper.instance().props; 
-        expect(verify).toHaveBeenCalledTimes(1);
         expect(wrapper).toHaveLength(1);
     });
 
@@ -125,31 +123,4 @@ describe("Verify Email component", () => {
         expect(push).toHaveBeenCalledWith("/login");  
     });
     });
-
-
-    describe("Integration tests", () => {
-        const render = (params, fn=mount) => {
-            const defaultProps = {
-                history: {push: jest.fn()},
-                location: {search: 'https://localhost:1000/api/v1/?token=randeomtokenNumber'},
-                verify: jest.fn(),
-                verifyData: { data: null,
-                    error: null},
-
-            };
-            const props = {...defaultProps, ...params };
-            // eslint-disable-next-line import/no-named-as-default-member
-            return fn(<VerifyEmailPage {...props }/>);
-        };
-        const store= mockedStore({
-            verifyData: {
-                data: null,
-                error: null
-            }
-        });
-        it('should render the verify component', () => {
-            const wrapper = render({store});
-            expect(wrapper).toHaveLength(1);
-        });
-     });
 });

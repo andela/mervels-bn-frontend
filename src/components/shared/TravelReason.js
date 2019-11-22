@@ -13,7 +13,7 @@ const TravelReason = (props) => {
                 Travel Reason:
             </div>
             <div className="trv-reason">
-            <div dangerouslySetInnerHTML={{__html: reason}} />
+            <div className = "main-reason" dangerouslySetInnerHTML={{__html: reason}} />
             </div>
         </div>
     );

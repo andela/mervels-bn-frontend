@@ -6,7 +6,7 @@ const TravelDetails = (props) => {
     const {travelDate, accommodations} = request;
     const details = accommodations.map((element, index) => ({traveldate: travelDate[index], destination: `${element.Location.country} ${element.Location.city}` , accommodation: element.name}));
     const {createdAt, status, returnDate, from, passportName } = request;
-    const requestDate = createdAt.split('T')[0] || createdAt;
+    const requestDate = createdAt.split('T')[0];
     const tbody= [{ value: requestDate, label: 'Request Date' }, { value: status, label: 'Status' }, { value: returnDate, label: 'Return Date' }, { value: from, label: 'From' }];
     return ( <div className={`req-details ${classes} p-left-1 p-right-1`}>
         <table>

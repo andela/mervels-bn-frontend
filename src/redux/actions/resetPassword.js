@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
 /* eslint-disable no-debugger */
-import * as userApi from '../../API/userApi';
 import * as types from './actionTypes';
 import api from '../../config/axiosInstance';
 
@@ -33,7 +32,7 @@ export const sendResetPassword = (email) => async(dispatch) => {
 export const resetPassword = (data) => async(dispatch) =>{
     try{
         const {userId , userToken, password, newPassword } = data;
-        const url = `/api/v1/auth/resetPassword/${userId}/${userToken}`;
+        const url = `api/v1/auth/resetPassword/${userId}/${userToken}`;
         const response = await api.put(url, {password, newPassword });
 
         dispatch(resetPasswordSent(response.data));

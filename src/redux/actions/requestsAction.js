@@ -20,7 +20,6 @@ export const fetchRequests = () => async (dispatch) => {
     try{
         const token = `Bearer ${localStorage.getItem('bareFootToken')}`;
         const response = await axios.get(`${baseUrl}api/v1/requests/my-requests`, {
-        method: 'GET',
         headers: {
             'Authorization': `${token}`,
             'Content-Type': 'application/json',

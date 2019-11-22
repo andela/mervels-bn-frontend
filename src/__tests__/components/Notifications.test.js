@@ -27,11 +27,11 @@ describe("Notification with no Store component/>", () => {
         // eslint-disable-next-line import/no-named-as-default-member
         return fn(<NotificationNoStore {...props }/>);
     };
-    test.only('should render when user profile not loaded', () => {
+    it('should render when user profile not loaded', () => {
         const wrapper = render({profile: {data: {status: '', userId: ''}}});
         expect(wrapper).toHaveLength(1);
     });
-    test.only('should render with user profile loaded', done => {
+    it('should render with user profile loaded', done => {
         const wrapper = render({profile: {data: {status: 'User Profile Loaded', userId: 1}}});
         expect(wrapper).toHaveLength(1);
         done();

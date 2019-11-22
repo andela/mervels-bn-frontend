@@ -8,7 +8,7 @@ import Pagination from "./Pagination";
 import useStyles from './iconStyles';
 import TooltipComponent from './TooltipComponent';
 
-export default function TableComponent({ items, totalRequests, requestsPerPage, paginate, currentPage, route, viewRequest }) {
+export default function TableComponent({ items, totalRequests, requestsPerPage, paginate, currentPage, route, viewRequest, destination }) {
     const classes = useStyles();
     return (
         <>
@@ -30,7 +30,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
             <tr className="table-row" onClick={viewRequest} id={request.id} key={request.id.toString()}>
                     <td className="table-col" id={request.id}>{index+1}</td>
                     <td className="table-col text-center " id={request.id}>
-                        <a href={`/approvals/${request.id}`}>
+                        <a href={`/${destination}/${request.id}`}>
                             <TooltipComponent passportName={request.passportName} />
                         </a>
                     </td>
