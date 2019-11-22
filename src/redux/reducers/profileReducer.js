@@ -32,6 +32,7 @@ export default  (state = initialState, action) => {
                 passportNumber: action.data.userProfile.passportNumber,
                 firstName: action.data.firstName,
                 lastName: action.data.lastName,
+                requestAutofill: action.data.requestAutofill,
                 birthDate: moment(action.data.userProfile.birthDate).format('YYYY-MM-DD'),
                 department: action.data.userProfile.department,
                 phoneNumber: action.data.userProfile.phoneNumber,
