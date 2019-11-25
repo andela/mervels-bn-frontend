@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unused-state */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -34,12 +35,14 @@ export class MultiCityRequest extends React.Component {
             updating: false,
             id: '',
             markup: '',
-            submitting: false
+            submitting: false,
+            autofillInfo: '',
+            autofill: false
         };
     }
 
     componentDidMount() {
-        const { getLocations : fetchLocations, id, currentRequest, updating } = this.props;
+        const { getLocations : fetchLocations, id, currentRequest, updating, autofillInfo, autofill } = this.props;
         fetchLocations();
         if (updating) {
             this.setState({
@@ -49,6 +52,8 @@ export class MultiCityRequest extends React.Component {
                 markup: currentRequest.reason
             });
         }
+        this.setState({ autofillInfo , autofill });
+        if(autofill) this.setState({ ...autofillInfo });
     }
 
     componentWillReceiveProps(nextProps) {
@@ -124,9 +129,11 @@ export class MultiCityRequest extends React.Component {
 
     handleSubmit = async () => {
         const payload = this.state;
-        const { requestTrip : newTrip, updateRequest: updateTrip } = this.props;
+        const { requestTrip : newTrip, updateRequest: updateTrip, autofill } = this.props;
         const error = await validateRequest(payload);
         if(!error) {
+            let toggleAutofill = false;
+            if(autofill !== payload.autofill) toggleAutofill = true;
             if(payload.updating) {
                 updateTrip({
                     id: payload.id,
@@ -141,15 +148,19 @@ export class MultiCityRequest extends React.Component {
                 });
                 this.setState({ submitting: true });
             } else {
-                newTrip({ type: 'multi-city', data: { 
-                    from: payload.from,
-                    reason: payload.reason,
-                    to: payload.trips,
-                    returnDate: payload.returnDate,
-                    passportName: payload.passportName,
-                    passportNumber: payload.passportNumber,
-                    gender: payload.gender,
-                }});
+                newTrip({
+                    type: 'multi-city',
+                    toggleAutofill,
+                    data: { 
+                        from: payload.from,
+                        reason: payload.reason,
+                        to: payload.trips,
+                        returnDate: payload.returnDate,
+                        passportName: payload.passportName,
+                        passportNumber: payload.passportNumber,
+                        gender: payload.gender,
+                    }
+                });
                 this.setState({ submitting: true });
             }
         } else {
@@ -162,8 +173,19 @@ export class MultiCityRequest extends React.Component {
         toggleUpdating();
     }
 
+    toggleAutofill = () => {
+        const { autofill } = this.state;
+        const { autofillInfo } = this.props;
+        if(autofill) {
+            this.setState({ gender: '', passportName: '', passportNumber: '' });
+        } else {
+            this.setState({ ...autofillInfo });
+        }
+        this.setState({ autofill: !autofill });
+    }
+
     render() {
-        const { trips, returnDate, from, reason, error, passportName, passportNumber, gender,possibleLocations, markup, updating, submitting } = this.state;
+        const { trips, returnDate, from, reason, error, passportName, passportNumber, gender,possibleLocations, markup, updating, submitting, autofill, autofillInfo } = this.state;
         const { locationNames } = locationsHelper(possibleLocations, '');
         return(
             <div className='grid white p-left-1 p-top-1'>
@@ -228,17 +250,23 @@ export class MultiCityRequest extends React.Component {
                     Travel reason:<br />
                     <TextArea value={reason} markup={markup} name='reason' onChange={(e) => this.handleChange('other', e)} error='' />
                 </div>
+                <div className='col-12 m-top-1 m-bottom-1'>
+                    {autofillInfo? <>
+                        <input type='checkbox' id='toggle-checkbox' checked={autofill} onChange={this.toggleAutofill}/>
+                        <span className='m-left-1 text-blue'>Autofill fields below from your profile</span>
+                    </> : '' }
+                </div>
                 <div className='col-4'>
                     Passport Name:<br />
-                    <Input name='passportName' value={passportName} onChange={(e) => this.handleChange('other', e)} error='' />
+                    <Input name='passportName' value={passportName} onChange={(e) => this.handleChange('other', e)} error='' disabled={ (autofill && autofillInfo) ? (autofillInfo.passportName ? 'disabled' : '') : '' } />
                 </div>
                 <div className='col-4'>
                     Passport Number:<br />
-                    <Input name='passportNumber' value={passportNumber} onChange={(e) => this.handleChange('other', e)} error='' />
+                    <Input name='passportNumber' value={passportNumber} onChange={(e) => this.handleChange('other', e)} error='' disabled={ (autofill && autofillInfo) ? (autofillInfo.passportNumber ? 'disabled' : '') : '' } />
                 </div>
                 <div className='col-4'>
                     Gender:<br />
-                    <Select name='gender' options={['','MALE', 'FEMALE', 'OTHER']} selected={gender} onChange={(e) => this.handleChange('other', e)} error='' />
+                    <Select name='gender' options={['','MALE', 'FEMALE', 'OTHER']} selected={gender} onChange={(e) => this.handleChange('other', e)} error=''  disabled={ (autofill && autofillInfo) ? (autofillInfo.gender ? 'disabled' : '') : '' } />
                 </div>
                 <div className='col-2' />
                 <div className='col-8 center'>

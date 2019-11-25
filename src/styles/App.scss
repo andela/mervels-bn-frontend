@@ -155,6 +155,10 @@ $sides: (top, bottom, left, right);
   margin: 5px;
 }
 
+.checkbox-text {
+  margin-left: 5px;
+}
+
 @import "./traveReason.scss";
 @import "./travelDetails.scss";
 @import "./singleRequestManager.scss";

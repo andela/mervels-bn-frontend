@@ -110,6 +110,8 @@ export class ProfileComponent extends React.Component {
         Object.assign(payload, this.state);
         delete payload.updating; delete payload.image; delete profile.data.image;
         delete payload.uploading; delete payload.submitting;
+        delete payload.userId; delete payload.role;
+        delete payload.requestAutofill;
         if(payload.birthDate === 'Invalid date'){
             delete payload.birthDate;
         }
