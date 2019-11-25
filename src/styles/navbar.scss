@@ -1,8 +1,6 @@
 @import "./variables";
 
 .navbar {
-  //   width: 100%;
-  //   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2px 20px;
@@ -10,15 +8,30 @@
   color: $navbarFontColor;
   box-shadow: 0 0 15px #00000030;
 }
+
+.root {
+  margin: 16px;
+}
+
 .navbar-brand {
   text-decoration: none;
   font-size: 2rem;
   font-weight: 500;
   color: white;
 }
-ul {
+.navbar > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }

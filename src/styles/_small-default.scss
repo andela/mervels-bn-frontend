@@ -28,3 +28,19 @@ html {
   height: auto;
   position: relative;
 }
+
+@mixin small-mobile-grid {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+  }
+  @for $x from 1 through 12 {
+    .col-sm-#{$x} {
+      grid-column: span #{$x} / auto;
+      display: inline-block;
+    }
+  }
+}
+
+@include small-mobile-grid;

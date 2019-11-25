@@ -1,0 +1,28 @@
+@import "./variables";
+
+.navbar {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.navbar > ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.navbar > ul > li {
+  grid-column: span 1 / auto;
+}
+
+.root {
+  margin: 8px 0;
+  padding: 5px 0;
+}
+
+.menu-icon {
+  display: block;
+}
+
+.profile-menu {
+  padding-left: 20px;
+}

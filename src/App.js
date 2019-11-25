@@ -23,7 +23,7 @@ import ServerErrorPage from './components/500Page';
 import requestsPage from './components/requestsPage';
 import ApprovalsPage from './components/approvalsPage';
 import singleReqeuest from './components/ViewRequest';
-import Navbar from "./components/shared/navbarComponent";
+import Navbar from "./components/shared/Navbar";
 import AccessForbiddenPage from './components/AccessForbiddenPage';
 import ManageDashboard from "./components/ManageDashboard";
 import ApproveReject from './components/ApproveReject';
