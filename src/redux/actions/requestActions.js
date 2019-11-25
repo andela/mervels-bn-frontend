@@ -42,6 +42,7 @@ export const requestTrip = (data) => async(dispatch) => {
             }
         };
         const response = await api.post(`/api/v1/requests/${data.type}`, data.data, config);
+        if(data.toggleAutofill) await api.patch('api/v1/auth/autofill-preference', {}, config);
         dispatch({
             type: REQUEST_TRIP_SUCCESS,
             message: response.data.message,

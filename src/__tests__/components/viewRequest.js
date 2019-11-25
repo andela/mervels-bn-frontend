@@ -84,7 +84,7 @@ describe('Request One Way Trip', () => {
         };
         wrapper.setState(state);
         wrapper.find('Button[ButtonId="start-updating"]').props().onClick();
-        expect(wrapper.find('CreateorEditRequest').length).toEqual(1);
+        expect(wrapper.find('Connect(CreateorEditRequest)').length).toEqual(1);
     });
 
     it('should stop updating', () => {
@@ -97,8 +97,8 @@ describe('Request One Way Trip', () => {
             updating: true
         };
         wrapper.setState(state);
-        wrapper.find('CreateorEditRequest').props().toggleUpdating();
-        expect(wrapper.find('CreateorEditRequest').length).toEqual(0);
+        wrapper.find('Connect(CreateorEditRequest)').props().toggleUpdating();
+        expect(wrapper.find('Connect(CreateorEditRequest)').length).toEqual(0);
     });
 
     it('should test successful request retrieval - one way', () => {
