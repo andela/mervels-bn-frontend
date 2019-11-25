@@ -195,6 +195,17 @@ $sides: (top, bottom, left, right);
   box-shadow: 0 0 5px 0 #00000030;
 }
 
+.rating-container {
+  display: flex;
+  color: orange;
+  margin: 6px;
+}
+
+.starsCount {
+  padding: 10px;
+  font-weight: 200;
+}
+
 @import "./traveReason.scss";
 @import "./travelDetails.scss";
 @import "./singleRequestManager.scss";

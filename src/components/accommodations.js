@@ -124,6 +124,7 @@ export class Accommodations extends Component {
                                 name={acc.name}
                                 likes={acc.likes}
                                 rooms={acc.rooms}
+                                rating = {Math.round( acc.averageRating * 10 ) / 10}
                                 location={acc.location}
                                 id={acc.id}
                                 key={acc.id}

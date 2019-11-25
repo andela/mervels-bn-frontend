@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
 import { shallow, mount } from 'enzyme';
-import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 import Accommodation, { OneAccommodation } from '../../components/oneAccommodation';
 
@@ -87,6 +87,12 @@ const initialState = {
 };
 
 describe('One Accommodation test', () => {
+
+  test('should render', () => {
+    wrapper = mountsetUp();
+    const container = wrapper.find('.location');
+    expect(container).toHaveLength(1); 
+  });
   test('should render component', () => {
     wrapper = mountsetUp();
     const container = wrapper.find('.location');
