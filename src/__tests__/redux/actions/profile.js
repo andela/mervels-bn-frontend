@@ -391,4 +391,4 @@ describe('Profile Actions', () => {
         expect(calledActions[0].type).toEqual(UPDATE_PROFILE_ERROR);
         done();
     });
-});
+}); 

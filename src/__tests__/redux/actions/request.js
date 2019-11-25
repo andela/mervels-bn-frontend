@@ -18,7 +18,7 @@ import {
 
 const mockedStore = configureStore([thunk]);
 const flushAllPromises = () => new Promise((resolve) => setImmediate(resolve));
-
+ 
 let store;
 
 const response = {

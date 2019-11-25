@@ -16,7 +16,7 @@ describe('Signup action', () => {
         });
         moxios.install(axiosInstance);
     });
-
+  
     afterEach(() => {
         moxios.uninstall(axiosInstance);
     });
