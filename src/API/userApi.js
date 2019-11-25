@@ -13,3 +13,7 @@ export function reverify(userEmail) {
 export function verify(token) {
     return axios.patch(`${baseURL}api/v1/auth/verify/?token=${token}`).then((data) => data).catch((error) => { return {status: error.response.status};});
 };
+
+export function assign(info) {
+    return axios.post(`${baseURL}/auth/updateRole`, info).then((data) => data).catch((error) => {return error.response.data;});
+};

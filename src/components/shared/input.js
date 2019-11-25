@@ -15,7 +15,7 @@ const Input = ({inputType, name, placeholder, classes, value, onChange, error, d
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
-                autoComplete='on'
+                autoComplete='off'
                 disabled={disabled}
                 {...required}
             /><br />

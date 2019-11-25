@@ -26,6 +26,7 @@ import singleReqeuest from './components/ViewRequest';
 import Navbar from "./components/shared/navbarComponent";
 import AccessForbiddenPage from './components/AccessForbiddenPage';
 import ApproveReject from './components/ApproveReject';
+import UserRoles from "./components/UserRolesPage";
 
 const store = configureStore();
 
@@ -54,6 +55,7 @@ const App = () => {
           <PrivateRoute  path="/request/:id" component={singleReqeuest} />
           <PrivateRoute path="/approvals/:id" component={ApproveReject} />
             <PrivateRoute  path="/approvals" component={ApprovalsPage} />
+            <PrivateRoute path="/assign-role" component={UserRoles} />
             <PrivateRoute  path="/AccessForbidden" component={AccessForbiddenPage} />
           <Redirect to="/404" />
         </Switch>
