@@ -147,6 +147,20 @@ describe('Profile Actions', () => {
         done();
     });
 
+    it('should fail to fetch user', async(done) => {
+        moxios.wait(async() => {
+            const requestOne = moxios.requests.at(0);
+            requestOne.reject({
+                status: 500
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(getProfile());
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(GET_PROFILE_ERROR);
+        done();
+    });
+
     it('should update user info', async(done) => {
         moxios.wait(async() => {
             const requestOne = moxios.requests.at(0);
@@ -296,6 +310,20 @@ describe('Profile Actions', () => {
         done();
     });
 
+    it('should fail to update user info', async(done) => {
+        moxios.wait(async() => {
+            const requestOne = moxios.requests.at(0);
+            requestOne.reject({
+                status: 500
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(updateProfile({ key: 'value' }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(UPDATE_PROFILE_ERROR);
+        done();
+    });
+
     it('should update user picture', async(done) => {
         moxios.wait(async() => {
             const requestOne = moxios.requests.at(0);
@@ -341,6 +369,20 @@ describe('Profile Actions', () => {
                         data: {}
                     }
                 }
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(updateProfilePicture({ key: '' }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(UPDATE_PROFILE_ERROR);
+        done();
+    });
+
+    it('should fail to update user picture', async(done) => {
+        moxios.wait(async() => {
+            const requestOne = moxios.requests.at(0);
+            requestOne.reject({
+                status: 500
             });
             await flushAllPromises();
         });

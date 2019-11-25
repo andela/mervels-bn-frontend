@@ -72,6 +72,20 @@ describe('Profile Actions', () => {
         done();
     });
 
+    it('should fail to fetch locations', async(done) => {
+        moxios.wait(async() => {
+            const request = moxios.requests.mostRecent();
+            request.reject({
+                status: 500,
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(getLocations());
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(FETCH_LOCATIONS_ERROR);
+        done();
+    });
+
     it('should request a trip', async(done) => {
         moxios.wait(async() => {
             const request = moxios.requests.mostRecent();
@@ -84,6 +98,41 @@ describe('Profile Actions', () => {
         await store.dispatch(requestTrip({ type: '' }));
         const calledActions = store.getActions();
         expect(calledActions[0].type).toEqual(REQUEST_TRIP_SUCCESS);
+        done();
+    });
+
+    it('should request a trip with toggle autofill', async(done) => {
+        moxios.wait(async() => {
+            const requestOne = moxios.requests.at(0);
+            requestOne.respondWith({
+                status: 200,
+                response
+            });
+            await flushAllPromises();
+            const requestTwo = moxios.requests.at(1);
+            requestTwo.respondWith({
+                status: 200,
+                response
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(requestTrip({ type: '', toggleAutofill: true }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(REQUEST_TRIP_SUCCESS);
+        done();
+    });
+
+    it('should fail to request a trip', async(done) => {
+        moxios.wait(async() => {
+            const request = moxios.requests.mostRecent();
+            request.reject({
+                status: 500
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(requestTrip({ type: '' }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(REQUEST_TRIP_ERROR);
         done();
     });
 
@@ -132,6 +181,20 @@ describe('Profile Actions', () => {
         done();
     });
 
+    it('should fail to fetch a trip request', async(done) => {
+        moxios.wait(async() => {
+            const request = moxios.requests.mostRecent();
+            request.reject({
+                status: 500
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(getSingleRequest());
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(FETCH_REQUEST_ERROR);
+        done();
+    });
+
     it('should update a trip request', async(done) => {
         moxios.wait(async() => {
             const request = moxios.requests.mostRecent();
@@ -162,6 +225,20 @@ describe('Profile Actions', () => {
         done();
     });
 
+    it('should fail to update a trip request', async(done) => {
+        moxios.wait(async() => {
+            const request = moxios.requests.mostRecent();
+            request.reject({
+                status: 500
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(updateRequest({ id: '' }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(UPDATE_REQUEST_ERROR);
+        done();
+    });
+
     it('should delete a trip request', async(done) => {
         moxios.wait(async() => {
             const request = moxios.requests.mostRecent();
@@ -183,6 +260,20 @@ describe('Profile Actions', () => {
             request.respondWith({
                 status: 500,
                 response
+            });
+            await flushAllPromises();
+        });
+        await store.dispatch(deleteRequest({ id: '' }));
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(DELETE_REQUEST_ERROR);
+        done();
+    });
+
+    it('should fail to delete a trip request', async(done) => {
+        moxios.wait(async() => {
+            const request = moxios.requests.mostRecent();
+            request.reject({
+                status: 500
             });
             await flushAllPromises();
         });

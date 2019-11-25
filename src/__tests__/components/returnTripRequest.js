@@ -9,6 +9,8 @@ const mockedStore = configureStore([thunk]);
 
 let wrapper;
 let wrapperMount;
+let wrapperWithAutofill;
+let wrapperWithAutofillInfo;
 
 describe('Request One Way Trip', () => {
     beforeEach(() => {
@@ -20,8 +22,15 @@ describe('Request One Way Trip', () => {
                 error: ''
             }
         });
+        const autofillInfo = {
+            passportNumber: 'x',
+            passportName: 'x',
+            gender: 'MALE'
+        };
         wrapperMount = mount(<ReturnTripComponent store={store} getLocations={jest.fn()} history={{ push: jest.fn() }} requestTrip={jest.fn()} />);
         wrapper = shallow(<ReturnRequest  getLocations={jest.fn()} history={{ push: jest.fn() }} requestTrip={jest.fn()} />);
+        wrapperWithAutofill = shallow(<ReturnRequest autofill autofillInfo={{}} getLocations={jest.fn()} history={{ push: jest.fn() }} requestTrip={jest.fn()} />);
+        wrapperWithAutofillInfo = shallow(<ReturnRequest autofill autofillInfo={autofillInfo} getLocations={jest.fn()} history={{ push: jest.fn() }} requestTrip={jest.fn()} />);
     });
 
     it('render profile component', () => {
@@ -137,6 +146,64 @@ describe('Request One Way Trip', () => {
         wrapper.setState(state);
         wrapper.find('Button[ButtonId="submit-request"]').props().onClick();
         expect(wrapper.instance().state).toHaveProperty('error');
+    });
+
+    it('should render component with autofill enabled', () => {
+        expect(wrapperWithAutofill).toHaveLength(1);
+    });
+
+    it('should render component with autofill enabled and information provided', () => {
+        expect(wrapperWithAutofillInfo).toHaveLength(1);
+    });
+
+    it('should trigger creating a request and toggle autofill', () => {
+        const state = {
+            from: 'Lagos, Nigeria',
+            location: 1,
+            travelDate: '2020-02-20',
+            returnDate: '2020-02-21',
+            accommodation: 'X',
+            reason : 'Travel reason has to ba atleast 30 characters long',
+            passportName: 'passportName',
+            passportNumber: 'passportNumber',
+            gender: 'MALE',
+            error: '',
+            possibleLocations: [
+                {
+                    id : 1,
+                    country: 'Rwanda',
+                    city: 'Kigali',
+                    Accommodations: [{
+                        name: 'X'
+                    }]
+                },
+                {
+                    id : 2,
+                    country: 'Uganda',
+                    city: 'Kampala',
+                    Accommodations: []
+                }
+            ],
+            updating: false,
+            id: '',
+            markup: '',
+            submitting: false,
+            autofill: false
+        };
+        wrapperWithAutofill.setState(state);
+        wrapperWithAutofill.find('Button[ButtonId="submit-request"]').props().onClick();
+        expect(wrapperWithAutofill.instance().state).toHaveProperty('submitting');
+    });
+
+    it('should uncheck the checkbox', () => {
+        wrapperWithAutofillInfo.find('#toggle-checkbox').props().onChange();
+        expect(wrapper.instance().state).toHaveProperty('autofill');
+    });
+
+    it('should check the checkbox', () => {
+        wrapperWithAutofillInfo.setState({ autofill: false });
+        wrapperWithAutofillInfo.find('#toggle-checkbox').props().onChange();
+        expect(wrapper.instance().state).toHaveProperty('autofill');
     });
 });
 
