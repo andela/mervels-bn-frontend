@@ -12,6 +12,7 @@ import approveReject from './approveRejectReducer';
 import singleRequest from './SingleRequestReducer';
 import notification from './notificationReducer';
 import approvalsReducers from './requestApprovalsReducer';
+import superAdminReducers from './superAdminReducers';
 
 export default combineReducers({
   loginReducer,
@@ -26,5 +27,6 @@ export default combineReducers({
   approvals: approvalsReducers,
   request: requestReducer,
   approveReject,
-  singleRequest
+  singleRequest,
+  superAdminReducers
 });

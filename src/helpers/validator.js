@@ -28,9 +28,11 @@ const schema = {
     department: yup.string().min(3, messages.department),
     gender: yup.string().min(3, messages.gender),
     userEmail: yup.string().email(messages.validEmail).required(messages.required),
+    email: yup.string().email(messages.validEmail).required(messages.required),
     userPassword: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
     password: yup.string().matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!_`,/@#\-"=:;~<>'\$%\^&\*\?\|\+\(\)\[\]\{}\.])(?=.{8,})/, messages.validPassword).required(messages.required),
     reasonComment: yup.string().min(30, messages.validLong),
+    role: yup.string().required(messages.required)
 };
 
 export const validateRequest = (payload) => {

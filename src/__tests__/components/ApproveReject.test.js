@@ -68,10 +68,25 @@ describe('Approve Reject', () => {
 
     it('should handle submition without errors', async () => {
         const wrapper = render(Render);  
-        wrapper.setState({...wrapper.instance().state, request, reason: 'this text is a mock test supposed to thirty characters and abover'});  
+        wrapper.setState({...wrapper.instance().state, buttonTarget: {id: 1},  request, reason: 'this text is a mock test supposed to thirty characters and abover'});  
         const reasonContainer = wrapper.find('.btn-approve');
         reasonContainer.simulate('click', {target: {id: 1, text: 'Approve'}});
+        const modal = wrapper.find('.main-modal'); 
+        expect(modal).toHaveLength(1);
+        const confirm = wrapper.find('[text="Confirm"]');
+        confirm.simulate('click');
         expect(wrapper.instance().state.submitting).toHaveProperty('sub1', 'submitting');
+    });
+
+    it('should handle cancel reconfirmation', async () => {
+        const wrapper = render(Render);  
+        wrapper.setState({...wrapper.instance().state, buttonTarget: {id: 1},  request, reason: 'this text is a mock test supposed to thirty characters and abover'});  
+        const reasonContainer = wrapper.find('.btn-approve');
+        reasonContainer.simulate('click', {target: {id: 1, text: 'Approve'}});
+        const modal = wrapper.find('.main-modal'); 
+        const close = wrapper.find('[text="Close"]');
+        close.simulate('click');
+        expect(wrapper.instance().state.showModal).toEqual(false); 
     });
 
     it('should handle choice of action dropdown when active ', async () => {

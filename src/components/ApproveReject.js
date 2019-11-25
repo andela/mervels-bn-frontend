@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/anchor-has-content */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
@@ -14,16 +16,19 @@ import validator from '../helpers/validator';
 // import  {getRequest} from '../API/managerApi';
 import {Spinner} from './shared/Spinner';
 import getSingleRequest from '../redux/actions/requestAction';
+import ConfirmModal from './shared/confirmModal';
 
 class ApproveReject extends Component {
     constructor(props) {
         super(props);
-        this.state = {request: null, error: undefined, submitting:{sub1: '', sub2: ''}, dropDisplay: 'hidden', arrowDirection: 'right', dropActive: false, reason: ''};
+        this.state = {
+            request: null,
+             error: undefined, submitting:{sub1: '', sub2: ''}, dropDisplay: 'hidden', arrowDirection: 'right', dropActive: false, reason: '', showModal: false, decision: '', buttonTarget: null};
     }
 
     componentDidMount() {
         // eslint-disable-next-line react/destructuring-assignment
-
+        
         const {location}  = this.props;
         const requestId = location.pathname.split('approvals/')[1];
         const {getSingleRequest} = this.props;
@@ -31,12 +36,16 @@ class ApproveReject extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        
         this.setState((prev) => ({...prev, submitting: {sub1: '', sub2: ''}}));
-        const {approveReject, singleRequest, history} = nextProps;
+        // eslint-disable-next-line prefer-const
+        let {approveReject, singleRequest, history} = nextProps;
         // console.log(singleRequest.data);
         if(approveReject.data || singleRequest.data) {
+            
             if(approveReject.data) {
                 history.push('/approvals');
+                window.location.reload();
                 toast.success(approveReject.data.message);
             } else {
                 this.setState((prev) => ({...prev, request: singleRequest.data.request}));
@@ -87,13 +96,13 @@ class ApproveReject extends Component {
     }
 
     handleDecision = async ({target}) => {
-        const {approveRejectAction} = this.props;
         const {reason, error} = this.state;
-        const {request} = this.state;
         if(error === undefined && reason.length >=30) {
             const {textContent} = target;
-            await this.setState((prev) => ({...prev, submitting:{ ...prev.submitting, [`sub${target.id}`]: 'submitting'}}));
-            await approveRejectAction({action: textContent.trim().toLowerCase(), requestId: request.id, reason});
+            await this.setState((prev) => ({...prev, showModal: true, decision: textContent}));
+            const buttonTarget = {id: target.id, textContent };
+            this.setState((prev) => ({...prev, buttonTarget}));
+            
         } else {
             const {error} = await validator('reasonComment', reason);
             this.setState((prev) => ({...prev, error}));
@@ -101,16 +110,33 @@ class ApproveReject extends Component {
     }
 
     handleChange = async ({target}) => {
+        
         this.setState((prev) => ({...prev, reason: target.value}));
         const {reason} = this.state;
         const {error} = await validator('reasonComment', reason);
-            this.setState((prev) => ({...prev, error}));
+        this.setState((prev) => ({...prev, error}));
+    }
+
+    toggleModal = () => {
+        this.setState((prev)=> ({...prev, showModal: false, buttonTarget: null}));
+    }
+
+    reconfirm = async () => {
+        this.setState((prev)=> ({...prev, showModal: false}));
+        const {approveRejectAction} = this.props;
+        const {reason, request, buttonTarget} = this.state;
+        this.setState((prev) => ({...prev, submitting:{ ...prev.submitting, [`sub${buttonTarget.id}`]: 'submitting'}}));
+        await approveRejectAction({action: buttonTarget.textContent.trim().toLowerCase(), requestId: request.id, reason});
+        
     }
 
     render() { 
-        const {dropDisplay, arrowDirection, reason, submitting, request, error} = this.state;
+        const {dropDisplay, arrowDirection, reason, submitting, request, error, showModal, decision} = this.state;
         const {sub1, sub2} = submitting; 
-        return ( !request ? <Spinner className="spinner-center"/> : <>
+        return ( !request ? <Spinner className="spinner-center"/> : (<>
+                    { showModal ? <ConfirmModal confirm={this.reconfirm} closeModal={this.toggleModal}>
+                <p>{`Are you sure you want to ${decision} this request?`}</p>
+            </ConfirmModal> : '' }
         <a href="/approvals" className="back-approvals"><i className="fa fa-angle-double-left" aria-hidden="true"/></a>
         <div className="grid single-request-container">
             <TravelDetails request={request} classes="col-4 details"/>
@@ -129,7 +155,8 @@ class ApproveReject extends Component {
             </div>
             </div>
         </div>
-        </> );
+        </>) 
+        );
     }
 }
 

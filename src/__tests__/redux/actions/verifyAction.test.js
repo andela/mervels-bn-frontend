@@ -41,61 +41,61 @@ describe('Signup action', () => {
         done();
     });
 
-    // it('should successfully verify', async (done) => {
-    //     moxios.wait(async () => {
-    //         const request = moxios.requests.mostRecent();
-    //         request.respondWith({
-    //             status: 401,
-    //             response: {
-    //                 status: 401,
-    //             }
-    //         });
-    //     });
-    //     const token = "generic usertoken";
+    it('should successfully verify', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 401,
+                response: {
+                    status: 401,
+                }
+            });
+        });
+        const token = "generic usertoken";
 
-    //     await store.dispatch(verifyAction(token));
-    //     await flushPromises();
-    //     const calledActions = store.getActions();
-    //     expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
-    //     done();
-    // });
+        await store.dispatch(verifyAction(token));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();
+    });
 
-    // it('should successfully verify', async (done) => {
-    //     moxios.wait(async () => {
-    //         const request = moxios.requests.mostRecent();
-    //         request.respondWith({
-    //             status: 409,
-    //             response: {
-    //                 status: 409,
-    //             }
-    //         });
-    //     });
-    //     const token = "generic usertoken";
+    it('should successfully verify', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 409,
+                response: {
+                    status: 409,
+                }
+            });
+        });
+        const token = "generic usertoken";
 
-    //     await store.dispatch(verifyAction(token));
-    //     await flushPromises();
-    //     const calledActions = store.getActions();
-    //     expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
-    //     done();
-    // });
+        await store.dispatch(verifyAction(token));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();
+    });
 
-    // it('should successfully verify', async (done) => {
-    //     moxios.wait(async () => {
-    //         const request = moxios.requests.mostRecent();
-    //         request.respondWith({
-    //             status: 500,
-    //             response: {
-    //                 status: 500,
-    //             }
-    //         });
-    //     });
-    //     const token = "generic usertoken";
+    it('should successfully verify', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 500,
+                response: {
+                    status: 500,
+                }
+            });
+        });
+        const token = "generic usertoken";
 
-    //     await store.dispatch(verifyAction(token));
-    //     await flushPromises();
-    //     const calledActions = store.getActions();
-    //     expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
-    //     done();
-    // });
+        await store.dispatch(verifyAction(token));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.VERIFY_ERROR);
+        done();
+    });
 
 });
