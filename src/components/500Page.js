@@ -4,7 +4,9 @@ function ServerErrorPage() {
     return(
         <>
             <h2>500</h2>
-            <h6>Server Error</h6>
+            <h4>Server Error</h4>
+            <p>Problem Occured Try Again OR </p>
+            <p>Check Your Internet Connection</p>
         </>
     );
 }

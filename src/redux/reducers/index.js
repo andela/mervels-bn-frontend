@@ -16,6 +16,11 @@ import dashboardReducer from './dashboardReducer';
 import superAdminReducers from './superAdminReducers';
 import addedSupplier from './addSupplierReducer';
 import commentReducer from './commentReducers';
+import accommodations from './accommodations';
+import accommodation from './accommodationReducer';
+import addAccommodation from './addAccommodation';
+import addRooms from './addRooms';
+import authReducer from './authorizationReducer';
 
 export default combineReducers({
   loginReducer,
@@ -34,5 +39,10 @@ export default combineReducers({
   singleRequest,
   superAdminReducers,
   addedSupplier,
-  commentReducer
+  commentReducer,
+  accommodations,
+  accommodation,
+  addAccommodation,
+  addRooms,
+  authReducer
 });
