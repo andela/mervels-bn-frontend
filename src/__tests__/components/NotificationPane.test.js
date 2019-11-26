@@ -1,6 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
 import { Provider } from "react-redux";
+import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import {shallow , mount} from '../../config/enzyme.config';
@@ -56,6 +58,7 @@ describe('Test Notification Pane with no store', ()=>{
     });
     it('Should mark one notifications as read', (done)=>{
         const mockHandleReadOne = jest.fn();
+        const history = createMemoryHistory('/');
         // eslint-disable-next-line no-unused-vars
         const wrapper = mount(<NotificationPaneNoStore
              notifications={notificationsList}
@@ -64,6 +67,8 @@ describe('Test Notification Pane with no store', ()=>{
               handlePane={jest.fn()}
               markOneAsRead={jest.fn()}
               handleReadOne={mockHandleReadOne}
+              history={history}
+
               />);
 
         wrapper.find("#not59").simulate("click");
@@ -95,20 +100,3 @@ describe('Test Notification Pane with redux store', ()=>{
 
 });
 
-// describe('Test Notification Pane with redux store and sockets ', ()=>{
-//     const store = mockStore({
-//         notification: {unread: 2, notifications: notificationsList},
-//         profile: {data: {status: 'Fetch success', userId: 2}},
-//     });
-//     connect(); // Connects Sockets for notifications
-
-//     it('Should display notification pane successfully with no notifications', ()=>{
-//         const wrapper = mount(
-//             <Provider store={store}>
-//                 <NotificationPane getNotifications={jest.fn()} />
-//             </Provider>
-//         );
-//         expect(wrapper).toHaveLength(1);
-//     });
-
-// });
