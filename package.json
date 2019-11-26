@@ -92,8 +92,9 @@
     "yup": "^0.27.0"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start:dev": "node scripts/start.js",
     "build": "node scripts/build.js",
+    "deploy": "node deploy.js",
     "test": "jest --verbose --coverage",
     "test:cov": "jest --watchAll \"-- --coverage\"",
     "lint": "eslint .",
