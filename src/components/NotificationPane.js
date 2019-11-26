@@ -6,14 +6,19 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import io from 'socket.io-client';
 import {
   getNotifications,
   updateNotification,
   markReadAll,
   markOneAsRead
 } from "../redux/actions/notificationActions";
-import { socket } from "../config/sockets";
+// import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
+
+const { baseUrl } = process.env;
+
+const socket = io.connect(baseUrl || 'http://localhost:4000/');
 
 export function NotificationPane({
   userId,
@@ -23,7 +28,8 @@ export function NotificationPane({
   markReadAll,
   markOneAsRead,
   handlePane,
-  classes
+  classes,
+  history
 }) {
   useEffect(() => {
     getNotifications();
@@ -54,11 +60,11 @@ export function NotificationPane({
   };
 
   const handleReadOne = ({ target }) => {
-    const {read, id} = target.dataset;
+    const {read, id, request} = target.dataset;
     // eslint-disable-next-line no-unused-expressions
     (read === 'false') ? markOneAsRead(id): '';
     handlePane();
-
+    history.push(`/request/${request}`);
   };
   // {`/requests/${notification.requestId}`}
 
@@ -76,11 +82,12 @@ export function NotificationPane({
                   <span className="image">
                     <img src={placeholder} alt="placeholder" />
                   </span>
-                  <a href={`/requests/${notification.requestId}`} id={`not${notification.id}`} onClick={handleReadOne} className="content">
+                  <div role="presentation" id={`not${notification.id}`} onClick={handleReadOne} className="content">
                     <span
                       className="details"
                       data-id = {`${notification.id}`}
                       data-read={`${notification.read}`}
+                      data-request={`${notification.requestId}`}
                     >
                       {notification.notification}
                     </span>
@@ -88,10 +95,11 @@ export function NotificationPane({
                       className="date"
                       data-id={`${notification.id}`}
                       data-read={`${notification.read}`}
+                      data-request={`${notification.requestId}`}
                     >
                       {formatDate(notification.createdAt)}
                     </span>
-                  </a>
+                  </div>
                 </div>
               ))}
             {notifications.length === 0 && (
