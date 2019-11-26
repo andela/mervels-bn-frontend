@@ -79,13 +79,32 @@ describe('Signup action', () => {
         done();   
     });
 
-    it('should successfully verify', async (done) => {
+    it('should handle 500 error', async (done) => {
         moxios.wait(async () => {
             const request = moxios.requests.mostRecent();
             request.respondWith({
                 status: 500,
                 response: {
                     status: 500,
+                }
+            }); 
+        });
+        const userEmail = "email@barefoot.com";
+
+        await store.dispatch(reverifyAction(userEmail));
+        await flushPromises();
+        const calledActions = store.getActions();
+        expect(calledActions[0].type).toEqual(actionTypes.REVERIFY_ERROR); 
+        done();   
+    });
+
+    it('should handle server error', async (done) => {
+        moxios.wait(async () => {
+            const request = moxios.requests.mostRecent();
+            request.respondWith({
+                status: 501,
+                error: {
+                    status: 501,
                 }
             }); 
         });

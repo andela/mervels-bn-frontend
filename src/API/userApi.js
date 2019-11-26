@@ -11,7 +11,7 @@ export function reverify(userEmail) {
 };
 
 export function verify(token) {
-    return axios.patch(`${baseURL}api/v1/auth/verify/?token=${token}`).then((data) => data).catch((error) => { return {status: error.response.status};});
+    return axios.patch(`${baseURL}api/v1/auth/verify/?token=${token}`).then((data) => data).catch((error) => { return error.response.data;});
 };
 
 export function assign(info) {

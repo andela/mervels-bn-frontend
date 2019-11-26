@@ -55,7 +55,7 @@ const App = () => {
           <PrivateRoute  path="/request/:id" component={singleReqeuest} />
           <PrivateRoute path="/approvals/:id" component={ApproveReject} />
             <PrivateRoute  path="/approvals" component={ApprovalsPage} />
-            <PrivateRoute path="/assign-role" component={UserRoles} />
+            <PrivateRoute path="/settings" component={UserRoles} />
             <PrivateRoute  path="/AccessForbidden" component={AccessForbiddenPage} />
           <Redirect to="/404" />
         </Switch>

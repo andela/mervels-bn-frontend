@@ -45,6 +45,10 @@ export const GET_REQUEST_ERROR = 'GET_REQUEST_ERROR';
 export const ASSIGN_SUCCESS = 'ASSIGN_SUCCESS';
 export const ASSIGN_FAILED = 'ASSIGN_FAILED';
 
+/** adding an accommodation supplier */
+export const ADD_SUPPLIER_SUCCESS = 'ADD_SUPPLIER_SUCCESS';
+export const ADD_SUPPLIER_ERROR = 'ADD_SUPPLIER_ERROR';
+
 export default {
     SIGN_UP: 'SIGN_UP',
     SIGN_UP_ERROR: 'SIGN_UP_ERROR',
