@@ -18,7 +18,7 @@ import placeholder from "../assets/pic.png";
 
 const { baseUrl } = process.env;
 
-const socket = io.connect(baseUrl);
+const socket = io.connect(baseUrl || 'http://localhost:4000/');
 
 export function NotificationPane({
   userId,
