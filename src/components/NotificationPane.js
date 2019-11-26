@@ -5,7 +5,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import io from 'socket.io-client';
 import {
@@ -18,7 +18,7 @@ import placeholder from "../assets/pic.png";
 
 const { baseUrl } = process.env;
 
-const socket = io.connect(baseUrl);
+let socket = null;
 
 export function NotificationPane({
   userId,
@@ -32,6 +32,10 @@ export function NotificationPane({
   history
 }) {
   useEffect(() => {
+    if(socket === null){
+      socket = io.connect(baseUrl);
+    }
+
     getNotifications();
 
     socket.on("created", function(data) {
