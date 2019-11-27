@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-named-as-default */
 import React from 'react';
+import { BrowserRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
@@ -8,7 +9,7 @@ import configureMockStore from 'redux-mock-store';
 import {shallow , mount} from '../../config/enzyme.config';
 import NotificationPane ,{NotificationPane as NotificationPaneNoStore} from '../../components/NotificationPane';
 import { notificationsList } from "../../__mock_data__/notifications";
-import { connect } from "../../config/sockets";
+
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -57,10 +58,12 @@ describe('Test Notification Pane with no store', ()=>{
         done();
     });
     it('Should mark one notifications as read', (done)=>{
-        const mockHandleReadOne = jest.fn();
         const history = createMemoryHistory('/');
+        const mockHandleReadOne = jest.fn();
         // eslint-disable-next-line no-unused-vars
-        const wrapper = mount(<NotificationPaneNoStore
+        const wrapper = mount(
+        <Router>
+            <NotificationPaneNoStore
              notifications={notificationsList}
               getNotifications={jest.fn()}
               updateNotification={jest.fn()}
@@ -70,6 +73,7 @@ describe('Test Notification Pane with no store', ()=>{
               history={history}
 
               />);
+        </Router>);
 
         wrapper.find("#not59").simulate("click");
 
@@ -85,7 +89,6 @@ describe('Test Notification Pane with redux store', ()=>{
         notification: {unread: 2, notifications: notificationsList},
         profile: {data: {status: 'Fetch success', userId: 2}},
     });
-    connect(); // Connects Sockets for notifications
 
     it('Should display notification pane successfully with no notifications', done=>{
         const wrapper = mount(
@@ -99,4 +102,3 @@ describe('Test Notification Pane with redux store', ()=>{
     });
 
 });
-

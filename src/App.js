@@ -10,8 +10,8 @@ import "./styles/App.scss";
 import Login from "./components/LoginPage";
 import LoggedInDashboard from "./components/LoggedInDashboard";
 import PrivateRoute from "./PrivateRoute";
-import HomePage from "./components/HomePage";
-import DashboardPage from "./components/DashboardPage";
+// import HomePage from "./components/HomePage";
+// import DashboardPage from "./components/DashboardPage";
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
 import PageNotFound from "./components/PageNotFound";
 import SignupPage from "./components/signupPage";
@@ -25,6 +25,7 @@ import ApprovalsPage from './components/approvalsPage';
 import singleReqeuest from './components/ViewRequest';
 import Navbar from "./components/shared/navbarComponent";
 import AccessForbiddenPage from './components/AccessForbiddenPage';
+import ManageDashboard from "./components/ManageDashboard";
 import ApproveReject from './components/ApproveReject';
 import UserRoles from "./components/UserRolesPage";
 
@@ -40,10 +41,10 @@ const App = () => {
         {localStorage.getItem('bareFootToken') && <Navbar />}
         <Switch>
           <Route  path="/login" component={Login} />
-          <Route  path="/home" component={HomePage} />
+          <Route  path="/home" component={ManageDashboard} />
           <PrivateRoute exact path="/" component={LoggedInDashboard} />
           <Route path="/forgotPassword" component={ResetPasswordPage} />
-          <PrivateRoute  path="/dashboard" component={DashboardPage} />
+          <PrivateRoute  path="/dashboard" component={ManageDashboard} />
           <Route path="/signUp" component={SignupPage} />
           <Route path="/call4verify" component={CallForVerify} />
           <Route path="/404" component={PageNotFound} />

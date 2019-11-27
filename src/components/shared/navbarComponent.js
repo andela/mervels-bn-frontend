@@ -33,8 +33,6 @@ const Navbar = ({history}) => {
     }
   };
 
-
-
   return (
     <>
       <nav className="navbar">

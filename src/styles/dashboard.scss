@@ -1,0 +1,62 @@
+$Mediumscreen: 413px;
+$SmallScreen: 551px;
+
+@mixin medium {
+  @media (max-width: #{$Mediumscreen}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: #{$SmallScreen}) {
+    @content;
+  }
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+
+  @include medium() {
+    width: 95%;
+  }
+
+  @include small {
+    width: 95%;
+  }
+}
+.filter {
+  display: flex;
+  width: 100%;
+  height: 40%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.filter-items {
+  width: 60%;
+}
+
+.trips {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.requests {
+  // border: 1px solid black;
+  overflow-x: auto;
+  height: 300px;
+
+  .card {
+    width: 290px;
+    margin: 9px 12px;
+  }
+
+  @include small {
+    .card {
+      margin: 0 auto;
+      margin-top: 20px;
+    }
+  }
+}

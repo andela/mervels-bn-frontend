@@ -1,10 +1,11 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable func-names */
 /* eslint-disable no-debugger */
 /* eslint-disable no-shadow */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import io from 'socket.io-client';
 import {
@@ -13,12 +14,11 @@ import {
   markReadAll,
   markOneAsRead
 } from "../redux/actions/notificationActions";
-// import { socket } from "../config/sockets";
 import placeholder from "../assets/pic.png";
 
 const { baseUrl } = process.env;
 
-const socket = io.connect(baseUrl || 'http://localhost:4000/');
+const socket = io.connect(baseUrl);
 
 export function NotificationPane({
   userId,
@@ -66,7 +66,6 @@ export function NotificationPane({
     handlePane();
     history.push(`/request/${request}`);
   };
-  // {`/requests/${notification.requestId}`}
 
   return (
     <div className={classes}>
