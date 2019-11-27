@@ -55,7 +55,7 @@ Notifications.propTypes = {
   handlePane: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  unread: PropTypes.string.isRequired,
+  unread: PropTypes.number.isRequired,
 };
 export default connect(
   mapStateToProps,

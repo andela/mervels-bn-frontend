@@ -47,7 +47,7 @@ export class LoginPage extends Component {
     const { history } = this.props;
     const token = localStorage.getItem('bareFootToken');
     if(token !== null) {
-      history.push('/home');
+      history.push('/dashboard');
     }
   }
 

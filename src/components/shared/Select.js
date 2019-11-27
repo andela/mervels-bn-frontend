@@ -13,6 +13,7 @@ const Select = ({name, ids, selected, classes, options, onChange, error, disable
                 name={name}
                 onChange={onChange}
                 disabled={disabled}
+                defaultValue={selected}
             >
                 {data}
             </select>

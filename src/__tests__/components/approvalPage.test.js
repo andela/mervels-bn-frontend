@@ -93,7 +93,6 @@ describe('ApprovalsPage Component', () => {
       expect(wrapper).toHaveLength(1);
     });
     it('should render ApprovalsPage error component', () => {
-        // const obj = props.requests;
         const newProps = {
             approvals:{
                 error:{

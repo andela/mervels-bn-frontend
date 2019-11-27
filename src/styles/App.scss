@@ -8,7 +8,7 @@
 @import "table.scss";
 @import "buttons.scss";
 @import "navbar.scss";
-// @import "card.scss";
+@import "card.scss";
 @import "input";
 @import "profile";
 @import "./styles.scss";
@@ -19,6 +19,7 @@
 @import "./notification.scss";
 @import "./sidebar.scss";
 @import "./tooltip.scss";
+@import "./dashboard.scss";
 @import "text-area";
 @import "multicity";
 @import "confirmModal";
@@ -39,6 +40,10 @@
   .main-modal {
     width: 90%;
   }
+}
+
+body {
+  background-color: rgb(238, 238, 238);
 }
 body,
 html {
