@@ -13,6 +13,7 @@ import { searchMessage } from '../helpers/search';
 import Button from './shared/Button';
 import { Spinner } from './shared/Spinner';
 import CreateRequest from './CreateOrEditRequest';
+import Meta from './shared/meta';
 
 
 class RequestView extends React.Component{
@@ -143,6 +144,7 @@ class RequestView extends React.Component{
 
         return(
             <>
+            <Meta title="Requests"/>
                 <RequestPanel
                     title={requests.title} 
                     onClick={this.handleRequests} 

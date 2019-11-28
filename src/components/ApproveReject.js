@@ -18,6 +18,7 @@ import {Spinner} from './shared/Spinner';
 import getSingleRequest from '../redux/actions/requestAction';
 import ConfirmModal from './shared/confirmModal';
 import CommentsCompoment from './shared/commentsCompoment';
+import Meta from './shared/meta';
 
 class ApproveReject extends Component {
     constructor(props) {
@@ -142,6 +143,7 @@ class ApproveReject extends Component {
             </ConfirmModal> : '' }
         <a href="/approvals" className="back-approvals"><i className="fa fa-angle-double-left" aria-hidden="true"/></a>
         <div className="grid single-request-container">
+            <Meta title="Approval"/>
             <TravelDetails request={request} classes="col-4 details"/>
             <div className="col-8 reason">
             <TravelReason reason={request.reason}/>

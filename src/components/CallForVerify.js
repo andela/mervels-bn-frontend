@@ -14,7 +14,7 @@ const CallForVerify = ()=> {
         If you have not received the email after a few minutes, please check your spam folder.
         </p>
         <p className="notice-exp"><i className="fa fa-exclamation-triangle"/>The verification link is valid for 24 hours.</p>
-        <Link to="/home" className="verify-ok"><button className="btn btn-primary" type="button">Ok</button></Link>
+        <Link to="/login" className="verify-ok"><button className="btn btn-primary" type="button">Ok</button></Link>
             </div>
             </div>);
     }; 

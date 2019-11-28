@@ -28,7 +28,7 @@ class VerifyPage extends Component {
             const {userToken} = verifyData.data;
             localStorage.setItem("bareFootToken", userToken);
             localStorage.setItem("logged_in", "true");
-            nextProps.history.push("/home");
+            nextProps.history.push("/dashboard");
             toast.success("Email verified successfully");
         } else {
             const {error} = verifyData;
@@ -38,6 +38,7 @@ class VerifyPage extends Component {
             } else if (error.status === 500) {
                 // internal server error
                 toast.error("Server Error. Try again");
+                nextProps.history.push('/500');
             } else if (error.status === 501) {
                 toast.error("Connection Error Try Refreshing your browser");
                 // connection error try again

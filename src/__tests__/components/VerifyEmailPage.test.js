@@ -91,7 +91,7 @@ describe("Verify Email component", () => {
         const logo = wrapper.find('.barefoot-logo');
         expect(logo).toHaveLength(1);
         expect(spinner).toHaveLength(0); 
-        expect(push).toHaveBeenCalledTimes(0);
+        expect(push).toHaveBeenCalledWith('/500');
     });
 
     it("should render successfully", () => {

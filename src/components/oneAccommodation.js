@@ -25,6 +25,7 @@ import { getAccommodation } from '../redux/actions/accommodationsAction';
 import SingleRoom from './viewRoom';
 import ServicesModal from './servicesModal';
 import Amenities from './viewServices';
+import Meta from './shared/meta';
 import ImageGallery from './accomodationImages';
 import Map from './mapComponent';
 import LikeComponent from "./LikeComponent";
@@ -222,6 +223,7 @@ export class OneAccommodation extends Component {
         } 
         return (
             <>
+            <Meta title="Accommodation"/>
             <div className="main-frame">
             <div className="main_container">
         <div className="grid">

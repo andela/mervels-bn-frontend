@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import Meta from './shared/meta';
 import Button from './shared/Button';
 import AddAccommodation from './createAccommodation';
 import SingleAccommodation from './accommodation';
@@ -105,6 +106,7 @@ export class Accommodations extends Component {
         
         return (
             <>
+            <Meta title="Acommodations"/>
                 <div className='grid'>
                     <div className='col-10 offset-3'>
                         {isAllowed ? button : '' }

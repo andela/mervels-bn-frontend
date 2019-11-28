@@ -330,7 +330,6 @@ it('should handle 401 error from server ', async () => {
         const modal = wrapper.find('.main-modal'); 
         const confirm = wrapper.find('[text="Confirm"]');
         confirm.simulate('click');
-        console.log("<<<<", confirm.debug());
     });
  });
 });
