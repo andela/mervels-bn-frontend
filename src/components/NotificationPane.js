@@ -60,11 +60,15 @@ export function NotificationPane({
   };
 
   const handleReadOne = ({ target }) => {
-    const {read, id, request} = target.dataset;
+    const {read, id, request, type, notification} = target.dataset;
     // eslint-disable-next-line no-unused-expressions
     (read === 'false') ? markOneAsRead(id): '';
     handlePane();
-    history.push(`/request/${request}`);
+    if( type === 'comment' && notification.search('The manager') === -1 ){
+      history.push(`/approvals/${request}`);
+    } else {
+      history.push(`/request/${request}`);
+    }
   };
 
   return (
@@ -87,6 +91,8 @@ export function NotificationPane({
                       data-id = {`${notification.id}`}
                       data-read={`${notification.read}`}
                       data-request={`${notification.requestId}`}
+                      data-notification={`${notification.notification}`}
+                      data-type={`${notification.type}`}
                     >
                       {notification.notification}
                     </span>

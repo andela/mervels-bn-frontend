@@ -53,6 +53,17 @@ export const ASSIGN_FAILED = 'ASSIGN_FAILED';
 /** adding an accommodation supplier */
 export const ADD_SUPPLIER_SUCCESS = 'ADD_SUPPLIER_SUCCESS';
 export const ADD_SUPPLIER_ERROR = 'ADD_SUPPLIER_ERROR';
+/* GET COMMENTS */
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const GET_COMMENTS_FAILED = 'GET_COMMENTS_FAILED';
+
+/* POST COMMENTS */
+export const POST_COMMENTS = 'POST_COMMENTS';
+export const POST_COMMENTS_FAILED = 'POST_COMMENTS_FAILED';
+
+/* DELETE COMMENTS */
+export const DELETE_COMMENTS = 'DELETE_COMMENTS';
+export const DELETE_COMMENTS_FAILED = 'DELETE_COMMENTS_FAILED';
 
 export default {
     SIGN_UP: 'SIGN_UP',

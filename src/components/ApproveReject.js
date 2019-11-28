@@ -17,6 +17,7 @@ import validator from '../helpers/validator';
 import {Spinner} from './shared/Spinner';
 import getSingleRequest from '../redux/actions/requestAction';
 import ConfirmModal from './shared/confirmModal';
+import CommentsCompoment from './shared/commentsCompoment';
 
 class ApproveReject extends Component {
     constructor(props) {
@@ -28,10 +29,12 @@ class ApproveReject extends Component {
 
     componentDidMount() {
         // eslint-disable-next-line react/destructuring-assignment
-        
-        const {location}  = this.props;
+        const { location, singleRequest }  = this.props;
         const requestId = location.pathname.split('approvals/')[1];
         const {getSingleRequest} = this.props;
+        if(singleRequest.data) {
+            this.setState((prev) => ({...prev, request: singleRequest.data.request}));
+        }
         getSingleRequest(requestId);
     }
 
@@ -98,11 +101,10 @@ class ApproveReject extends Component {
     handleDecision = async ({target}) => {
         const {reason, error} = this.state;
         if(error === undefined && reason.length >=30) {
-            const {textContent} = target;
-            await this.setState((prev) => ({...prev, showModal: true, decision: textContent}));
+            const {textContent} =  target;
+            this.setState((prev) => ({...prev, showModal: true, decision: textContent}));
             const buttonTarget = {id: target.id, textContent };
             this.setState((prev) => ({...prev, buttonTarget}));
-            
         } else {
             const {error} = await validator('reasonComment', reason);
             this.setState((prev) => ({...prev, error}));
@@ -132,6 +134,7 @@ class ApproveReject extends Component {
 
     render() { 
         const {dropDisplay, arrowDirection, reason, submitting, request, error, showModal, decision} = this.state;
+        const {match} = this.props;
         const {sub1, sub2} = submitting; 
         return ( !request ? <Spinner className="spinner-center"/> : (<>
                     { showModal ? <ConfirmModal confirm={this.reconfirm} closeModal={this.toggleModal}>
@@ -153,9 +156,10 @@ class ApproveReject extends Component {
                 <Button ButtonId = '2' buttonType='button' classes='btn-reject btn btn-danger' text='Reject' onClick={this.handleDecision} submitting={sub2}/>
                 </div> 
             </div>
+            <CommentsCompoment requestId={match.params.id}/>
             </div>
         </div>
-        </>) 
+        </>)
         );
     }
 }
