@@ -16,6 +16,7 @@ import dashboardReducer from './dashboardReducer';
 import superAdminReducers from './superAdminReducers';
 import addedSupplier from './addSupplierReducer';
 import commentReducer from './commentReducers';
+import chatReducer from './chatReducer';
 
 export default combineReducers({
   loginReducer,
@@ -34,5 +35,6 @@ export default combineReducers({
   singleRequest,
   superAdminReducers,
   addedSupplier,
-  commentReducer
+  commentReducer,
+  chats: chatReducer
 });

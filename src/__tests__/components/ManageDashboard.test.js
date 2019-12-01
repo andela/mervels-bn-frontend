@@ -18,8 +18,6 @@ describe('Test Manage Dashboard Page', ()=>{
             getTrips: jest.fn()
         };
         const wrapper = shallow( <Dashboard {...props}  />);
-        console.debug(wrapper);
-
         expect(wrapper).toHaveLength(1);
         done();
     });

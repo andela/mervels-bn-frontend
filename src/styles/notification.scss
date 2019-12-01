@@ -21,7 +21,7 @@ $SmallScreen: 551px;
 .hide {
   transition: top 0.4s, opacity 0.4s;
   opacity: 0;
-  display: none;
+  display: none !important;
 }
 
 /* The Modal (background) */

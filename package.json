@@ -180,7 +180,9 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "^3.0.9",
+    "jest-websocket-mock": "^2.0.0",
     "lint-staged": "^9.4.2",
+    "mock-socket": "^9.0.2",
     "moxios": "^0.4.0",
     "prettier": "^1.18.2",
     "redux-promise-middleware": "^6.1.2"

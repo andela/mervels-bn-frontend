@@ -7,7 +7,7 @@ import { createMemoryHistory } from 'history';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import {shallow , mount} from '../../config/enzyme.config';
-import NotificationPane ,{NotificationPane as NotificationPaneNoStore} from '../../components/NotificationPane';
+import NotificationPane ,{NotificationPane as NotificationPaneNoStore} from '../../components/notifications/NotificationPane';
 import { notificationsList } from "../../__mock_data__/notifications";
 
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
@@ -57,7 +58,7 @@ const Profile = ({
                     </div>
                     <div className='col-6'>
                         Birth Date:
-                        <Input value={birthDate} inputType='date' name='birthDate' onChange={handleChange} error={errors.birthDate} disabled={disabled} />
+                        <Input inputType='date' name='birthDate' onChange={handleChange} error={errors.birthDate} disabled={disabled} />
                     </div>
                     <div className='col-6'>
                         Gender:

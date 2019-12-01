@@ -6,10 +6,10 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Badge from "@material-ui/core/Badge";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getProfile } from "../redux/actions/profileAction";
+import { getProfile } from "../../redux/actions/profileAction";
 import {
   getNotifications
-} from "../redux/actions/notificationActions";
+} from "../../redux/actions/notificationActions";
 // import placeholder from "../assets/pic.png";
 
 

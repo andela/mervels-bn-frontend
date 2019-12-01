@@ -13,8 +13,8 @@ import {
   updateNotification,
   markReadAll,
   markOneAsRead
-} from "../redux/actions/notificationActions";
-import placeholder from "../assets/pic.png";
+} from "../../redux/actions/notificationActions";
+import placeholder from "../../assets/pic.png";
 
 const { baseUrl } = process.env;
 

@@ -65,6 +65,14 @@ export const POST_COMMENTS_FAILED = 'POST_COMMENTS_FAILED';
 export const DELETE_COMMENTS = 'DELETE_COMMENTS';
 export const DELETE_COMMENTS_FAILED = 'DELETE_COMMENTS_FAILED';
 
+
+/** CHAT ACTIONS */
+export const GET_CHATS = 'GET_CHATS';
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const GET_NEW_MESSAGES = 'GET_MESSAGES';
+export const ADD_USER = 'ADD_USER';
+
+
 export default {
     SIGN_UP: 'SIGN_UP',
     SIGN_UP_ERROR: 'SIGN_UP_ERROR',
