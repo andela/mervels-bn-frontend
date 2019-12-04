@@ -30,7 +30,7 @@ html {
 }
 
 @mixin small-mobile-grid {
-  .grid {
+  .grid-sm {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;

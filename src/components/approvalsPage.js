@@ -6,8 +6,11 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchRequestApprovals } from '../redux/actions/approvalsActions';
 import TableComponent from './shared/tableComponent';
+<<<<<<< HEAD
 import SidebarComponent from './shared/Sidebar';
 import Meta from './shared/meta';
+=======
+>>>>>>> chore(navbar): complete the navbar
 
 
 class ApprovalsPage extends React.Component{

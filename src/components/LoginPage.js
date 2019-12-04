@@ -34,20 +34,19 @@ export class LoginPage extends Component {
   }
 
   componentDidUpdate() {
-    const { user, history } = this.props;
+    const { user } = this.props;
     if (user.isLoggedIn === true) {
       const token = localStorage.getItem("bareFootToken");
       if (token) {
-        history.push("/");
+        window.location.href = '/';
       }
     }
   }
 
   checkLoggedIn = () => {
-    const { history } = this.props;
     const token = localStorage.getItem("bareFootToken");
     if (token !== null) {
-      history.push("/dashboard");
+      window.location.href = '/';
     }
   };
 
@@ -115,8 +114,7 @@ LoginPage.propTypes = {
   socialAuth: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   // eslint-disable-next-line react/require-default-props
-  location: PropTypes.object,
-  history: PropTypes.object.isRequired
+  location: PropTypes.object
 };
 
 const mapStateToProps = ({ loginReducer }) => ({

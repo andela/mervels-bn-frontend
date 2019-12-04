@@ -50,14 +50,28 @@ describe("Navbar Component", () => {
   it('should open notifications pane', done => {
     const obj = wrapper.find('NotificationPane').props();
     obj.handlePane();
-    expect(obj.classes).toEqual('notification hide');
+    expect(obj.classes).toEqual('hide');
     done();
   });
 
   it('should open profile menu pane', done => {
     const obj = wrapper.find('ProfileMenu').props();
     obj.handlePane();
-    expect(obj.classes).toEqual('profile-menu-pane hideProfileMenu');
+    expect(obj.classes).toEqual('hide');
+    done();
+  });
+
+  it('should open  menu pane', done => {
+    const obj = wrapper.find('MenuPane').props();
+    obj.handlePane();
+    expect(obj.classes).toEqual('hide');
+    done();
+  });
+
+  it('should open  chat pane', done => {
+    const obj = wrapper.find('ForwardRef').at(2).props();
+    obj.onClick();
+    expect(wrapper.find('ManageChatPage').props().classes).toEqual('hide');
     done();
   });
 

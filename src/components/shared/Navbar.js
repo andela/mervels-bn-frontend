@@ -4,14 +4,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable import/no-named-as-default */
-/* eslint-disable no-unused-vars */
+
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable no-useless-constructor */
 /* eslint-disable react/prefer-stateless-function */
 import React, { useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 import Menu from "@material-ui/icons/Menu";
 import MenuOpen from "@material-ui/icons/MenuOpen";
@@ -19,15 +18,18 @@ import useStyles from "./iconStyles";
 import Notifications from "../notifications/Notifications";
 import NotificationPane from "../notifications/NotificationPane";
 import ProfileMenu from "../ProfileMenu";
+import MenuPane from "./Menu";
 import logo from "../../logo/logo-long.png";
 import ManageChatPane from "../chat/ManageChatPane";
 import { getProfile } from "../../redux/actions/profileAction";
+import menuCreator from "../../helpers/menuCreator";
 
-export const Navbar = ({ history }) => {
+export const Navbar = ({ history, location, role }) => {
   const classes = useStyles();
-  const [showPane, setShowPane] = useState("notification hide");
+  const [showPane, setShowPane] = useState("hide");
   const [showChat, setShowChat] = useState('hide');
-  const [showProfilePane, setShowProfilePane] = useState("profile-menu-pane hideProfileMenu");
+  const [showProfilePane, setShowProfilePane] = useState("hide");
+  const [showMenuPane, setShowMenuPane] = useState("hide");
   const profilePicture = useSelector(state => state.profile).data.image;
   const dispatch = useDispatch();
 
@@ -36,41 +38,63 @@ export const Navbar = ({ history }) => {
   }, []);
 
   const togglePane = () =>{
-    if(showPane === 'notification hide'){
+    if(showPane === 'hide'){
         setShowChat('hide');
+        setShowProfilePane("hide");
+        setShowMenuPane("hide");
         setShowPane('notification show');
     }else {
-        setShowPane('notification hide');
+        setShowPane('hide');
     }
   };
 
   const toggleChat = () =>{
     if(showChat === 'hide'){
-        setShowPane('notification hide');
+        setShowPane('hide');
+        setShowProfilePane("hide");
+        setShowMenuPane("hide");
         setShowChat('show');
     }else {
         setShowChat('hide');
     }
   };
 
-  const toggleMenuPane = event => {
-    if (showProfilePane === "profile-menu-pane hideProfileMenu") {
+  const toggleMenuPane = () => {
+    if (showProfilePane === "hide") {
+      setShowChat('hide');
+      setShowMenuPane("hide");
+      setShowPane("hide");
       setShowProfilePane("profile-menu-pane showProfileMenu");
-      setShowPane("notification hide");
     } else {
-      setShowProfilePane("profile-menu-pane hideProfileMenu");
+      setShowProfilePane("hide");
+    }
+  };
+
+  const toggleMenu = () => {
+    if (showMenuPane === "hide") {
+      setShowChat('hide');
+      setShowPane("hide");
+      setShowProfilePane("hide");
+      setShowMenuPane("menu-pane showMenu");
+    } else {
+      setShowMenuPane("hide");
     }
   };
 
   window.onclick = event => {
     const paneClass = event.target.className;
     if (paneClass === "notification show") {
-      setShowPane("notification hide");
+      setShowPane("hide");
     }
     if (paneClass === "profile-menu-pane showProfileMenu") {
-      setShowProfilePane("profile-menu-pane hideProfileMenu");
+      setShowProfilePane("hide");
+    }
+    if (paneClass === "menu-pane showMenu") {
+      setShowMenuPane("hide");
     }
   };
+
+  const { menu, menuMobile } = menuCreator(location, Link, role);
 
   return (
     <>
@@ -78,9 +102,15 @@ export const Navbar = ({ history }) => {
         <a className="navbar-brand" href="/home">
           <img alt="BareFoot Nomad" src={logo} />
         </a>
+        <ul className="menu-items">
+          {menu}
+        </ul>
         <ul>
           <li className="root menu-icon">
-            <Menu classes={classes} handlePane="" />
+            { showMenuPane === "hide" ?
+              <Menu classes={classes} onClick={toggleMenu} /> :
+              <MenuOpen classes={classes} onClick={toggleMenu} />
+            }
           </li>
           <li className="root">
             <Notifications classes={classes} handlePane={togglePane} />
@@ -91,7 +121,7 @@ export const Navbar = ({ history }) => {
           <li className="root profile-menu" onClick={toggleMenuPane}>
             <img src={profilePicture} className="m-right-1 profile-picture" alt="Profile" height="23" width="23"  onClick={toggleMenuPane} />
             <i className={`caret fas ${
-              showProfilePane === "profile-menu-pane hideProfileMenu" ?
+              showProfilePane === "hide" ?
               'fa-caret-down' :
               'fa-caret-up'
             }`}  onClick={toggleMenuPane}/>
@@ -108,7 +138,13 @@ export const Navbar = ({ history }) => {
         handlePane={toggleMenuPane}
         history={history}
       />
-         <ManageChatPane classes={showChat} toggleChat={toggleChat}/>
+      <ManageChatPane classes={showChat} toggleChat={toggleChat}/>
+      <MenuPane
+        classes={showMenuPane}
+        handlePane={toggleMenu}
+        history={history}
+        menu={menuMobile}
+      />
     </>
   );
 };
