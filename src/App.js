@@ -26,10 +26,16 @@ import AccessForbiddenPage from "./components/AccessForbiddenPage";
 import ManageDashboard from "./components/ManageDashboard";
 import ApproveReject from "./components/ApproveReject";
 import UserRoles from "./components/UserRolesPage";
-import ManageChatPane from "./components/chat/ManageChatPane";
+import AllAccommodations from './components/accommodations';
+import Accommodation from './components/oneAccommodation';
+import { Authorization } from './components/shared/Authorization';
 
 const store = configureStore();
 
+const User = Authorization(['Requester', 'Travel Administrator', 'Manager', 'Super Administrator']);
+const Manager = Authorization(['Manager', 'Super Administrator']);
+const Admin = Authorization(['Super Administrator']);
+const All = Authorization(['Accommodation Supplier', 'Requester', 'Travel Administrator', 'Manager', 'Super Administrator']);
 
 const App = () => {
 
@@ -37,35 +43,32 @@ const App = () => {
     <Provider store={store}>
       <ToastContainer />
       <div className="App">
-        <Router>
-          {localStorage.getItem("bareFootToken") && <Navbar />}
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/home" component={ManageDashboard} />
-            <PrivateRoute exact path="/" component={LoggedInDashboard} />
-            <Route path="/forgotPassword" component={ResetPasswordPage} />
-            <PrivateRoute path="/dashboard" component={ManageDashboard} />
-            <Route path="/signUp" component={SignupPage} />
-            <Route path="/call4verify" component={CallForVerify} />
-            <Route path="/404" component={PageNotFound} />
-            <Route path="/verify" component={VerifyEmailPage} />
-            <Route path="/reverify" component={ReverifyPage} />
-            <PrivateRoute path="/profile" component={ProfilePage} />
-            <PrivateRoute path="/500" component={ServerErrorPage} />
-            <PrivateRoute path="/requests" component={requestsPage} />
-            <PrivateRoute path="/request/:id" component={singleReqeuest} />
-            <PrivateRoute path="/approvals/:id" component={ApproveReject} />
-            <PrivateRoute path="/approvals" component={ApprovalsPage} />
-            <PrivateRoute path="/chat" component={ManageChatPane} />
-            <PrivateRoute path="/settings" component={UserRoles} />
-            <PrivateRoute
-              path="/AccessForbidden"
-              component={AccessForbiddenPage}
-            />
-            <Redirect to="/404" />
-          </Switch>
-        </Router>
-      </div>
+      <Router>
+        {localStorage.getItem('bareFootToken') && <Navbar />}
+        <Switch>
+          <Route  path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={LoggedInDashboard} />
+          <Route path="/forgotPassword" component={ResetPasswordPage} />
+          <PrivateRoute  path="/dashboard" component={User(ManageDashboard)} />
+          <Route path="/signUp" component={SignupPage} />
+          <Route path="/call4verify" component={CallForVerify} />
+          <Route path="/404" component={PageNotFound} />
+          <Route path="/verify" component={VerifyEmailPage} />
+          <Route path="/reverify" component={ReverifyPage} />
+          <PrivateRoute path="/accommodations" component={All(AllAccommodations)} />
+          <PrivateRoute path="/accommodation/:id" component={All(Accommodation)} />
+          <PrivateRoute  path="/profile" component={All(ProfilePage)} />
+          <PrivateRoute  path="/500" component={ServerErrorPage} />
+          <PrivateRoute  path="/requests" component={User(requestsPage)} />
+          <PrivateRoute  path="/request/:id" component={User(singleReqeuest)} />
+          <PrivateRoute path="/approvals/:id" component={Manager(ApproveReject)} />
+            <PrivateRoute  path="/approvals" component={Manager(ApprovalsPage)} />
+            <PrivateRoute path="/settings" component={Admin(UserRoles)} />
+            <PrivateRoute  path="/AccessForbidden" component={AccessForbiddenPage} />
+          <Redirect to="/404" />
+        </Switch>
+      </Router>
+    </div>
     </Provider>
   );
 };

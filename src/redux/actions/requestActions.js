@@ -19,7 +19,6 @@ const token = `Bearer ${localStorage.getItem('bareFootToken')}`;
 export const getLocations = () => async(dispatch) => {
     try {
         const response = await api.get('/api/v1/locations');
-
         dispatch({
             type: FETCH_LOCATIONS,
             data: response.data.data,

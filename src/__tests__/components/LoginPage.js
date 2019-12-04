@@ -27,10 +27,6 @@ const props = {
 };
 
 describe('LoginPAGE', () => {
-  test('should render', () => {
-    wrapper = shallow(<LoginPage {...props} />);
-    expect(wrapper).toMatchSnapshot();
-  });
   test('prevent default', () => {
     wrapper = shallow(<LoginPage {...props} />);
     let prevent = false;
@@ -44,7 +40,7 @@ describe('LoginPAGE', () => {
   test('Should handle Input on change', () => {
     const event = {target: {name: "email", value: "email"}};
     wrapper = mount(<LoginPage {...props} />);
-    expect(wrapper.instance().state.email).toBe(null);
+    expect(wrapper.instance().state.email).toBe('');
     wrapper.find('Input[name="email"]').simulate('change', event);
     expect(wrapper.instance().state.email).toBe('email');
   });
