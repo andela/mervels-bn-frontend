@@ -16,6 +16,7 @@ import dashboardReducer from './dashboardReducer';
 import superAdminReducers from './superAdminReducers';
 import addedSupplier from './addSupplierReducer';
 import commentReducer from './commentReducers';
+import chatReducer from './chatReducer';
 import accommodations from './accommodations';
 import accommodation from './accommodationReducer';
 import addAccommodation from './addAccommodation';
@@ -42,6 +43,7 @@ export default combineReducers({
   superAdminReducers,
   addedSupplier,
   commentReducer,
+  chats: chatReducer,
   accommodations,
   accommodation,
   addAccommodation,

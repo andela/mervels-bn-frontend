@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
+// import { createMemoryHistory } from "history";
 import configureMockStore from "redux-mock-store";
 import { mount } from "enzyme";
 import { Navbar } from "../../../components/shared/Navbar";
@@ -13,6 +16,11 @@ let wrapper;
 
 describe("Navbar Component", () => {
   beforeEach(() => {
+    const scrollIntoViewMock = jest.fn();
+    const scrollToBottom = jest.fn();
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock;
+    window.HTMLElement.prototype.scrollToBottom = scrollToBottom;
+
     wrapper = mount(
       <Provider store={mockStore({
         profile: {
@@ -23,6 +31,11 @@ describe("Navbar Component", () => {
         notification: {
           unread: '',
           notifications: []
+        },
+        chats: {
+          name: "",
+          messages: [],
+          users: []
         }
       })}>
         <Navbar/>

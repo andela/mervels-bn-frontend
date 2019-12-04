@@ -16,15 +16,17 @@ import ChatIcon from "@material-ui/icons/Chat";
 import Menu from "@material-ui/icons/Menu";
 import MenuOpen from "@material-ui/icons/MenuOpen";
 import useStyles from "./iconStyles";
-import Notifications from "../Notifications";
-import NotificationPane from "../NotificationPane";
+import Notifications from "../notifications/Notifications";
+import NotificationPane from "../notifications/NotificationPane";
 import ProfileMenu from "../ProfileMenu";
 import logo from "../../logo/logo-long.png";
+import ManageChatPane from "../chat/ManageChatPane";
 import { getProfile } from "../../redux/actions/profileAction";
 
 export const Navbar = ({ history }) => {
   const classes = useStyles();
   const [showPane, setShowPane] = useState("notification hide");
+  const [showChat, setShowChat] = useState('hide');
   const [showProfilePane, setShowProfilePane] = useState("profile-menu-pane hideProfileMenu");
   const profilePicture = useSelector(state => state.profile).data.image;
   const dispatch = useDispatch();
@@ -33,12 +35,21 @@ export const Navbar = ({ history }) => {
     dispatch(getProfile());
   }, []);
 
-  const togglePane = event => {
-    if (showPane === "notification hide") {
-      setShowPane("notification show");
-      setShowProfilePane("profile-menu-pane hideProfileMenu");
-    } else {
-      setShowPane("notification hide");
+  const togglePane = () =>{
+    if(showPane === 'notification hide'){
+        setShowChat('hide');
+        setShowPane('notification show');
+    }else {
+        setShowPane('notification hide');
+    }
+  };
+
+  const toggleChat = () =>{
+    if(showChat === 'hide'){
+        setShowPane('notification hide');
+        setShowChat('show');
+    }else {
+        setShowChat('hide');
     }
   };
 
@@ -75,7 +86,7 @@ export const Navbar = ({ history }) => {
             <Notifications classes={classes} handlePane={togglePane} />
           </li>
           <li className="root">
-            <ChatIcon className={classes.iconHover} />
+          <ChatIcon className={classes.iconHover} onClick={toggleChat} />
           </li>
           <li className="root profile-menu" onClick={toggleMenuPane}>
             <img src={profilePicture} className="m-right-1 profile-picture" alt="Profile" height="23" width="23"  onClick={toggleMenuPane} />
@@ -97,6 +108,7 @@ export const Navbar = ({ history }) => {
         handlePane={toggleMenuPane}
         history={history}
       />
+         <ManageChatPane classes={showChat} toggleChat={toggleChat}/>
     </>
   );
 };

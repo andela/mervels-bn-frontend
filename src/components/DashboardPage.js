@@ -50,7 +50,7 @@ class DashboardPage extends React.Component {
                     name="parameter"
                     onChange={updateInput}
                     selected="years"
-                    ids={["days", "weeks", "moths", "years"]}
+                    ids={["days", "weeks", "months", "years"]}
                     options={["days", "weeks", "months", "years"]}
                     error=""
                   />

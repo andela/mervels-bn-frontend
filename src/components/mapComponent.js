@@ -5,7 +5,7 @@ import React from 'react';
 // eslint-disable-next-line no-unused-vars
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Autocomplete from 'react-google-autocomplete';
-import Geocode from "react-geocode";
+import Geocode from 'react-geocode';
 
 const API_KEY = process.env.REACT_APP_MAP_KEY;
 Geocode.setApiKey(API_KEY);
@@ -39,7 +39,7 @@ class Map extends React.Component{
                 lng: center.lng
             }
         });
-        return true; 
+        return true;
     }
 
 

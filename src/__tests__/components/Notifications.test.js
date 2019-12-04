@@ -6,12 +6,12 @@ import { Provider } from "react-redux";
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import {shallow, mount } from '../../config/enzyme.config';
-import Notifications, {Notifications as NotificationNoStore} from '../../components/Notifications';
+import Notifications, {Notifications as NotificationNoStore} from '../../components/notifications/Notifications';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
 
- 
+
 describe("Notification with no Store component/>", () => {
     const render = (params, fn=mount) => {
         const defaultProps = {
