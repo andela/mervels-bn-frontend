@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import API from '../../config/axiosInstance';
 import { 
     GET_ACCOMMODATIONS_SUCCESS, 
@@ -7,7 +8,9 @@ import {
     ADD_ACCOMMODATION_SUCCESS,
     ADD_ACCOMMODATION_FAILURE,
     ADD_ROOMS_SUCCESS,
-    ADD_ROOMS_FAILURE
+    ADD_ROOMS_FAILURE,
+    RATE_ACCOMMODATION_SUCCESS,
+    RATE_ACCOMMODATION_FAILED
 } from './actionTypes';
 
 export const getAccommodations = (user) => async(dispatch) => {
@@ -92,6 +95,40 @@ export const createRooms= (payload) => async(dispatch) => {
     } catch(error) {
         dispatch({
             type: ADD_ROOMS_FAILURE,
+            payload: (error.response) ? error.response.data.message : 'Server error'
+        });
+    }
+};
+
+export const rateAccommodation = (value, id) => async(dispatch) => {
+    try {
+        const token = `Bearer ${localStorage.getItem('bareFootToken')}`;
+        const config = {
+            headers: {
+                Authorization: token,
+            }
+        };
+        const res = await API.post(`api/v1/accommodations/${id}/ratings`, value, config);
+        toast.success(res.data.message, {
+            position: 'top-right',
+            autoClose: 10000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        dispatch({type: RATE_ACCOMMODATION_SUCCESS, payload: res.data});
+    } catch(error) {
+        toast.error((error.response) ? error.response.data.message : 'Server error', {
+            position: 'top-right',
+            autoClose: 10000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+        dispatch({
+            type: RATE_ACCOMMODATION_FAILED,
             payload: (error.response) ? error.response.data.message : 'Server error'
         });
     }

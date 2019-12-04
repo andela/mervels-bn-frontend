@@ -4,6 +4,11 @@
 /* eslint-disable react/sort-comp */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-danger */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable default-case */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/anchor-is-valid */
@@ -13,6 +18,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import { parse } from "query-string";
+import Rating from 'react-rating';
 import Button from './shared/Button';
 import Room from './addRoom';
 import { getAccommodation } from '../redux/actions/accommodationsAction';
@@ -24,6 +30,7 @@ import Map from './mapComponent';
 import LikeComponent from "./LikeComponent";
 import ReviewComponent from "./ReviewComponent";
 import OneReviewComponent from "./OneReviewComponent";
+import RatingCompoment from './shared/ratingCompoment';
 
 export class OneAccommodation extends Component {
     constructor(props) {
@@ -78,10 +85,13 @@ export class OneAccommodation extends Component {
           case "feedback_success":
             const { match } = nextProps;
             window.location.replace(`/accommodation/${match.params.id}?review=success`);
+            break;
           case "feedback_error":
             toast.error(`Couldn't add that review`);
             this.setState({ reviewError: true });
+            break;
           default:
+            break;
         }
       }  
     }
@@ -129,6 +139,11 @@ export class OneAccommodation extends Component {
             }
         }
     }
+    
+    getUpdate = () => {
+        const { getAccommodation, match } = this.props;
+        getAccommodation(match.params.id);
+    }
 
     onReviewSuccess = async () => {
       const { match, history } = this.props;
@@ -143,6 +158,7 @@ export class OneAccommodation extends Component {
         let rooms;
         let location;
         let description;
+        const rating = acc.Ratings;
         let map;
         let like;
         let amenity = [];
@@ -214,11 +230,13 @@ export class OneAccommodation extends Component {
                     <h2>{acc.name}</h2>
                     <span className="location"><p>{location}</p></span>
                     <div className="rate">
-                        <span className="fa fa-star checked" />
-                        <span className="fa fa-star checked" />
-                        <span className="fa fa-star checked" />
-                        <span className="fa fa-star" />
-                        <span className="fa fa-star" /> 3 star
+                    <Rating
+                        className="rating-container"
+                        initialRating={(rating === undefined) ? 0: rating.averageRating}
+                        readonly
+                        emptySymbol="fa fa-star-o fa-lg"
+                        fullSymbol="fa fa-star fa-lg"
+                        /> {(rating === undefined) ? 0: rating.averageRating} star
                     </div>
                 </div>  
                 <ImageGallery imageUrl={acc.imageUrl}/>
@@ -236,13 +254,9 @@ export class OneAccommodation extends Component {
                 <div className="map">
                     {map}
                 </div>
-                <div className="rating">
-                    <span className="hword"><h3>Rate Hotel</h3></span>
-                    <span className="fa fa-star checked" />
-                    <span className="fa fa-star checked" />
-                    <span className="fa fa-star checked" />
-                    <span className="fa fa-star" />
-                    <span className="fa fa-star" />
+                <div className="rating center">
+                    <span className=""><h3>Rate Hotel</h3></span>
+                    <RatingCompoment userRating={rating} accommodationId={this.props.match.params.id} getUpdate={this.getUpdate} />
                 </div>
                 <div className="review m-left-1 grid">
                   <div className="col-6">

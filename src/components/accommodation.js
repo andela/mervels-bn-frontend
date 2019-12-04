@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
+import Rating from 'react-rating';
 
 
-export const Accommodation = ({ id, name, location, likes, rooms, imageUrl, description  }) => {
+export const Accommodation = ({ id, name, location, likes, rooms, imageUrl, description, rating  }) => {
     const largeUrl = imageUrl[0].replace("load/", "load/w_auto,h_200,c_scale/");
     return (
         <>
@@ -14,11 +16,13 @@ export const Accommodation = ({ id, name, location, likes, rooms, imageUrl, desc
                         <p className="name">{name}</p>
                         <span className="location"><p>{location}</p></span>
                         <div className="rate">
-                            <span className="fa fa-star checked" />
-                            <span className="fa fa-star checked" />
-                            <span className="fa fa-star checked" />
-                            <span className="fa fa-star" />
-                            <span className="fa fa-star" />
+                        <Rating
+                        className="rating-container"
+                        initialRating={(rating === undefined) ? 0: rating}
+                        readonly
+                        emptySymbol="fa fa-star-o fa-lg"
+                        fullSymbol="fa fa-star fa-lg"
+                        /> {(rating === undefined) ? 0: rating}
                         </div>
                     </div>
                     <div className="description" dangerouslySetInnerHTML={{ __html: `${description.substring(0, 180)}....` }} />
