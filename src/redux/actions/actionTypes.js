@@ -78,6 +78,14 @@ export const ADD_ROOMS_FAILURE = 'ADD_ROOMS_FAILURE';
 /** AUTHORIZATION */
 export const AUTHORIZATION_SUCCESS = 'AUTHORIZATION_SUCCESS';
 
+/* Like */
+export const LIKE_SUCCESS = 'LIKE_SUCCESS';
+export const LIKE_ERROR = 'LIKE_ERROR';
+
+/* Feedback */
+export const FEEDBACK_SUCCESS = 'FEEDBACK_SUCCESS';
+export const FEEDBACK_ERROR = 'FEEDBACK_ERROR';
+
 export default {
     SIGN_UP: 'SIGN_UP',
     SIGN_UP_ERROR: 'SIGN_UP_ERROR',
