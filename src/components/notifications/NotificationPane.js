@@ -72,7 +72,7 @@ export function NotificationPane({
   };
 
   return (
-    <div className={classes}>
+    <div id="notifications-container" className={classes}>
       <div id="myModal" className="modal">
         <div className="modal-content effect1">
           <div className="modal-body">

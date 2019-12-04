@@ -1,11 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import { blueGrey } from '@material-ui/core/colors';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      margin: theme.spacing(2),
-      fontSize: 35
-    },
+const useStyles = makeStyles(() => ({
     fontSize: 35,
     iconHover: {
       '&:hover': {

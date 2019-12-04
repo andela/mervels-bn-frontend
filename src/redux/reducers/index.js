@@ -22,6 +22,8 @@ import accommodation from './accommodationReducer';
 import addAccommodation from './addAccommodation';
 import addRooms from './addRooms';
 import authReducer from './authorizationReducer';
+import like from './likeReducer';
+import feedback from './feedbackReducer';
 
 export default combineReducers({
   loginReducer,
@@ -46,5 +48,7 @@ export default combineReducers({
   accommodation,
   addAccommodation,
   addRooms,
-  authReducer
+  authReducer,
+  like,
+  feedback
 });

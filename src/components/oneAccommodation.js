@@ -1,3 +1,8 @@
+/* eslint-disable no-fallthrough */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable no-case-declarations */
+/* eslint-disable react/sort-comp */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/no-danger */
 /* eslint-disable default-case */
 /* eslint-disable react/prop-types */
@@ -7,6 +12,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
+import { parse } from "query-string";
 import Button from './shared/Button';
 import Room from './addRoom';
 import { getAccommodation } from '../redux/actions/accommodationsAction';
@@ -15,6 +21,9 @@ import ServicesModal from './servicesModal';
 import Amenities from './viewServices';
 import ImageGallery from './accomodationImages';
 import Map from './mapComponent';
+import LikeComponent from "./LikeComponent";
+import ReviewComponent from "./ReviewComponent";
+import OneReviewComponent from "./OneReviewComponent";
 
 export class OneAccommodation extends Component {
     constructor(props) {
@@ -25,13 +34,18 @@ export class OneAccommodation extends Component {
             showModal: false,
             submitting: false,
             roomError: null,
-            roomsList: ''
+            roomsList: '',
+            liked: false,
+            reviewError: false
         };
     }
 
-    componentDidMount(){
-        const { getAccommodation, match } = this.props;
-        getAccommodation(match.params.id);
+    async componentDidMount() {
+      const { getAccommodation, match, location } = this.props;
+      if (parse(location.search).review === "success") {
+        this.onReviewSuccess();
+      }
+      getAccommodation(match.params.id);
     }
 
     componentDidUpdate() {
@@ -43,6 +57,35 @@ export class OneAccommodation extends Component {
             this.setRoom(addRooms);
         }
     }
+
+    async componentWillReceiveProps(nextProps) {
+      const { like, feedback } = nextProps;
+      if (like) {
+        switch (like.status) {
+          case "like_success":
+            break;
+          case "like_error":
+            const { liked: likeStatus } = this.state;
+            const errorMessage = likeStatus ? "unlike" : "like";
+            toast.error(`Could not ${errorMessage} the accommodation`);
+            break;
+          default:
+            break;
+        }
+      }
+      if (feedback) {
+        switch (feedback.status) {
+          case "feedback_success":
+            const { match } = nextProps;
+            window.location.replace(`/accommodation/${match.params.id}?review=success`);
+          case "feedback_error":
+            toast.error(`Couldn't add that review`);
+            this.setState({ reviewError: true });
+          default:
+        }
+      }  
+    }
+  
 
     setRoom = (room) => {
         const { roomError, roomsList } = this.state;
@@ -87,14 +130,21 @@ export class OneAccommodation extends Component {
         }
     }
 
+    onReviewSuccess = async () => {
+      const { match, history } = this.props;
+      toast.success("Review added successfully");
+      history.push(`/accommodation/${match.params.id}#reviews`);
+    };
+
     render() {
-        const { isCreating, isAllowed, showModal, roomError, submitting, roomsList } =this.state;
+        const { isCreating, isAllowed, showModal, roomError, submitting, roomsList, reviewError } =this.state;
         const { accommodation, match } = this.props;
         const acc = accommodation.accommodation;
         let rooms;
         let location;
         let description;
         let map;
+        let like;
         let amenity = [];
         let service = [];
         if(Object.keys(acc).length !== 0 && acc.constructor === Object) {
@@ -130,14 +180,30 @@ export class OneAccommodation extends Component {
             service = acc.services;
             description = acc.description;
             map = <Map
-            // eslint-disable-next-line react/destructuring-assignment
-            google={this.props.google}
-            center={acc.maplocations}
-            height='200px'
-            zoom={15}
-            display={null}
-        />;
+              // eslint-disable-next-line react/destructuring-assignment
+              google={this.props.google}
+              center={acc.maplocations}
+              height='200px'
+              zoom={15}
+              display={null}
+            />;
+
+            like = <LikeComponent
+                accommodation={acc.id}
+                likes={acc.likes}
+                liked={acc.liked}
+            />;    
         }
+        const addReview = (
+          <ReviewComponent reviewError={reviewError} accommodation={acc.id} />
+        );
+    
+        let reviewsDisplay;
+        if (acc.Feedbacks) {
+          reviewsDisplay = acc.Feedbacks.map((review, index) => (
+            <OneReviewComponent key={index} review={review} />
+          ));
+        } 
         return (
             <>
             <div className="main-frame">
@@ -178,13 +244,19 @@ export class OneAccommodation extends Component {
                     <span className="fa fa-star" />
                     <span className="fa fa-star" />
                 </div>
-                <div className="review">
-                    <a href="#comment"><h4>Add review</h4></a>
+                <div className="review m-left-1 grid">
+                  <div className="col-6">
+                    <a href="#review">
+                      <h4>✙ Write a Review</h4>
+                    </a>
+                  </div>
+                  <div className="col-6">
+                    <a href="#reviews">
+                      <h4>All Reviews</h4>
+                    </a>
+                  </div>
                 </div>
-                <div className="like">
-                    <span className="hword"><h4>Like</h4></span>
-                    <i className="fa fa-thumbs-up" /> 80
-                </div>
+                <div className="like">{like}</div>
             </div>
         </div>
         <div className="room-container">
@@ -203,8 +275,14 @@ export class OneAccommodation extends Component {
                 {rooms}
             </div>
         </div>
-        <div className="comments" id="comment">
-            <h3>Comments</h3> 
+        <div className="review" id="review">
+          <h2 className="m-left-1 p-top-2 reviews-title">Reviews</h2>
+          {addReview}
+        </div>
+        <div className="review m-bottom-5 p-top-2" id="reviews">
+          <em className="m-left-1">All reviews...</em>
+          <br />
+          {reviewsDisplay}
         </div>
     </div>
     </div>
@@ -219,9 +297,11 @@ OneAccommodation.propTypes = {
     match: PropTypes.object.isRequired,
 };
   
-const mapStateToProps = ({ accommodation, addRooms }) => ({
+const mapStateToProps = ({ accommodation, addRooms, like, feedback }) => ({
     accommodation,
-    addRooms
+    addRooms,
+    like,
+    feedback
 });
 
 export default connect(

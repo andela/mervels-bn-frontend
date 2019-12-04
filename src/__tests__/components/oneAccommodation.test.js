@@ -1,8 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { OneAccommodation } from '../../components/oneAccommodation';
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import configureMockStore from "redux-mock-store";
+import Accommodation, { OneAccommodation } from '../../components/oneAccommodation';
 
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 let wrapper;
 const props = {
@@ -30,7 +35,16 @@ const props = {
         imageUrl: [
             'load/first',
             'load/second'
-        ]
+        ],
+        Feedbacks: [{
+          User: {
+            ProfilePicture: null
+          }
+        }, {
+          User: {
+            ProfilePicture: { url: 'url' }
+          }
+        }]
       }
   },
   match: {
@@ -45,7 +59,11 @@ const props = {
 };
 
 const mountsetUp = () => {
-return mount(<OneAccommodation {...props} />);
+return mount(
+  <Provider store={mockStore({ accommodation: props.accommodation })}>
+    <Accommodation {...props} />
+  </Provider>
+);
 };
 
 
@@ -53,14 +71,33 @@ const shallowsetUp = () => {
   return shallow(<OneAccommodation {...props} />); 
 };
 
-describe.only('One Accommodation test', () => {
+const reviewSuccessSetup = (query) => {
+  return shallow(<OneAccommodation {...props} location={{search: query}} />);
+};
+
+const initialState = {
+  isAllowed: true,
+  isCreating: false,
+  liked: false,
+  reviewError: false,
+  roomError: null,
+  roomsList: "",
+  showModal: false,
+  submitting: false,
+};
+
+describe('One Accommodation test', () => {
   test('should render component', () => {
     wrapper = mountsetUp();
     const container = wrapper.find('.location');
     expect(container).toHaveLength(1); 
   });
   test('should render with empty accommodations', () => {
-    wrapper = mount(<OneAccommodation {...props} accommodation={{accommodation:{}}}/>);
+    wrapper = mount(
+      <Provider store={mockStore()}>
+        <OneAccommodation {...props} accommodation={{accommodation:{}}}/>
+      </Provider>
+    );
     wrapper.find('.view-all').simulate('click');
     const button = wrapper.find('#create-start');
     expect(button).toHaveLength(1); 
@@ -68,7 +105,7 @@ describe.only('One Accommodation test', () => {
   test('should toggle showmodal', () => {
     wrapper = mountsetUp();
     wrapper.find('.view-all').simulate('click');
-    expect(wrapper.instance().state.showModal).toBe(true);
+    expect(wrapper.find('Modal')).toHaveLength(1);
   });
   test('should test toggle create', () => {
     wrapper = shallowsetUp();
@@ -97,6 +134,10 @@ describe.only('One Accommodation test', () => {
     wrapper.setProps({ addRooms: { } });
     expect(wrapper.state().roomError).toBe(null);
   });
+  test('should check if user is authentiacted', () => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ user: '' });
+  });
   test('should not display create button', () => {
     wrapper = shallow(<OneAccommodation {...props} user={{id:4, userRoles: 'Not allowed'}}/>);
         wrapper.setState({ isAllowed: false });
@@ -104,3 +145,55 @@ describe.only('One Accommodation test', () => {
   });
 });
 
+describe('Test on Like and review', () => {
+  it('should receive success props on like', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ like: { status: 'like_success' } });
+    expect(wrapper.state()).toEqual(initialState);
+    done();
+  });
+  it('should receive error props on like', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ like: { status: 'like_error' } });
+    expect(wrapper.state()).toEqual(initialState);
+    done();
+  });
+  it('should receive error props on like', done => {
+    wrapper = shallowsetUp();
+    wrapper.setState({ liked: true });
+    wrapper.setProps({ like: { status: 'like_error' } });
+    expect(wrapper.state()).toEqual({ ...initialState, liked: true });
+    done();
+  });
+  it('should receive unknown props on like', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ like: { status: 'x' } });
+    expect(wrapper.state()).toEqual(initialState);
+    done();
+  });
+  it('should receive success props on feedback', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ feedback: { status: 'feedback_success' } });
+    done();
+  });
+  it('should receive error props on feedback', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ feedback: { status: 'feedback_error' } });
+    done();
+  });
+  it('should receive unknown props on feedback', done => {
+    wrapper = shallowsetUp();
+    wrapper.setProps({ feedback: { status: 'x' } });
+    done();
+  });
+  it('should render on review success', done => {
+    wrapper = reviewSuccessSetup('?review=success');
+    expect(wrapper).toHaveLength(1);
+    done();
+  });
+  it('should render on review success - unknown', done => {
+    wrapper = reviewSuccessSetup('?review=x');
+    expect(wrapper).toHaveLength(1);
+    done();
+  });
+});

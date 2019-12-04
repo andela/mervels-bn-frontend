@@ -9,8 +9,7 @@ import { connect } from "react-redux";
 import {
   getChats,
   sendMessage,
-  updateChatMessages,
-  updateOnlineUsers
+  updateChatMessages
 } from "../../redux/actions/chatActions";
 import ChatPane from "./ChatPane";
 
@@ -62,5 +61,5 @@ const mapStateToProps = ({ chats }) => {
 
 export default connect(
   mapStateToProps,
-  { getChats, sendMessage, updateChatMessages, updateOnlineUsers }
+  { getChats, sendMessage, updateChatMessages }
 )(ManageChatPage);
