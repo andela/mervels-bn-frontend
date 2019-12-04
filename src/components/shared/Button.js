@@ -30,7 +30,7 @@ Button.propTypes = {
     ButtonId: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     onClick: PropTypes.func,
-    submitting: PropTypes.string
+    submitting: PropTypes.bool
 };
 
 export default Button;

@@ -18,3 +18,17 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.services-modal {
+  width: 30%;
+  text-align: left;
+  height: 65%;
+  line-height: 1.6;
+  overflow: scroll;
+  background: white;
+  padding: 40px;
+  color: #515151;
+  h3 {
+    color: #3359de;
+  }
+}

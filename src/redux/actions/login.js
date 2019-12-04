@@ -19,8 +19,12 @@ export const localAuth = (payload) => async (dispatch) => {
     dispatch(loginSucess(res.data));
   }
   catch (err) {
-    toast.error(err.response.data.message);
-    dispatch(loginFailure(err.response.data.message));
+    if (err.response) {
+      toast.error(err.response.data.message);
+      dispatch(loginFailure(err.response.data.message));
+    } else {
+      toast.error('Network Error');
+    }
   }
 };
 

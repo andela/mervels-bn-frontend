@@ -1,18 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import { HeaderPanel } from '../../components/headerPanel';
 
-const props = {
-    title: "", 
-    onClick: jest.fn(),
-};
 let wrapper;
 describe('Header Panel Component', () => {
-    test('should render', () => {
-      wrapper = shallow(<HeaderPanel {...props} />);
-      expect(wrapper).toMatchSnapshot();
-    });
     test('should call the onClick function "all"', () => {
         const mockOnClickFn = jest.fn();
         wrapper = mount(<HeaderPanel onClick={mockOnClickFn} title="ALL REQUESTS" />);
