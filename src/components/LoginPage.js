@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-update-set-state */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -30,6 +31,13 @@ export class LoginPage extends Component {
         const decoded = JSON.parse(atob(base64encoded));
         socialAuth(decoded);
       }
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { user } = nextProps;
+    if(user.error === 'Invalid email or password entered') {
+      this.setState({ email: '', password: '' });
     }
   }
 
