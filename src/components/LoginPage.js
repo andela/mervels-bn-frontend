@@ -5,6 +5,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import Button from './shared/Button';
 import SocialAuth from "./shared/socialAuth";
 import Input from "./shared/input";
 import { localAuth, socialAuth } from "../redux/actions/login";
@@ -16,8 +17,20 @@ export class LoginPage extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      submitting: false,
+      error: ''
     };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.user.error !== state.error) {
+      return {
+        submitting: false,
+        error: props.user.error
+      };
+    }
+    return null;
   }
 
   componentDidMount() {
@@ -59,6 +72,10 @@ export class LoginPage extends Component {
   handleSubmit = e => {
     const { localAuth } = this.props;
     const { email, password } = this.state;
+    this.setState({
+      submitting: true,
+      error: ''
+    });
     e.preventDefault();
     const user = {
       userEmail: email,
@@ -68,7 +85,7 @@ export class LoginPage extends Component {
   };
 
   render() {
-    const { password, email } = this.state;
+    const { password, email, submitting } = this.state;
     return (
       <div className="login-container">
         <div className="local">
@@ -93,15 +110,13 @@ export class LoginPage extends Component {
             <div className="forgot">
               <a href="/forgotPassword">Forgot your password?</a>
             </div>
-            <button className="btnn btnn-primary log" type="submit">
-              Login
-            </button>
+            <Button ButtonId='login' classes='btnn btnn-primary log' text='LOGIN' buttonType='submit' submitting={submitting} onClick={this.handleSubmit} />
           </form>
           <div className="social">
             <SocialAuth />
           </div>
           <div className="foot-message">
-          Dont have a Barefoot Nomad account? <a href="/signUp">Sign up now!</a>
+          Dont have a Barefoot Nomad account? <a href="/signUp"><span className="other-link">Sign up now!</span></a>
           </div>
         </div>
       </div>

@@ -22,7 +22,6 @@ import Rating from 'react-rating';
 import Button from './shared/Button';
 import Room from './addRoom';
 import { getAccommodation } from '../redux/actions/accommodationsAction';
-import SingleRoom from './viewRoom';
 import ServicesModal from './servicesModal';
 import Amenities from './viewServices';
 import Meta from './shared/meta';
@@ -32,6 +31,7 @@ import LikeComponent from "./LikeComponent";
 import ReviewComponent from "./ReviewComponent";
 import OneReviewComponent from "./OneReviewComponent";
 import RatingCompoment from './shared/ratingCompoment';
+import { enhanceRooms } from '../helpers/RoomClasses';
 
 export class OneAccommodation extends Component {
     constructor(props) {
@@ -165,33 +165,8 @@ export class OneAccommodation extends Component {
         let amenity = [];
         let service = [];
         if(Object.keys(acc).length !== 0 && acc.constructor === Object) {
-            let counter = 0;
             const allRooms = [...acc.Rooms, ...roomsList];
-            rooms = allRooms.map((room) =>{
-                let classes = [];
-                switch (counter) {
-                    case 0:
-                        classes = ["thir", "third"];
-                        break;
-                    case 1:
-                        classes = ["fir", "first"];
-                        break;
-                    case 2:
-                        classes = ["sec", "second"];
-                        break;
-                }
-                if(counter < 2){
-                    counter += 1;
-                } else {
-                    counter = 0;
-                }
-                return <SingleRoom 
-                name={room.name}
-                type={room.type}
-                price={room.price}
-                classes={classes}
-            />;
-            });
+            rooms = enhanceRooms(allRooms);
             location = `${acc.Location.city} ${acc.Location.country}`;
             amenity = acc.amenities;
             service = acc.services;
@@ -226,8 +201,8 @@ export class OneAccommodation extends Component {
             <Meta title="Accommodation"/>
             <div className="main-frame">
             <div className="main_container">
-        <div className="grid">
-            <div className="col-8 details">  
+        <div className="grid grid-sm">
+            <div className="col-8  col-sm-12 details">  
                 <div className="top-title">
                     <h2>{acc.name}</h2>
                     <span className="location"><p>{location}</p></span>
@@ -251,7 +226,7 @@ export class OneAccommodation extends Component {
                 <div className="view-all" role="presentation" onClick={() => this.toggleModal()}>View All Amenites and Services</div>
                 <hr/>
             </div>
-            <div className="col-4 side-info">  
+            <div className="col-4 col-sm-12 side-info">  
                 <span className="hword"><h3>Location</h3></span>
                 <div className="map">
                     {map}
@@ -275,7 +250,7 @@ export class OneAccommodation extends Component {
                 <div className="like">{like}</div>
             </div>
         </div>
-        <div className="room-container">
+        <div className="room_container">
             <h3>Rooms</h3>
             { isAllowed ? <div className='grid'>
                 <div className='col-12 center'>

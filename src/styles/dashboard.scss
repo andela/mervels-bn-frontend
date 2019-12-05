@@ -14,9 +14,9 @@ $SmallScreen: 551px;
 }
 
 .container {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-
+  margin-top: 40px;
   @include medium() {
     width: 95%;
   }
@@ -43,20 +43,50 @@ $SmallScreen: 551px;
   margin-top: 20px;
 }
 
-.requests {
-  // border: 1px solid black;
-  overflow-x: auto;
-  height: 300px;
-
-  .card {
-    width: 290px;
-    margin: 9px 12px;
+.dash-rooms {
+  margin-top: 30px;
+  .rooms {
+    border: none;
+    background: none;
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    flex-wrap: nowrap;
   }
-
-  @include small {
+  .roomcard {
+    background: #fff;
+    margin-bottom: 20px;
+  }
+}
+.dash-trip {
+  border: 1px black solid;
+  width: 100%;
+  position: relative;
+  margin-top: 100px;
+  .c-trip {
+    margin-top: 50px;
+  }
+}
+.dash-bottom {
+  .dash-stat {
     .card {
-      margin: 0 auto;
-      margin-top: 20px;
+      height: 120px;
+      background-color: rgb(242, 248, 255);
     }
+  }
+}
+
+.requests {
+  border: 1px rgb(204, 204, 204) solid;
+  background: #fff;
+  width: 85%;
+  height: 220px;
+  margin-top: 20px;
+  padding: 10px;
+  .reqcard {
+    position: relative;
+    width: 280px;
+    margin-left: 20px;
+    box-shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
   }
 }

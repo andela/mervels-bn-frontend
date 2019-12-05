@@ -190,7 +190,7 @@ describe('LoginPage intergration test', () => {
       'submit',
       {preventDefault() {}}
     );
-    expect(wrapper.instance().state).toEqual({ email: 'email@gmail.com', password: 'pass1@word', });
+    expect(wrapper.instance().state).toEqual({ email: 'email@gmail.com', password: 'pass1@word', error: null, submitting: false });
   });
 });
 

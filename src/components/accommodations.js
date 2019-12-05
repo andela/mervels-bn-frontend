@@ -118,9 +118,9 @@ export class Accommodations extends Component {
                     </div>
                 </div>
                 <div className="bg-img" />
-                <div className="grid">
+                <div className="grid grid-sm">
                     <div className="col-3 acc-search" />
-                    <div className="col-6 all-container">
+                    <div className="col-6 col-sm-12 all-container">
                         {items.map((acc) =>
                             <SingleAccommodation 
                                 name={acc.name}

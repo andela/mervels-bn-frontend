@@ -25,7 +25,7 @@ export const Accommodation = ({ id, name, location, likes, rooms, imageUrl, desc
                         /> {(rating === undefined) ? 0: rating}
                         </div>
                     </div>
-                    <div className="description" dangerouslySetInnerHTML={{ __html: `${description.substring(0, 180)}....` }} />
+                    <div className="description" dangerouslySetInnerHTML={{ __html: `${description.substring(0, 160)}....` }} />
                     <div className="bottom">
                         <span className="like">
                             {likes} <i className="fa fa-thumbs-up" />
