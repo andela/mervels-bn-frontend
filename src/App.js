@@ -8,7 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import configureStore from "./redux/store";
 import "./styles/App.scss";
 import Login from "./components/LoginPage";
-import LoggedInDashboard from "./components/LoggedInDashboard";
 import PrivateRoute from "./PrivateRoute";
 import ResetPasswordPage from "./components/ResetPassword/ResetPasswordPage";
 import PageNotFound from "./components/PageNotFound";
@@ -21,7 +20,6 @@ import ServerErrorPage from './components/500Page';
 import requestsPage from './components/requestsPage';
 import ApprovalsPage from './components/approvalsPage';
 import singleReqeuest from './components/ViewRequest';
-import Navbar from "./components/shared/Navbar";
 import AccessForbiddenPage from './components/AccessForbiddenPage';
 import ManageDashboard from "./components/ManageDashboard";
 import ApproveReject from "./components/ApproveReject";
@@ -44,10 +42,11 @@ const App = () => {
       <ToastContainer />
       <div className="App">
       <Router>
-        {localStorage.getItem('bareFootToken') && <Navbar />}
         <Switch>
           <Route  path="/login" component={Login} />
-          <PrivateRoute exact path="/" component={LoggedInDashboard} />
+          <Route exact path="/">
+            <Redirect to="/dashboard" />
+          </Route>
           <Route path="/forgotPassword" component={ResetPasswordPage} />
           <PrivateRoute  path="/dashboard" component={User(ManageDashboard)} />
           <Route path="/signUp" component={SignupPage} />

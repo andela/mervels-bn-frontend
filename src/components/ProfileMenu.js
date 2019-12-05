@@ -12,9 +12,9 @@ class ProfileMenu extends React.Component {
   }
 
   handleLogout = () =>{
-    const { history, handlePane } = this.props;
+    const { handlePane } = this.props;
     localStorage.removeItem("bareFootToken");
-    history.push('/login');
+    window.location.href = '/login';
     handlePane();
   }
 

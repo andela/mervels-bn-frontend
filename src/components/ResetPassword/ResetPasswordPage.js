@@ -35,6 +35,9 @@ export function ResetPasswordPage({
   message,
   history
 }) {
+  if(localStorage.getItem('bareFootToken')) {
+    history.push('/dashboard');
+  }
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [newPassword, setNewPassword] = useState();

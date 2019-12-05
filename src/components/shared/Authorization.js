@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint-disable react/prop-types */
 /* eslint-disable consistent-return */
 /* eslint-disable no-else-return */
@@ -10,6 +11,8 @@ import {connect} from 'react-redux';
 import { toast } from 'react-toastify';
 import { Redirect } from "react-router-dom";
 import { checkUser } from '../../redux/actions/authorization';
+import Navbar from "./Navbar";
+import { Spinner } from './Spinner';
 
 
 export class WithAuthorization extends Component {
@@ -69,17 +72,35 @@ export class WithAuthorization extends Component {
       const { user } = this.state;
       const { authReducer, WrappedComponent, allowedRoles } = this.props;
       const { userRoles } = user;
+      const navbar = localStorage.getItem('bareFootToken') ? <Navbar role={userRoles} /> : '';
       if(!user.userRoles) {
         return (
-          <div>Loading</div>
+          <div>
+            <Spinner className='spinner-center' />
+          </div>
         );
       }
       if (allowedRoles.includes(userRoles)) {
-        return <WrappedComponent user={authReducer.user} {...this.props} />;
+        return (
+          <>
+            {navbar}
+            <WrappedComponent user={authReducer.user} {...this.props} />
+          </>
+        );
       } else if(userRoles === 'Accommodation Supplier') {
-        return <Redirect to='/accommodations' />;
+        return (
+          <>
+            {navbar}
+            <Redirect to='/accommodations' />
+          </>
+        );
       } else {
-        return <Redirect to='/dashboard' />;
+        return (
+          <>
+            {navbar}
+            <Redirect to='/dashboard' />
+          </>
+        );
       }
     }
   };

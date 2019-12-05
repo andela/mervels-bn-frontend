@@ -3,7 +3,7 @@
 .navbar {
   justify-content: space-between;
   align-items: center;
-  padding: 2px 20px;
+  padding: 0 20px;
   background-color: $primaryColor;
   color: $navbarFontColor;
   box-shadow: 0 0 15px #00000030;
@@ -34,4 +34,20 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.menu-item {
+  a {
+    cursor: pointer;
+    color: rgb(230, 230, 230);
+  }
+}
+
+.menu-item-active {
+  margin-bottom: -5px;
+  border-bottom: 3px rgb(255, 255, 255) solid;
+  a {
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
 }

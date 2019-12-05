@@ -10,7 +10,6 @@ import { assignUser }  from '../redux/actions/superAdminAction';
 import validator from '../helpers/validator';
 import Input from './shared/input';
 import Select from './shared/Select';
-import SidebarComponent from './shared/Sidebar';
 import SettingsCard from './shared/settingsCard';
 import addSupplier from '../redux/actions/addSupplierAction';
 import Button from './shared/Button';
@@ -115,7 +114,6 @@ class UserRoles extends Component {
         const { role, email, errors, supplier,submittingSuplier } =this.state;
         return (
             <>
-            <SidebarComponent pageRole="Admin" />
                 <h1 className="text-center m-top-2">Settings</h1>
                 <div className="grid m-left-2 m-right-2 m-top-2">
                     <SettingsCard title="Roles Panel" handleSubmit={this.handleSubmit} classes='roles-form'>

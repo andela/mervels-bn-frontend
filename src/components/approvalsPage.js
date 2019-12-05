@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import propTypes from 'prop-types';
 import { fetchRequestApprovals } from '../redux/actions/approvalsActions';
 import TableComponent from './shared/tableComponent';
-import SidebarComponent from './shared/Sidebar';
 import Meta from './shared/meta';
 
 
@@ -84,7 +83,6 @@ class ApprovalsPage extends React.Component{
         return(
             <>
             <Meta title="Approvals"/>
-                <SidebarComponent pageRole="manager" />
                 <div className="grid sm p-bottom-3">
                     <div className="col-10 offset-3">
                     <h1 className="page-header text-center">Approvals Table</h1>
