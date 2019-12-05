@@ -11,6 +11,7 @@ import Button from './shared/Button';
 import Select from './shared/Select';
 import { createAccommodation } from '../redux/actions/accommodationsAction';
  import Map from './mapComponent';
+ import Meta from './shared/meta';
 
 export class CreateAccommodation extends Component {
     constructor(props) {
@@ -168,6 +169,7 @@ export class CreateAccommodation extends Component {
 
         return (
             <div className="col-10 p-1 m-bottom-1 offset-3">
+                <Meta title="Creating-accommodation"/>
             <div className='grid white p-left-1 p-top-1'>
                 <div className='col-6'>
                     Name *:<br />

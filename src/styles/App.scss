@@ -30,6 +30,9 @@
 @import "chat.scss";
 @import "./accommodations";
 @import "./profile-menu.scss";
+@import "./bookCard.scss";
+@import "./bookRoomPage.scss";
+@import "./accommodationCard.scss";
 
 @media only screen and (min-width: 560px) {
   @import "medium";

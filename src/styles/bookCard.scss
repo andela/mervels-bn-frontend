@@ -1,0 +1,20 @@
+.room-container {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid whitesmoke;
+  padding: 5px;
+
+  .static-details,
+  .dynamic-details {
+    width: 40%;
+  }
+  .dynamic-details {
+    position: relative;
+    top: -3.5vh;
+    select {
+      margin-bottom: 2vh;
+    }
+  }
+}

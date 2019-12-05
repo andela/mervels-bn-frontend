@@ -6,6 +6,7 @@ import React from 'react';
 import 'react-router';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import Meta from './shared/meta';
 import Button from './shared/Button';
 import OneWayRequest from './OneWayRequest';
 import ReturnRequest from './ReturnRequest';
@@ -82,6 +83,7 @@ export class CreateorEditRequest extends React.Component {
         const { updating, toggleUpdating, history } = this.props;
         return(
             <>
+            <Meta title="Creating-request"/>
                 <div className={`col-10 ${ updating ? '' : 'offset-3'} p-1 m-bottom-1`}>
                     { !updating ?
                         <div className='center'>

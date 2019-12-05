@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import Profile from './Profile';
 import validator from '../helpers/validator';
+import Meta from './shared/meta';
 import { getProfile, updateProfile, updateProfilePicture as updatePicture } from '../redux/actions/profileAction';
 
 export class ProfileComponent extends React.Component {
@@ -156,6 +157,7 @@ export class ProfileComponent extends React.Component {
         } = this.state;
             return (
                 <>
+                 <Meta title="Profile"/>
                     <Profile
                         updating={updating}
                         uploading={uploading}

@@ -63,7 +63,7 @@ class SignUpPage extends Component {
 
     render() {
         const {firstName, lastName, userEmail, userPassword, confirm, errors} = this.state;
-        return ( <div className="signup-page m-top-10">
+        return ( <div className="signup-page m-top-5">
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
             <form className="signup-form" onSubmit = {this.handleSubmit}>
             <Input placeholder="First Name" error={errors.firstName} required={{required: 'required'}} onChange={this.handleChange} name="firstName" classes="input full-width" inputType="text" value={firstName}/>

@@ -3,7 +3,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Select = ({name, ids, selected, classes, options, onChange, error, disabled}) => {
+const Select = ({name, ids, selected, classes, options, onChange, error, disabled, unique, id}) => {
     const message = options.length > 1 ? 'Select One...': 'None Available';
     const data = options.map((element, index) => (<option value={ ids.length > 0 && index > 0 ? ids[index]: element } selected={selected === element}>{element || message}</option>));
     return(
@@ -14,6 +14,8 @@ const Select = ({name, ids, selected, classes, options, onChange, error, disable
                 onChange={onChange}
                 disabled={disabled}
                 defaultValue={selected}
+                unique={unique}
+                id={id}
             >
                 {data}
             </select>
@@ -26,7 +28,9 @@ const Select = ({name, ids, selected, classes, options, onChange, error, disable
 Select.defaultProps = {
     classes: 'input',
     disabled: '',
-    ids: ''
+    ids: '',
+    id: '',
+    unique: '',
 };
 
 Select.propTypes = {
@@ -38,6 +42,8 @@ Select.propTypes = {
     disabled: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     error: PropTypes.string.isRequired,
+    unique: PropTypes.string,
+    id: PropTypes.number,
 };
 
 export default Select;

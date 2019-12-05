@@ -94,6 +94,13 @@ export const LIKE_ERROR = 'LIKE_ERROR';
 /* Feedback */
 export const FEEDBACK_SUCCESS = 'FEEDBACK_SUCCESS';
 export const FEEDBACK_ERROR = 'FEEDBACK_ERROR';
+/** booking rooms */
+export const BOOKING_SUCCESS = 'BOOKING_SUCCESS';
+export const BOOKING_ERROR = 'BOOKING_ERROR';
+export const GET_ROOMS_SUCCESS = 'GET_ROOMS_SUCCESS';
+export const GET_ROOMS_ERROR = 'GET_ROOMS_ERROR';
+export const CANCEL_BOOKING_SUCCESS = 'CANCEL_BOOKING_SUCCESS';
+export const CANCEL_BOOKING_ERROR = 'CANCEL_BOOKING_ERROR';
 
 export default {
     SIGN_UP: 'SIGN_UP',

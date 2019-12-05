@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Input = ({inputType, name, placeholder, classes, value, onChange, error, disabled, required}) => {
+const Input = ({inputType, name, placeholder, unique, classes, value, onChange, error, disabled, required, min, max}) => {
     return(
         <>
             <input
@@ -18,6 +18,9 @@ const Input = ({inputType, name, placeholder, classes, value, onChange, error, d
                 autoComplete='off'
                 disabled={disabled}
                 {...required}
+                unique={unique}
+                min={min}
+                max={max}
             /><br />
             <p className='form-error'>{error}</p>
             <br />
@@ -30,7 +33,10 @@ Input.defaultProps = {
     classes: 'input',
     error: '',
     placeholder: '',
-    disabled: ''
+    disabled: '',
+    unique: '',
+    min: '',
+    max: ''
 };
 
 Input.propTypes = {
@@ -44,7 +50,10 @@ Input.propTypes = {
     error: PropTypes.string,
     placeholder: PropTypes.string,
     // eslint-disable-next-line react/require-default-props
-  required: PropTypes.object
+  required: PropTypes.object,
+  unique: PropTypes.string,
+  min: PropTypes.string,
+  max: PropTypes.string,
 };
 
 export default Input;

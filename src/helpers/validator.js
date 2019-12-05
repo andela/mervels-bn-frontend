@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-return */
 /* eslint-disable no-useless-escape */
 /* eslint-disable no-param-reassign */
 import * as yup from 'yup';
@@ -60,6 +61,36 @@ export const validateRequest = (payload) => {
       	}
     }
     return null;
+};
+
+export const validateBooking = (payload) => {
+        // eslint-disable-next-line consistent-return
+        let error;
+        payload.forEach((elem, index) => {
+            // eslint-disable-next-line no-unused-vars
+            // error against empty fields
+            const {travelDate, returnDate, checkIn, checkOut, room, accommodation} = elem;
+            if(!checkIn || !checkOut || !room || room==='Select Room'|| !accommodation || accommodation==='Select Accommodation') {
+                error = 'Please fill all fields';
+                 return;
+            }
+            const checkInDate = parseInt(checkIn.split('-')[2], 10);
+            const travel = parseInt(travelDate.split('-')[2], 10);
+            if(!(checkInDate >=travel && checkInDate <= (travel + 2))){
+                error = 'You must checkin within 2 days after travel date';
+                return;
+            }
+            if(moment(checkOut).isAfter(returnDate)){
+                error = 'Checkout dates must be before the return Date';
+                return;
+            }
+            if(index > 0 && moment(payload[index].checkIn).isBefore(payload[index -1 ].checkOut)){
+                error = 'Check in dates must be later than the checkout date of Previous accommodation';
+                return;
+            }
+        });
+        return error || null;
+
 };
 
 

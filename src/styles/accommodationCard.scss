@@ -1,0 +1,19 @@
+.acc-card {
+  box-shadow: $shadow;
+  display: flex;
+  p {
+    text-align: center;
+    font-weight: bold;
+  }
+  border-radius: 0px 0px 5px 5px;
+  img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
+  p {
+    a:hover {
+      color: $primaryColor;
+    }
+  }
+}

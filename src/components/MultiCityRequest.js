@@ -14,6 +14,7 @@ import TextArea from './shared/TextArea';
 import { validateRequest } from '../helpers/validator';
 import locationsHelper from '../helpers/locationsHelper';
 import { getLocations, requestTrip, updateRequest } from '../redux/actions/requestActions';
+import Meta from './shared/meta';
 
 export class MultiCityRequest extends React.Component {
     constructor(props) {
@@ -189,6 +190,7 @@ export class MultiCityRequest extends React.Component {
         const { locationNames } = locationsHelper(possibleLocations, '');
         return(
             <div className='grid white p-left-1 p-top-1'>
+                <Meta title="Creating-request"/>
                 <div className='col-6'>
                     From:<br />
                     <Select name='from'  options={locationNames} selected={from} onChange={(e) => this.handleChange('other', e)} error='' />
