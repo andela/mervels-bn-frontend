@@ -5,9 +5,11 @@ import { HeaderPanel } from '../../components/headerPanel';
 
 let wrapper;
 describe('Header Panel Component', () => {
+    const mockFunc = jest.fn();
     test('should call the onClick function "all"', () => {
         const mockOnClickFn = jest.fn();
-        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} title="ALL REQUESTS" />);
+
+        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} onChange={mockFunc} search={mockFunc} title="ALL REQUESTS" />);
         wrapper.find('#all').simulate(
           'click'
         );
@@ -15,7 +17,7 @@ describe('Header Panel Component', () => {
     });
     test('should call the onClick function "pending"', () => {
         const mockOnClickFn = jest.fn();
-        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} title="PENDING REQUESTS" />);
+        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} onChange={mockFunc} search={mockFunc} title="PENDING REQUESTS" />);
         wrapper.find('#pending').simulate(
           'click'
         );
@@ -23,7 +25,7 @@ describe('Header Panel Component', () => {
     });
     test('should call the onClick function "past"', () => {
         const mockOnClickFn = jest.fn();
-        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} title="PAST REQUESTS" />);
+        wrapper = mount(<HeaderPanel onClick={mockOnClickFn} onChange={mockFunc} search={mockFunc} title="PAST REQUESTS" />);
         wrapper.find('#past').simulate(
           'click'
         );

@@ -12,7 +12,9 @@ describe('Reset Password Form', () => {
         const wrapper = shallow(
             <ResetFormTemplate
                 onChange={jest.fn()}
+                handleChange={jest.fn()}
                 onSubmit={jest.fn()}
+                required
                 email="trans@email.com"
             />
         );
