@@ -35,6 +35,9 @@ describe("Reset Password Form", () => {
         hash: "",
         search: "",
         state: undefined
+      },
+      history: {
+        push: jest.fn()
       }
     };
 
@@ -46,6 +49,8 @@ describe("Reset Password Form", () => {
     let useEffect;
 
     let wrapper;
+
+    let wrapperLoggedIn;
 
     const mockUseEffect = () => {
       useEffect.mockImplementationOnce(f => f());
@@ -116,7 +121,15 @@ describe("Reset Password Form", () => {
       expect(wrapper.find("form").length).toBe(1);
       done();
     });
-
+    
+    test("should test logged in access to forgotPassword", done => {
+      window.localStorage.getItem = () => true;
+      wrapperLoggedIn = renderResetPassword();
+      const { history } = wrapperLoggedIn.props();
+      const { push } = history;
+      expect(push).toHaveBeenCalledWith('/dashboard'); 
+      done();
+    });
   });
 
   describe("Errror in ResetFormTemplate, ResetEmailSentTemplate and PasswordResetFormTemplate", () => {
