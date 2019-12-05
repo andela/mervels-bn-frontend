@@ -72,7 +72,7 @@ export class Accommodations extends Component {
     paginate = (pageNumber) => this.setCurrentPage(pageNumber);
 
     submit = () => {
-        this.setState({ submitting: true }); 
+        this.setState({ submitting: true });
     }
 
     handleAuth = (user) => {
@@ -102,12 +102,12 @@ export class Accommodations extends Component {
         const items = total.slice(indexOfFirstRequest, indexOfLastRequest);
         const totalRequests = total.length;
 
-        const button = <Button buttonType='button' ButtonId='create-start' classes={`btn m-top-3 m-bottom-1 ${ isCreating ? 'btn-danger' : 'btn-primary' }`} text={isCreating? '✖ Close' : '✙ New Accommodation'} onClick={this.toggleCreating} />;
-        
+        const button = <Button buttonType='button' ButtonId='create-start' classes={`btn ${ isCreating ? 'btn-danger' : 'btn-primary' }`} text={isCreating? '✖ Close' : '✙ New Accommodation'} onClick={this.toggleCreating} />;
+
         return (
             <>
             <Meta title="Accommodations"/>
-                <div className='grid'>
+                <div className='grid b-box'>
                     <div className='col-10 offset-3'>
                         {isAllowed ? button : '' }
                     </div>
@@ -122,7 +122,7 @@ export class Accommodations extends Component {
                     <div className="col-3 acc-search" />
                     <div className="col-6 all-container">
                         {items.map((acc) =>
-                            <SingleAccommodation 
+                            <SingleAccommodation
                                 name={acc.name}
                                 likes={acc.likes}
                                 rooms={acc.rooms}
