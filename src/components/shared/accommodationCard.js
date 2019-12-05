@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 const accommodationCard = (props) => {
     const {id, name, url, handleImageClick} = props;
     return(<div className="acc-card col-3" onClick={()=>handleImageClick(id, name)}>
-        <img src={url || 'https://res.cloudinary.com/drayzii/image/upload/v1573796111/no-image-found-360x260_xvpnuj.png'} alt="Accommodation"/>
+        <img src={ url ? url[0] : 'https://res.cloudinary.com/drayzii/image/upload/v1573796111/no-image-found-360x260_xvpnuj.png'} alt="Accommodation"/>
 <p><a href={`/accommodation/${id}`}>{name}</a></p> 
     </div>);
 };
