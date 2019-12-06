@@ -47,7 +47,7 @@ class SignUpPage extends Component {
             }
         }
         this.setState((prev) => ({...prev, errors: { ...prev.errors, [target.name]: error } }));
-    }
+    };
 
     handleSubmit = async (event) => {
         event.preventDefault();
@@ -63,21 +63,33 @@ class SignUpPage extends Component {
 
     render() {
         const {firstName, lastName, userEmail, userPassword, confirm, errors} = this.state;
-        return ( <div className="signup-page m-top-5">
-            <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
-            <form className="signup-form" onSubmit = {this.handleSubmit}>
-            <Input placeholder="First Name" error={errors.firstName} required={{required: 'required'}} onChange={this.handleChange} name="firstName" classes="input full-width" inputType="text" value={firstName}/>
-            <Input placeholder="Last Name" error={errors.lastName} required={{required: 'required'}} onChange={this.handleChange} name="lastName" classes="input full-width" inputType="text" value={lastName}/>
-            <Input placeholder="Email" error={errors.userEmail} required={{required: 'required'}} onChange={this.handleChange} name= "userEmail" classes="input full-width" inputType="email" value={userEmail}/>
-            <Input placeholder="Password" error={errors.userPassword} required={{required: 'required'}} onChange={this.handleChange} name="userPassword" classes="input full-width" inputType="password" value={userPassword}/>
-            <Input placeholder="Confirm Password" error={errors.confirm} required={{required: 'required'}} onChange={this.handleChange} name="confirm" classes="input full-width" inputType="password" value={confirm}/>
-            <button type="submit" className="btn btn-primary signup-btn">Sign Up</button>
-            <div className="foot-message">Already have a Barefoot Nomad account? <a href="/login">Login</a></div>
-            </form>
-            <div className="center-small">OR</div>
-            <SocialAuth/>
-            
-        </div> );
+        return (
+            <div className="signup-page m-top-10 ">
+                <div className="grid">
+                    <div className="col-2" />
+                    <div className="col-4">
+                        <img alt="barefootNomad Logo" className="col-12 barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
+                        <form className="signup-form " onSubmit = {this.handleSubmit}>
+                            <Input placeholder="First Name" error={errors.firstName} required={{required: 'required'}} onChange={this.handleChange} name="firstName" classes="input full-width" inputType="text" value={firstName}/>
+                            <Input placeholder="Last Name" error={errors.lastName} required={{required: 'required'}} onChange={this.handleChange} name="lastName" classes="input full-width" inputType="text" value={lastName}/>
+                            <Input placeholder="Email" error={errors.userEmail} required={{required: 'required'}} onChange={this.handleChange} name= "userEmail" classes="input full-width" inputType="email" value={userEmail}/>
+                            <Input placeholder="Password" error={errors.userPassword} required={{required: 'required'}} onChange={this.handleChange} name="userPassword" classes="input full-width" inputType="password" value={userPassword}/>
+                            <Input placeholder="Confirm Password" error={errors.confirm} required={{required: 'required'}} onChange={this.handleChange} name="confirm" classes="input full-width" inputType="password" value={confirm}/>
+                            <button type="submit" className="btn btn-primary signup-btn">Sign Up</button>
+                        </form>
+                    </div>
+                    <div className="col-1 center-small">
+                        <h1 className="center-small">OR</h1>
+                    </div>
+                    <div className="col-3 sm-1">
+                        <SocialAuth/>
+                        <div className="foot-message">Already have a Barefoot Nomad account? <a href="/login">Login</a></div>
+                    </div>
+                    <div className="col-2" />
+                </div>
+
+
+            </div> );
     }
 };
 

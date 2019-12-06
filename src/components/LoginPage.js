@@ -101,7 +101,7 @@ export class LoginPage extends Component {
             <SocialAuth />
           </div>
           <div className="foot-message">
-            Dont have a Barefoot Nomad account? <a href="/">Sign up now!</a>
+          Dont have a Barefoot Nomad account? <a href="/signUp">Sign up now!</a>
           </div>
         </div>
       </div>

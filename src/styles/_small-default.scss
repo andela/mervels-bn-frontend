@@ -29,10 +29,33 @@ html {
   position: relative;
 }
 
+.signup-page {
+  .barefoot-logo {
+    width: 20%;
+    margin: 20px auto;
+    display: block;
+  }
+}
+
+.signup-form {
+  font-size: 15px;
+  width: auto;
+  .signup-btn {
+    width: 60%;
+    height: 30px;
+  }
+  input {
+    font-size: 13px;
+  }
+  .foot-message {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
 @mixin small-mobile-grid {
   .grid-sm {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
   }
   @for $x from 1 through 12 {
