@@ -224,6 +224,11 @@ $sides: (top, bottom, left, right);
   font-weight: 200;
 }
 
+.link-blue {
+  color: #306ad4;
+  text-decoration: underline;
+}
+
 @import "./traveReason.scss";
 @import "./travelDetails.scss";
 @import "./singleRequestManager.scss";
