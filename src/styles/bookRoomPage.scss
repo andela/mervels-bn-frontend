@@ -42,10 +42,15 @@
   justify-content: center;
   overflow-y: scroll;
   .acc-card {
+    width: 30%;
+    min-width: 300px;
     display: inline-block;
     margin: 20px;
     * {
       width: 100%;
+    }
+    img {
+      max-height: 30vh;
     }
   }
 }
