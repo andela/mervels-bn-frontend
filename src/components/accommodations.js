@@ -106,7 +106,7 @@ export class Accommodations extends Component {
         
         return (
             <>
-            <Meta title="Acommodations"/>
+            <Meta title="Accommodations"/>
                 <div className='grid'>
                     <div className='col-10 offset-3'>
                         {isAllowed ? button : '' }

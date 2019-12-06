@@ -99,7 +99,7 @@ export const Navbar = ({ history, location, role }) => {
   return (
     <>
       <nav className="navbar">
-        <a className="navbar-brand" href="/home">
+        <a className="navbar-brand" href="/dashboard">
           <img alt="BareFoot Nomad" src={logo} />
         </a>
         <ul className="menu-items">
