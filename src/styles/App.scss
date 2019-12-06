@@ -69,6 +69,20 @@ html {
     color: white;
   }
 }
+
+.a-pagination {
+  li {
+    margin: 1px;
+  }
+  li:hover {
+    background-color: #3773cc;
+    margin: 1px;
+    a {
+      color: white;
+    }
+  }
+}
+
 .active {
   background-color: #3773cc;
   a {
