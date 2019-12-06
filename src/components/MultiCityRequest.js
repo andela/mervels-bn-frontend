@@ -233,7 +233,7 @@ export class MultiCityRequest extends React.Component {
                                             this.handleChange(index, { target: { name: 'accommodation', value: name } });
                                         }}
                                     >
-                                        <img src={imageUrl || 'https://res.cloudinary.com/drayzii/image/upload/v1573796111/no-image-found-360x260_xvpnuj.png'}
+                                        <img src={ imageUrl ? imageUrl[0] : 'https://res.cloudinary.com/drayzii/image/upload/v1573796111/no-image-found-360x260_xvpnuj.png'}
                                             height='200' width='200' alt='accommodation'
                                         />
                                         <br />
