@@ -205,7 +205,10 @@ export class OneWayRequest extends React.Component {
                     {autofillInfo? <>
                         <input type='checkbox' id='toggle-checkbox' checked={autofill} onChange={this.toggleAutofill}/>
                         <span className='m-left-1 text-blue'>Autofill fields below from your profile</span>
-                    </> : '' }
+                    </> : <>
+                        <input disabled type='checkbox'/>
+                        <span className='text-blue'>Autofill fields below from your profile (Will be available when you fill your <a className='link-blue' href='/profile'>profile</a>) </span>
+                    </> }
                 </div>
                 <div className='col-4'>
                     Passport Name:<br />
