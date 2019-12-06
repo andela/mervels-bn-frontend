@@ -15,10 +15,10 @@ export default function Pagination({requestsPerPage, totalRequests, paginate, cu
     pageNumbers.push(index);
   }
   return (
-    <nav>
+    <nav className="a-pagination">
       <ul>
         {pageNumbers.map(number => (
-          <li key={number} className={currentPage === number ? "active": "notActive"}>
+          <li key={number} style={{display: 'inline'}}className={currentPage === number ? "active": "notActive"}>
             <a onClick={()=>paginate(number)}>
               {number}
             </a>
