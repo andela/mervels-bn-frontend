@@ -19,7 +19,7 @@ class ChatPane extends React.Component {
   }
 
   scrollToBottom = () => {
-    this.messagesEndRef.current.scrollIntoView();
+    this.messagesEndRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
   }
 
 
@@ -50,7 +50,7 @@ class ChatPane extends React.Component {
                 </div>
               </div>
             ))}
-           <div ref={this.messagesEndRef} />
+            <div ref={this.messagesEndRef} />
         </div>
         <form id="chat-form" onSubmit={handleSubmit}>
             <input type="text"
