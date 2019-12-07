@@ -6,3 +6,10 @@ storybook-static
 package-lock.json
 build
 .env
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/dictionaries/jonathanaurugai.xml
+.idea/mervels-bn-frontend.iml
+.idea/workspace.xml
