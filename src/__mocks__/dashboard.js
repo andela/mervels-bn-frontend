@@ -3,7 +3,7 @@ export const mostTravelled = {
     "id": 2,
     "name": "MARIOT",
     "status": "Unavailable",
-    "imageUrl": null,
+    "imageUrl": ["imageUrl"],
     "amenities": null,
     "locationId": 1,
     "description": "Cool Place to Stay",
@@ -12,6 +12,13 @@ export const mostTravelled = {
     "updatedAt": "2019-11-26T12:43:35.763Z",
     "Rooms": [],
     "Likes": [],
+    "Location": {
+        "city": "city",
+        "country": "country"
+    },
+    "Ratings": {
+        "averageRating": 1
+    },
     "Feedbacks": [],
     "requests": [
         {

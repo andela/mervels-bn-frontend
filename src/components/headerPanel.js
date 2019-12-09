@@ -8,14 +8,13 @@ export const  HeaderPanel = ({ title, onClick, onChange, holder, type, search })
   return (
     <div className="panel">
     <h4 className="title">{title}</h4>
-    <div className="page">Page</div>
+    <div className="page">Rows per Page</div>
     <div className="others">
         <input type="number" name="requestsPerPage" className="input select" onChange={onChange} />
     </div>
     <div className="word" id="all" role="presentation" onClick={() => onClick('ALL')} >ALL</div>
     <div className="word" id="pending" role="presentation" onClick={() => onClick('PENDING')} >PENDING</div>
     <div className="word" id="past" role="presentation" onClick={() => onClick('PAST')}>PAST</div>
-    <div><input type="button" value="NEW REQUEST" className="bnn btn btn-secondary" /></div>
     <div>
     <table className="search-table">
         <tbody>

@@ -17,7 +17,7 @@ describe('should test menu', () => {
         done();
     });
     it('should test when `Travel Admin` is passed as role', done => {
-        const response = menuCreator(location, Link, 'Travel Admin');
+        const response = menuCreator(location, Link, 'Travel Administrator');
         expect(response.menu).toHaveLength(3);
         expect(response.menuMobile).toHaveLength(3);
         done();

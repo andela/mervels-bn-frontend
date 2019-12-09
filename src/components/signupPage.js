@@ -83,7 +83,7 @@ class SignUpPage extends Component {
                     </div>
                     <div className="col-3 sm-1">
                         <SocialAuth/>
-                        <div className="foot-message">Already have a Barefoot Nomad account? <a href="/login">Login</a></div>
+                        <div className="foot-message">Already have a Barefoot Nomad account? <a href="/login"><span className="other-link">Login</span></a></div>
                     </div>
                     <div className="col-2" />
                 </div>

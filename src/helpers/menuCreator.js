@@ -58,7 +58,7 @@ export default  (location, Link, role) => {
             menu = [ ...defaultTemp.desktop, template.approvals ];
             menuMobile = [ ...defaultTemp.mobile, templateMobile.approvals ];
             break;
-        case 'Travel Admin':
+        case 'Travel Administrator':
             menu = [ ...defaultTemp.desktop ];
             menuMobile = [ ...defaultTemp.mobile ];
             break;
