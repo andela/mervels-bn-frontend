@@ -31,6 +31,9 @@ export const ResetFormTemplate = ({ handleChange, handleSubmit, email, submittin
 export const ResetEmailSentTemplate = ({ email }) => (
   <div>
     <p className="reset-form-paragraph">Kindly check your email: <strong>{email}</strong> for Password reset information</p>
+    <a href="/login">
+      <button className="btn btn-primary" text="LOG IN" type="button"> LOG IN</button>
+    </a>
   </div>
 );
 

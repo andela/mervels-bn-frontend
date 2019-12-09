@@ -47,7 +47,8 @@ const App = () => {
           <Route exact path="/">
             <Redirect to="/dashboard" />
           </Route>
-          <Route path="/forgotPassword" component={ResetPasswordPage} />
+          <Route exact path="/forgotPassword" component={ResetPasswordPage} />
+          <Route path="/resetPassword/:userId/:userToken" component={ResetPasswordPage} />
           <PrivateRoute  path="/dashboard" component={User(ManageDashboard)} />
           <Route path="/signUp" component={SignupPage} />
           <Route path="/call4verify" component={CallForVerify} />

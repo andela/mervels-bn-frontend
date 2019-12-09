@@ -1,12 +1,8 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable func-names */
-/* eslint-disable no-debugger */
 /* eslint-disable no-shadow */
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import propTypes from 'prop-types';
+import moment from 'moment';
 import io from 'socket.io-client';
 import {
   getNotifications,
@@ -34,28 +30,14 @@ export function NotificationPane({
   useEffect(() => {
     getNotifications();
 
-    socket.on("created", function(data) {
+    socket.on("created", (data)=> {
       if (data.userId === userId) {
         updateNotification(data);
       }
     });
   }, [getNotifications, userId, updateNotification]);
 
-  const formatDate = date => {
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit"
-    };
-    const newDate = new Date(date).toLocaleTimeString("en-us", options);
-
-    return newDate;
-  };
-
-  const handleReadAll = event => {
+  const handleReadAll = () => {
     markReadAll();
   };
 
@@ -102,7 +84,7 @@ export function NotificationPane({
                       data-read={`${notification.read}`}
                       data-request={`${notification.requestId}`}
                     >
-                      {formatDate(notification.createdAt)}
+                      {moment(notification.createdAt).fromNow()}
                     </span>
                   </div>
                 </div>
@@ -116,12 +98,9 @@ export function NotificationPane({
             )}
           </div>
           <div className="modal-footer">
-            <a href="#">
-              <span>View all notifications</span>
-            </a>
-            <a href="#" id="read-all" onClick={handleReadAll}>
+            <button className="notification-btn" type="button" id="read-all" onClick={handleReadAll}>
               <span>Mark all as read</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -135,6 +114,20 @@ const mapStateToProps = ({ notification, profile }) => {
     notifications: notification.notifications,
     userId: profile.data.userId
   };
+};
+
+NotificationPane.propTypes ={
+  getNotifications: propTypes.func.isRequired,
+  updateNotification: propTypes.func.isRequired,
+  markReadAll: propTypes.func.isRequired,
+  markOneAsRead: propTypes.func.isRequired,
+  handlePane: propTypes.func.isRequired,
+  notifications: propTypes.object.isRequired,
+  classes: propTypes.string.isRequired,
+  userId: propTypes.number.isRequired,
+  history: propTypes.objectOf({
+      push: propTypes.func.isRequired
+  }).isRequired
 };
 
 export default connect(

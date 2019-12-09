@@ -102,6 +102,7 @@
     "start:dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "deploy": "node deploy.js",
     "test": "jest --verbose --coverage",
     "test:cov": "jest --watchAll \"-- --coverage\"",

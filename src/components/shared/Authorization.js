@@ -76,6 +76,7 @@ export class WithAuthorization extends Component {
       if(!user.userRoles) {
         return (
           <div>
+            {navbar}
             <Spinner className='spinner-center' />
           </div>
         );
@@ -104,7 +105,7 @@ export class WithAuthorization extends Component {
       }
     }
   };
- 
+
   WithAuthorization.propTypes = {
     checkUser: PropTypes.func.isRequired,
     errors: PropTypes.object.isRequired,
@@ -114,7 +115,7 @@ export class WithAuthorization extends Component {
 
 
 export const Authorization =  (allowedRoles) => (WrappedComponent) => {
-  
+
 
   const mapStateToProps = ({  errors, authReducer }) => ({
     errors,
