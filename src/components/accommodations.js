@@ -124,7 +124,7 @@ export class Accommodations extends Component {
                         {items.map((acc) =>
                             <SingleAccommodation 
                                 name={acc.name}
-                                likes={acc.likes}
+                                likes={acc.Likes.length}
                                 rooms={acc.rooms}
                                 rating = {Math.round( acc.averageRating * 10 ) / 10}
                                 location={acc.location}
