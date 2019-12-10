@@ -28,6 +28,7 @@ export const enhanceRooms = (values) => {
         type={room.type}
         price={room.price}
         classes={classes}
+        key={room.id}
         />;
     });
 };
