@@ -58,6 +58,18 @@ describe('LoginPAGE', () => {
     );
     expect(mockLoginfn.mock.calls.length).toBe(1);
   });
+  test('should test invalid email or password', () => {
+    wrapper = shallow(<LoginPage {...props} />);
+    wrapper.setProps({ user: { error: 'Invalid email or password entered' } });
+    expect(wrapper.state().email).toBe('');
+    expect(wrapper.state().password).toBe('');
+  });
+  test('should test unknown error props', () => {
+    wrapper = shallow(<LoginPage {...props} />);
+    wrapper.setProps({ user: { error: 'x' } });
+    expect(wrapper.state().email).toBe('');
+    expect(wrapper.state().password).toBe('');
+  });
 });
 
 describe('Login dispatch actions', () => {
