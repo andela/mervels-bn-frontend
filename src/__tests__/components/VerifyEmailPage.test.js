@@ -62,7 +62,14 @@ describe("Verify Email component", () => {
         const {push} = wrapper.instance().props.history;
         expect(spinner).toHaveLength(0); 
         expect(push).toHaveBeenCalledTimes(1);
-        expect(localStorage.getItem('logged_in')).toEqual("true");
+        expect(localStorage.getItem('logged_in')).toEqual(true);
+    });
+
+    it("should not renser verify page from the url while logged in", () => {
+        localStorage.setItem("bareFootToken", "somegenericToken");
+        const wrapper = render();
+        const {push} = wrapper.instance().props.history;
+        expect(push).toHaveBeenCalledWith("/dashboard");
     });
 
     it("should handle the 401 error from the server", () => {
@@ -75,7 +82,6 @@ describe("Verify Email component", () => {
         const spinner = wrapper.find('div.pinner-center');
         const {push} = wrapper.instance().props.history;
         expect(spinner).toHaveLength(0); 
-        expect(push).toHaveBeenCalledTimes(1);
         expect(push).toHaveBeenCalledWith("/reverify"); 
     });
     
@@ -94,7 +100,7 @@ describe("Verify Email component", () => {
         expect(push).toHaveBeenCalledWith('/500');
     });
 
-    it("should render successfully", () => {
+    it("should handle other errors successfully", () => {
         const verifyData = {
             data: null,
             error: {status: 501},
@@ -106,7 +112,7 @@ describe("Verify Email component", () => {
         const logo = wrapper.find('.barefoot-logo');
         expect(logo).toHaveLength(1);
         expect(spinner).toHaveLength(0); 
-        expect(push).toHaveBeenCalledTimes(0);
+        expect(push).toHaveBeenCalledTimes(1);
     });
 
     it("should handle 409 from server and redirect to login", () => {
@@ -119,7 +125,6 @@ describe("Verify Email component", () => {
         const spinner = wrapper.find('div.pinner-center');
         const {push} = wrapper.instance().props.history;
         expect(spinner).toHaveLength(0); 
-        expect(push).toHaveBeenCalledTimes(1);
         expect(push).toHaveBeenCalledWith("/login");  
     });
     });

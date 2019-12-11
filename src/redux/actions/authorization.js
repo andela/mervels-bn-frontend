@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable import/prefer-default-export */
 import { AUTHORIZATION_SUCCESS, AUTHORIZATION_ERROR } from './actionTypes';
 import API from '../../config/axiosInstance';
