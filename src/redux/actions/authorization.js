@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import { AUTHORIZATION_SUCCESS } from './actionTypes';
+import { AUTHORIZATION_SUCCESS, AUTHORIZATION_ERROR } from './actionTypes';
 import API from '../../config/axiosInstance';
-import { handleError } from './errorActions';
 
 export const checkUser = () => async (dispatch) => {
     try {
@@ -19,6 +18,9 @@ export const checkUser = () => async (dispatch) => {
             }
         });
     } catch(error) {
-        dispatch(handleError(error));
+        dispatch({
+            type: AUTHORIZATION_ERROR,
+            payload: (error.response) ? error.response.data : {status: 500, message: 'Server error'}
+        });
     }
 };

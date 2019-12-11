@@ -19,6 +19,8 @@ const props = {
     }]
 };
 
+const description = 'this should be more than 150 characters or else it will set an error and wont submit trust me it wontthis should be more than 150 characters or else it will set an error and wont submit trust me it wont';
+
 const setUp = () => {
     return mount(<CreateAccommodation {...props} />);
 };
@@ -65,7 +67,7 @@ describe.only('Create Accommodation', () => {
         wrapper.find('Input[name="accName"]').simulate('change', {target: {name: "accName", value: "accName"}});
         wrapper.find('Select[name="location"]').props().onChange({ target: { name: 'location', value: 'location' } });
         wrapper.find('Input[name="serviceA"]').simulate('change', {target: {name: "serviceA", value: "serviceA"}});
-        wrapper.find('TextArea[name="description"]').props().onChange({ target: { name: 'description', value: 'description' } });
+        wrapper.find('TextArea[name="description"]').props().onChange({ target: { name: 'description', value: description } });
         wrapper.find('Input[name="amenityA"]').simulate('change', {target: {name: "amenityA", value: "amenityA"}});
         wrapper.find('input[name="images"]').simulate('change', {target: {name: "images", files: [file]}});
         wrapper.find('Button[ButtonId="submit-request"]').props().onClick({ target: { id: 'submit-request' } });
@@ -80,7 +82,7 @@ describe.only('Create Accommodation', () => {
       wrapper.find('TextArea[name="description"]').props().onChange({ target: { name: 'description', value: 'description' } });
       wrapper.find('Input[name="amenityA"]').simulate('change', {target: {name: "amenityA", value: "amenityA"}});
       wrapper.find('Button[ButtonId="submit-request"]').props().onClick({ target: { id: 'submit-request' } });
-      expect(wrapper.instance().state.requiredError).toBe('ALL * fields are required');
+      expect(wrapper.instance().state.requiredError).toBe('ALL * fields must be valid and are required');
     });
     it('should remove new amenity field', () => {
       wrapper = shallow(<CreateAccommodation {...props} />);

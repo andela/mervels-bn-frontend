@@ -37,20 +37,18 @@ export class WithAuthorization extends Component {
     }
 
     componentDidUpdate() {
-      const { authReducer, errors } = this.props;
-      if(authReducer){
-          this.changeState(authReducer);
+      const { authReducer } = this.props;
+      if(authReducer.user){
+          this.changeState(authReducer.user);
       }
-      if(errors) {
-          this.handleError(errors);
+      if(authReducer.error) {
+          this.handleError(authReducer.error);
       }
     }
 
     handleError = (errors) => {
         const { history } = this.props;
-        if(errors.message){
-            toast.error(errors.message);
-        }
+        toast.error(errors.message);
         if(errors.status === 401){
             localStorage.removeItem('bareFootToken');
             history.push('/login');
@@ -60,12 +58,10 @@ export class WithAuthorization extends Component {
         }
     }
 
-    changeState = (authReducer) => {
-        if(authReducer.user) {
-            this.setState({
-                user: authReducer.user
-            });
-        }
+    changeState = (user) => {
+      this.setState({
+          user,
+      });
     }
 
     render() {
@@ -108,7 +104,6 @@ export class WithAuthorization extends Component {
 
   WithAuthorization.propTypes = {
     checkUser: PropTypes.func.isRequired,
-    errors: PropTypes.object.isRequired,
     authReducer: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
@@ -117,8 +112,7 @@ export class WithAuthorization extends Component {
 export const Authorization =  (allowedRoles) => (WrappedComponent) => {
 
 
-  const mapStateToProps = ({  errors, authReducer }) => ({
-    errors,
+  const mapStateToProps = ({ authReducer }) => ({
     authReducer,
     allowedRoles,
     WrappedComponent
