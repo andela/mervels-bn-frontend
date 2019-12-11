@@ -118,6 +118,8 @@ export class Accommodations extends Component {
                     </div>
                 </div>
                 <div className="bg-img" />
+                <div className="black-container black-short" />
+                <p className='accommodation-title p-top-5 m-bottom-3'>Accommodations</p>
                 <div className="grid grid-sm">
                     <div className="col-3 acc-search" />
                     <div className="col-6 col-sm-12 all-container">

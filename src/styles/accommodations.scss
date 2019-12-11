@@ -8,7 +8,7 @@
   margin-top: 20px;
 }
 .bg-img {
-  height: 400px;
+  height: 360px;
   // width: 100%;
   position: absolute;
   width: 100%;
@@ -18,7 +18,13 @@
   z-index: -1;
   background-position: center center;
   background-image: url(https://res.cloudinary.com/dkabisw/image/upload/v1574511672/thailand_lgkk4e.jpg);
+  opacity: 0.5;
 }
+
+.black-short {
+  height: 360px;
+}
+
 .red {
   display: flex;
   height: 200px;
@@ -66,7 +72,7 @@
   color: orange;
 }
 .red:hover {
-  border: 1px solid black;
+  // border: 1px solid black;
   cursor: pointer;
 }
 .main-frame {
@@ -284,4 +290,14 @@
 }
 .map-form {
   margin-bottom: 35px;
+}
+
+.accommodation-title {
+  height: 100px;
+  color: white;
+  font-size: 30px;
+  text-align: center;
+  @include small {
+    margin-bottom: 50px;
+  }
 }

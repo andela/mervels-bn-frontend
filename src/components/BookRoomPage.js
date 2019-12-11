@@ -199,7 +199,9 @@ class BookRoom extends Component {
 
         return ( <div className = {`${classes}`} >
                 <Meta  title="Booking-Rooms"/>
-                <div className="book-title page-header text-center">Booking</div>
+                <div className="bg-img" />
+                <div className="black-container black-short" />
+                <p className='accommodation-title p-top-5 m-bottom-3'>Booking</p>
                 <div className = "bookcards-container">
                     {trips.map((trip, index) => (<BookCard trips={trips} handleGetRooms={this.handleGetRooms} selectedRooms={selectedRooms} availableRooms={availableRooms} displayRooms={this.displayRooms} rooms ={nonBookedRooms} handleFocus={this.handleFocus} key={trip.location.id} locationId={trip.location.id} handleChange={this.handleChange} parent={index} accommodations={acommodations} accommodation={selectedAcommodation || trip.accommodation} returnDate={trip.returnDate} travelDate={trip.travelDate} destination={`${trip.location.city} ${trip.location.country}`}/>))}
                 </div>

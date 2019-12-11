@@ -6,7 +6,7 @@ const SettingsCard = (props) => {
     const { title, children, handleSubmit, classes} = props;
     return(
     <>
-        <div className='roles-panel col-9 offset-3 m-bottom-3'>
+        <div className='roles-panel col-9 offset-3 m-bottom-3 settings'>
             <h3 className="title">{title}</h3>
             <div className="grid">
                 <form className={`col-9 offset-4 ${classes}`} onSubmit={handleSubmit}>
