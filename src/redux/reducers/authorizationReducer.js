@@ -1,7 +1,8 @@
-import { AUTHORIZATION_SUCCESS } from '../actions/actionTypes';
+import { AUTHORIZATION_SUCCESS, AUTHORIZATION_ERROR } from '../actions/actionTypes';
 
 const initialState = {
-  user: {}
+  user: null,
+  error: null
 };
 
 export default (state = initialState, action) => {
@@ -11,6 +12,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         user: payload.user,
+        error: null
+      };
+    case AUTHORIZATION_ERROR:
+      return {
+        ...state,
+        user: null,
+        error: payload
       };
     default:
       return state;

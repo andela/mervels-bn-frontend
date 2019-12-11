@@ -32,6 +32,12 @@ describe('signUp', () => {
         const wrapper = render();
         expect(wrapper).toHaveLength(1);
     });
+    it('should render the signup page', () => {
+        localStorage.setItem('bareFootToken', 'token');
+        const wrapper = render();
+        localStorage.removeItem('bareFootToken', 'token');
+        expect(wrapper).toHaveLength(1);
+    });
     it('should handle the validations', () => {
         const wrapper = render();
         const mainInput = wrapper.find("[name='firstName']");

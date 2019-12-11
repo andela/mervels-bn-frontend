@@ -6,7 +6,6 @@
 import * as types from "./actionTypes";
 
 export function networkError(error) {
-
   return {
     type: types.NETWORK_ERROR,
     errors: error

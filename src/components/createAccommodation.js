@@ -29,7 +29,8 @@ export class CreateAccommodation extends Component {
             maplocations: {
                 lat: null,
                 lng: null
-            }
+            },
+            error: ''
         };
     }
 
@@ -37,6 +38,17 @@ export class CreateAccommodation extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
+        if(e.target.name === 'description') {
+            if(e.target.value.length < 150) {
+                this.setState({
+                    error: 'The description has to be at least 150 characters'
+                });
+            } else {
+                this.setState({
+                    error: ''
+                });
+            }
+        }
     }
 
     readImages = (e) => {
@@ -100,7 +112,7 @@ export class CreateAccommodation extends Component {
     }
 
     handleSubmit = () => {
-        const { selectedImages, accName, amenities, amenityA, services, serviceA, description, location, maplocations } = this.state;
+        const { selectedImages, accName, amenities, amenityA, services, serviceA, description, location, maplocations, error } = this.state;
         const { submit } = this.props;
         const ml = Object.values(maplocations);
         if(!amenities
@@ -109,11 +121,12 @@ export class CreateAccommodation extends Component {
             || !amenityA 
             || !serviceA 
             || !description 
+            || error
             || !location 
             || !selectedImages
             || ml.includes(null)) {
                 this.setState({
-                    requiredError: 'ALL * fields are required'
+                    requiredError: 'ALL * fields must be valid and are required'
                 });
         } else {
             // eslint-disable-next-line no-unused-vars
@@ -152,7 +165,7 @@ export class CreateAccommodation extends Component {
     }
 
     render() {
-        const { amenities, services, accName, amenityA, serviceA, images, description, requiredError } = this.state;
+        const { amenities, services, accName, amenityA, serviceA, images, description, requiredError, error } = this.state;
         const { submitting } = this.props;
         let { maplocations } =this.state;
         const { locations } = this.props;
@@ -215,6 +228,7 @@ export class CreateAccommodation extends Component {
                 <div className='col-12 m-right-2'>
                     Description *:<br />
                     <TextArea name='description' value={description} onChange={(e) => this.handleChange(e)} error='' required/>
+                    <p className='form-error'>{error}</p>
                 </div>
                 <div className='col-12 m-right-2'>
                      <h3 className="text-center text-danger">{requiredError || ''}</h3>

@@ -26,6 +26,10 @@ class SignUpPage extends Component {
         };
     }
 
+    componentDidMount() {
+        this.checkLoggedIn();
+      }
+
     async componentWillReceiveProps(nextProps) {
         if (nextProps.user.data !==null) {
             nextProps.history.push("/call4verify");
@@ -60,6 +64,13 @@ class SignUpPage extends Component {
             button.innerHTML = "Wait ...";
         }
     }
+
+    checkLoggedIn = () => {
+        const token = localStorage.getItem("bareFootToken");
+        if (token !== null) {
+          window.location.href = '/';
+        }
+      };
 
     render() {
         const {firstName, lastName, userEmail, userPassword, confirm, errors} = this.state;
