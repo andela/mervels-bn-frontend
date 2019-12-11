@@ -274,6 +274,12 @@ it('should handle 401 error from server ', async () => {
             history: {push: jest.fn()},
             match:{ params:1},
             approveRejectAction: jest.fn(),
+            profile: {
+                data:{
+                    fristName:'Jonathan',
+                    lastName: 'Aurugai'
+                },
+            },
             getSingleRequest: () => ({ data: { request } })
         };
         const props = {...defaultProps, ...params };
@@ -296,6 +302,12 @@ it('should handle 401 error from server ', async () => {
         commentReducer: {
             comments:{},
             errors: null
+        },
+        profile: {
+            data:{
+                fristName:'Jonathan',
+                lastName: 'Aurugai'
+            },
         },
     });
     it('should render the the connected component', () => {

@@ -48,7 +48,7 @@ class CommentsCompoment extends Component {
 
     render() {
       const{ comment, markup, error } = this.state;
-      const { comments } =this.props;
+      const { comments, profile } =this.props;
       const obj = comments.comments;
       let display;
         if(Object.keys(obj).length === 0 && obj.constructor === Object){
@@ -63,12 +63,13 @@ class CommentsCompoment extends Component {
                 <em className="comment-details-time">{moment(item.createdAt).fromNow()}</em>
             </span>
                 <div className="comment-body" dangerouslySetInnerHTML={{__html: item.comment}} />
+                {item.User.firstName === profile.firstName?
                 <a className="comment-actions"
                   onClick={()=>this.removeComment(item.id)}
                   role="button"
                   tabIndex="0">
-                Delete
-                </a>
+                    Delete
+                </a>: ''}
           </div>
         );
         }
@@ -90,7 +91,12 @@ class CommentsCompoment extends Component {
     }
 }
 
-export const mapStateToProps = ({commentReducer}) => ({ comments: commentReducer });
+export const mapStateToProps = ({commentReducer, profile}) => ({
+  comments: commentReducer,
+  profile:{
+    firstName:profile.data.firstName,
+    lastName: profile.data.lastName
+  } });
 
 const mapDispatchToProps = {
   getComment,

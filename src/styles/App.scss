@@ -83,7 +83,7 @@ html {
   }
 }
 .other-link {
-  color: blue;
+  color: blue !important;
 }
 .active {
   background-color: #3773cc;
@@ -120,6 +120,9 @@ a {
 }
 .approved {
   background: greenyellow;
+}
+.pending {
+  background-color: orange;
 }
 .text-center {
   text-align: center;

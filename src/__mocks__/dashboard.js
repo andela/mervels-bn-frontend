@@ -16,9 +16,24 @@ export const mostTravelled = {
         "city": "city",
         "country": "country"
     },
-    "Ratings": {
-        "averageRating": 1
-    },
+    "Ratings": [
+        {
+            "id": 1,
+            "userId": 3,
+            "accommodationId": 2,
+            "rating": 4,
+            "createdAt": "2019-12-04T08:24:30.404Z",
+            "updatedAt": "2019-12-10T07:43:22.237Z"
+        },
+        {
+            "id": 2,
+            "userId": 5,
+            "accommodationId": 2,
+            "rating": 4,
+            "createdAt": "2019-12-04T11:37:57.560Z",
+            "updatedAt": "2019-12-04T11:37:57.560Z"
+        }
+    ],
     "Feedbacks": [],
     "requests": [
         {

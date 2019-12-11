@@ -5,7 +5,9 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 const CallForVerify = ()=> {
-        return (<div className="c4v">
+        return (
+            <div className="c4v-contianer">
+<div className="c4v">
             <img alt="barefootNomad Logo" className="barefoot-logo" src="https://res.cloudinary.com/bahati/image/upload/v1573114920/marvel_logo_fngq4h.png"/>
             <div className="call4verif-container">
                 <h4 className="c4v-title">Please verify your email</h4>
@@ -16,7 +18,9 @@ const CallForVerify = ()=> {
         <p className="notice-exp"><i className="fa fa-exclamation-triangle"/>The verification link is valid for 24 hours.</p>
         <Link to="/login" className="verify-ok"><button className="btn btn-primary" type="button">Ok</button></Link>
             </div>
-            </div>);
+            </div>
+            </div>
+);
     }; 
 
 

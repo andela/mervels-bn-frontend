@@ -11,6 +11,12 @@ describe('RequestView Component', () => {
           comments:{},
           error:null
       },
+      profile: {
+        data:{
+          firstName: "Jonathan",
+          lastName: "Aurugai",
+        },
+    },
       assignUser: jest.fn(),
       handleChange: jest.fn(),
       history: { push: jest.fn() },
@@ -105,15 +111,60 @@ describe('RequestView Component', () => {
                 },
                 error:null
             },
+            profile: {
+                firstName: "Jonathan",
+                lastName: "Aurugai",
+          },
             deleteComment: jest.fn()});
         wrapper.find('a').props().onClick();
         const {deleteComment} = wrapper.instance().props;
         expect(deleteComment).toHaveBeenCalledWith(1);
       });
+      it('should test handle remove comment for not', () => {
+        wrapper.setProps({
+            comments:{
+                comments:{
+                    message:"xxx",
+                    status:200,
+                    data:[{
+                        "id": 1,
+                        "user": 6,
+                        "comment": "Comment 7 anothero ne",
+                        "createdAt": "2019-11-23T13:43:16.856Z",
+                        "updatedAt": "2019-11-23T13:43:16.856Z",
+                        "User": {
+                            "id": 6,
+                            "firstName": "Jonathan",
+                            "lastName": "Aurugai",
+                            "userEmail": "marveldev53@gmail.com",
+                            "userPassword": "$2b$10$oUCucQnBRaYYcZS5kMy7o.ydnOHHA6k/w7sQ9r9L1STDnos6Fw1c2",
+                            "userRoles": "Manager",
+                            "accountVerified": true,
+                            "emailAllowed": true,
+                            "createdAt": "2019-11-11T05:13:44.695Z",
+                            "updatedAt": "2019-11-20T15:15:21.194Z"
+                        }
+                    }]
+                },
+                error:null
+            },
+            profile: {
+                firstName: "",
+                lastName: "",
+          },
+            deleteComment: jest.fn()});
+        // expect(wrapper.find('a').toHaveBeenCalledWith(1);
+      });
 
     it('should test the mapStateToProps for userRoles', () => {
         const initialState = {
             commentReducer:{},
+            profile: {
+              data:{
+                  fristName:'Jonathan',
+                  lastName: 'Aurugai'
+              },
+          },
             error: null
         };
         expect(mapStateToProps(initialState).comments).toEqual({});

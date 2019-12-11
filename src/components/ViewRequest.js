@@ -194,7 +194,10 @@ export class ViewRequest extends Component {
                 </div>
                 <div className="travel-reason-2-container col-7">
                     <TravelReason reason={payload.reason}/>
-                    <CommentsCompoment requestId={match.params.id}/>
+                    { payload.status === 'Pending' ?
+                        <CommentsCompoment requestId={match.params.id}/>
+                        : ''
+                    }
                 </div>
                 <div className='col-1' />
             </div> : 
