@@ -19,7 +19,7 @@ export const sendMessageSuccess = response =>{
 
 
 export const updateChatMessageSuccess = response =>{
-  debugger;
+
     return {
         type: GET_NEW_MESSAGES,
         data: response.data
