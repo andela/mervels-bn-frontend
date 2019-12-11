@@ -7,13 +7,12 @@ import Select from "./shared/Select";
 // import imagePlaceholder from "../assets/hotel_one.jpg";
 import Input from "./shared/input";
 import SingleAccommodation from './accommodation';
-import { enhanceRooms } from '../helpers/RoomClasses';
+import Meta from './shared/meta';
 
 class DashboardPage extends React.Component {
   render() {
     const { destination, trips, computePeriod, updateInput } = this.props;
     let single;
-    let rooms;
     if(destination.count > 0) {
       const accommodation = destination.destinations[0];
       const location = `${accommodation.Location.city} ${accommodation.Location.country}`;
@@ -28,53 +27,67 @@ class DashboardPage extends React.Component {
         imageUrl={accommodation.imageUrl}
         description={accommodation.description}
       />;
-      const displayRooms = accommodation.Rooms.slice(0, 2);
-      rooms = enhanceRooms(displayRooms);
     }
     return (
       <>
+      <Meta title="Dashboard"/>
       <div className="container">
+        <div className="bg-welcome" />
+        <div className="black-container" />
+        <div className='welcome p-top-5'>
+          <p className='m-bottom-3'>Barefoot Nomad</p>
+          <div className='grid grid-sm'>
+            <div className="col-3" />
+            <a href='/requests' className='card home-card col-3 col-sm-6 p-top-2'>
+              <i className="fab fa-wpforms"></i>
+              <br />
+              <p className='text-home-card m-top-1' href="/requests">
+                Go to your requests
+              </p>
+            </a>
+            <a href='/accommodations' className='card home-card col-3 col-sm-6 p-top-2'>
+              <i className="fas fa-hotel"></i>
+              <br />
+              <p className='text-home-card m-top-1' href="/requests">
+                View All Accommodations
+              </p>
+            </a>
+            <div className="col-3" />
+          </div>
+        </div>
         <div className="grid grid-sm">
-          <div className="col-6 offset-2 col-sm-12">
+          <div className="col-6 col-sm-12">
             <div className="dash-dest">
-              <span className="card-title">MOST TRAVELLED DESTINATION</span>
+              <span className="card-title m-left-1">MOST BOOKED ACCOMMODATION</span>
               <div className="card-body">
                 {single}
               </div>
             </div>
           </div>
-          <div className="col-5 col-sm-12 dash-dest">
-          <div className="dash-rooms">
-            <div className="rooms">
-                {rooms}
-            </div>
-        </div>
-          </div>
-          <div className="col-12" />
-        </div>
-        <div className="grid grid-sm dash-bottom">
-        <div className="col-8 offset-4 col-sm-12 center dash-stat">
-              <div className="card">
-              <span className="card-title">Find out your past trips statistics</span>
+          <div className='col-1' />
+          <div className="col-5 col-sm-12">
+            <div className="dash-dest">
+              <span className="card-title m-left-1">Find out your past trips statistics</span>
               <div className="filter">
                 <div className="filter-items">
-                  <Select
-                    name="parameter"
-                    onChange={updateInput}
-                    selected="years"
-                    ids={["days", "weeks", "months", "years"]}
-                    options={["days", "weeks", "months", "years"]}
-                    error=""
-                  />
-                </div>
-                <div className="filter-items">
-                  <Input
-                    name="value"
-                    onChange={updateInput}
-                    inputType="number"
-                    placeholder="Enter Value"
-                  />
-                </div>
+                  <div className="filter-items">
+                    <Select
+                      style={{ }}
+                      name="parameter"
+                      onChange={updateInput}
+                      selected="years"
+                      ids={["days", "weeks", "months", "years"]}
+                      options={["Days", "Weeks", "Months", "Years"]}
+                      error=""
+                    />
+                  </div>
+                    <Input
+                      name="value"
+                      onChange={updateInput}
+                      inputType="number"
+                      placeholder="Enter Value"
+                    />
+                  </div>
                 <div className="filter-items">
                   <Button
                     ButtonId="compute"
@@ -87,6 +100,9 @@ class DashboardPage extends React.Component {
               </div>
             </div>
           </div>
+          <div className="col-12" />
+        </div>
+        <div className="grid grid-sm dash-bottom m-bottom-3">
           <div className="col-4" />
           <div className="col-12 col-sm-11 offset-1">
           <span className="card-title">PREVIOUS TRIPS: {trips.total}</span>

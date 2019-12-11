@@ -49,6 +49,9 @@
   .main-modal {
     width: 90%;
   }
+  .side-info {
+    height: 520px !important;
+  }
 }
 
 body,
@@ -226,6 +229,10 @@ $sides: (top, bottom, left, right);
 .link-blue {
   color: #306ad4;
   text-decoration: underline;
+}
+
+.settings {
+  background-color: white;
 }
 
 @import "./traveReason.scss";

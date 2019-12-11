@@ -85,7 +85,9 @@ class ApprovalsPage extends React.Component{
             <Meta title="Approvals"/>
                 <div className="grid sm p-bottom-3">
                     <div className="col-10 offset-3">
-                    <h1 className="page-header text-center">Approvals Table</h1>
+                    <div className="bg-img" />
+                    <div className="black-container black-short" />
+                    <p className='accommodation-title p-top-5 m-bottom-5'>Pending Requests</p>
                    {display}
                     </div>
                 </div>

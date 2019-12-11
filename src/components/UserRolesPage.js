@@ -114,7 +114,9 @@ class UserRoles extends Component {
         const { role, email, errors, supplier,submittingSuplier } =this.state;
         return (
             <>
-                <h1 className="text-center m-top-2">Settings</h1>
+                <div className="bg-img" />
+                <div className="black-container black-short" />
+                <p className='accommodation-title p-top-5 m-bottom-3 offset-1'>Settings</p>
                 <div className="grid m-left-2 m-right-2 m-top-2">
                     <SettingsCard title="Roles Panel" handleSubmit={this.handleSubmit} classes='roles-form'>
                     <Input placeholder='Enter user email'

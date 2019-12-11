@@ -152,9 +152,12 @@ class RequestView extends React.Component{
                     holder={message} type={type} 
                     search={this.handleSearch}
                 />
+                <div className="bg-img" />
+                <div className="black-container black-short" />
+                <p className='accommodation-title p-top-5'>Your Requests</p>
                 <div className='grid'>
                     <div className='col-10 offset-3'>
-                        <Button buttonType='button' ButtonId='create-start' classes={`btn m-top-3 m-bottom-1 ${ isCreating ? 'btn-danger' : 'btn-primary' }`} text={isCreating? '✖ Close' : '✙ New Request'} onClick={this.toggleCreating} />
+                        <Button buttonType='button' ButtonId='create-start' classes={`btn m-bottom-1 ${ isCreating ? 'btn-danger' : 'btn-primary' }`} text={isCreating? '✖ Close' : '✙ New Request'} onClick={this.toggleCreating} />
                     </div>
                     <div className='col-2' />
                     { isCreating? <CreateRequest history={history} /> : ''}
