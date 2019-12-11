@@ -71,7 +71,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                     <td className="table-col" id={request.id}>{moment(request.returnDate).format("MMM Do YY") === 'Invalid date' ? '-' : moment(request.returnDate).format("MMM Do YY")}</td>
                     <td className="table-col" id={request.id}>
                         {request.status}
-                        <div id={request.id} className={request.status === 'Approved'? 'approved circle':'rejected circle'}/>
+                        <div id={request.id} className={`${getStatus(request.status)} circle`}/>
                 </td>
                 </tr>
             )}
