@@ -17,7 +17,7 @@ const props = {
         accommodations: [
             {
                 name: 'name',
-                likes : 2,
+                Likes : [ { id: 2 } ],
                 rooms: 1,
                 location: 'location',
                 id: 2,

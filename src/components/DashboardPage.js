@@ -19,7 +19,7 @@ class DashboardPage extends React.Component {
       const location = `${accommodation.Location.city} ${accommodation.Location.country}`;
       single = <SingleAccommodation 
         name={accommodation.name}
-        likes={accommodation.likes}
+        likes={accommodation.Likes.length}
         rooms={accommodation.Rooms.length}
         rating = {accommodation.Ratings.averageRating}
         location={location}
