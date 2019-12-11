@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -5,11 +6,11 @@ import React from 'react';
 
 export default  (location, Link, role) => {
     const links = {
-        dashboard: <Link to='/dashboard'>DASHBOARD</Link>,
-        requests: <Link to='/requests'>REQUESTS</Link>,
-        accommodations: <Link to='/accommodations'>ACCOMMODATIONS</Link>,
-        approvals: <Link to='/approvals'>PENDING REQUESTS</Link>,
-        settings: <Link to='/settings'>SETTINGS</Link>
+        dashboard: <a href='/dashboard'>DASHBOARD</a>,
+        requests: <a href='/requests'>REQUESTS</a>,
+        accommodations: <a href='/accommodations'>ACCOMMODATIONS</a>,
+        approvals: <a href='/approvals'>PENDING REQUESTS</a>,
+        settings: <a href='/settings'>SETTINGS</a>
     };
 
     const LinkMaker = ({ check, link }) => (<li
@@ -48,6 +49,7 @@ export default  (location, Link, role) => {
         desktop: [ template.dashboard, template.requests, template.accommodations ],
         mobile: [ templateMobile.dashboard, templateMobile.requests, templateMobile.accommodations ]
     };
+
 
     switch (role) {
         case 'Requester':

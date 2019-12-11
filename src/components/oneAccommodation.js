@@ -54,6 +54,7 @@ export class OneAccommodation extends Component {
         this.onReviewSuccess();
       }
       getAccommodation(match.params.id);
+
     }
 
     componentDidUpdate() {
@@ -67,7 +68,13 @@ export class OneAccommodation extends Component {
     }
 
     async componentWillReceiveProps(nextProps) {
-      const { like, feedback } = nextProps;
+      const { like, feedback, accommodation, history } = nextProps;
+
+      if(accommodation.error !== ''){
+        toast.error('Accommodation does not exist');
+        history.push('/accommodations');
+      }
+
       if (like) {
         switch (like.status) {
           case "like_success":
@@ -94,16 +101,16 @@ export class OneAccommodation extends Component {
           default:
             break;
         }
-      }  
+      }
     }
-  
+
 
     setRoom = (room) => {
         const { roomError, roomsList } = this.state;
         if(room.rooms){
             if(room.rooms !== roomsList) {
                 this.setState({ roomsList: room.rooms });
-                this.setState({ submitting: false }); 
+                this.setState({ submitting: false });
                 this.setState({ isCreating: false });
             }
         } else if (room.error) {
@@ -126,7 +133,7 @@ export class OneAccommodation extends Component {
     }
 
     submit = () => {
-        this.setState({ submitting: true }); 
+        this.setState({ submitting: true });
     }
 
     handleAuth = (user) => {
@@ -140,7 +147,7 @@ export class OneAccommodation extends Component {
             }
         }
     }
-    
+
     getUpdate = () => {
         const { getAccommodation, match } = this.props;
         getAccommodation(match.params.id);
@@ -184,25 +191,25 @@ export class OneAccommodation extends Component {
                 accommodation={acc.id}
                 likes={acc.likes}
                 liked={acc.liked}
-            />;    
+            />;
         }
         const addReview = (
           <ReviewComponent reviewError={reviewError} accommodation={acc.id} />
         );
-    
+
         let reviewsDisplay;
         if (acc.Feedbacks) {
           reviewsDisplay = acc.Feedbacks.map((review, index) => (
             <OneReviewComponent key={index} review={review} />
           ));
-        } 
+        }
         return (
             <>
             <Meta title="Accommodation"/>
             <div className="main-frame">
             <div className="main_container">
         <div className="grid grid-sm">
-            <div className="col-8  col-sm-12 details">  
+            <div className="col-8  col-sm-12 details">
                 <div className="top-title">
                     <h2>{acc.name}</h2>
                     <span className="location"><p>{location}</p></span>
@@ -215,7 +222,7 @@ export class OneAccommodation extends Component {
                         fullSymbol="fa fa-star fa-lg"
                         /> {(rating === undefined) ? 0: rating.averageRating} star
                     </div>
-                </div>  
+                </div>
                 <ImageGallery imageUrl={acc.imageUrl}/>
                 <div className="describe" dangerouslySetInnerHTML={{ __html: description }} />
                 <hr/>
@@ -226,7 +233,7 @@ export class OneAccommodation extends Component {
                 <div className="view-all" role="presentation" onClick={() => this.toggleModal()}>View All Amenites and Services</div>
                 <hr/>
             </div>
-            <div className="col-4 col-sm-12 side-info">  
+            <div className="col-4 col-sm-12 side-info">
                 <span className="hword"><h3>Location</h3></span>
                 <div className="map">
                     {map}
@@ -287,7 +294,7 @@ OneAccommodation.propTypes = {
     accommodation: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
 };
-  
+
 const mapStateToProps = ({ accommodation, addRooms, like, feedback }) => ({
     accommodation,
     addRooms,
