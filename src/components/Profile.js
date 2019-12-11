@@ -32,7 +32,8 @@ const Profile = ({
     submitting
 }) => {
     const disabled = (updating)? '' : 'disabled';
-    const buttonText = (updating)? 'Cancel' : 'Update';
+    const update = <><i className='fa fa-pencil m-right-1' />Update</>;
+    const buttonText = (updating)? 'Cancel' : update;
     return (
         <div className='grid p-top-5'>
             <div className='col-4 picture-form center'>
@@ -58,7 +59,7 @@ const Profile = ({
                     </div>
                     <div className='col-6'>
                         Birth Date:
-                        <Input inputType='date' name='birthDate' onChange={handleChange} error={errors.birthDate} disabled={disabled} />
+                        <Input inputType='date' value={birthDate} name='birthDate' onChange={handleChange} error={errors.birthDate} disabled={disabled} />
                     </div>
                     <div className='col-6'>
                         Gender:

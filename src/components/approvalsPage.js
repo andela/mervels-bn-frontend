@@ -43,8 +43,7 @@ class ApprovalsPage extends React.Component{
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)
 
     viewRequest = (e) => {
-        const { history } = this.props;
-        history.push(`/approvals/${e.target.id}`);
+        window.location.href = `/approvals/${e.target.id}`;
     }
 
     render(){

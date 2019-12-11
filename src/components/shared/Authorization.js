@@ -68,7 +68,7 @@ export class WithAuthorization extends Component {
       const { user } = this.state;
       const { authReducer, WrappedComponent, allowedRoles } = this.props;
       const { userRoles } = user;
-      const navbar = localStorage.getItem('bareFootToken') ? <Navbar role={userRoles} /> : '';
+      const navbar = localStorage.getItem('bareFootToken') ? <Navbar role={userRoles} id={user.id} /> : '';
       if(!user.userRoles) {
         return (
           <div>

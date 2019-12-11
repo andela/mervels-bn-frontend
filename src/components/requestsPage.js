@@ -83,8 +83,7 @@ class RequestView extends React.Component{
     }
 
     viewRequest = (e) => {
-        const { history } = this.props;
-        history.push(`/request/${e.target.id}`);
+        window.location.href = `/request/${e.target.id}`;
     }
 
     paginate = (pageNumber) => this.setCurrentPage(pageNumber)

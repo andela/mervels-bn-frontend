@@ -24,8 +24,7 @@ export function NotificationPane({
   markReadAll,
   markOneAsRead,
   handlePane,
-  classes,
-  history
+  classes
 }) {
   useEffect(() => {
     getNotifications();
@@ -47,9 +46,9 @@ export function NotificationPane({
     (read === 'false') ? markOneAsRead(id): '';
     handlePane();
     if( type === 'comment' && notification.search('The manager') === -1 ){
-      history.push(`/approvals/${request}`);
+      window.location.href = `/approvals/${request}`;
     } else {
-      history.push(`/request/${request}`);
+      window.location.href = `/request/${request}`;
     }
   };
 
@@ -108,11 +107,10 @@ export function NotificationPane({
   );
 }
 
-const mapStateToProps = ({ notification, profile }) => {
+const mapStateToProps = ({ notification }) => {
   return {
     unread: notification.unread,
-    notifications: notification.notifications,
-    userId: profile.data.userId
+    notifications: notification.notifications
   };
 };
 
@@ -124,10 +122,7 @@ NotificationPane.propTypes ={
   handlePane: propTypes.func.isRequired,
   notifications: propTypes.object.isRequired,
   classes: propTypes.string.isRequired,
-  userId: propTypes.number.isRequired,
-  history: propTypes.objectOf({
-      push: propTypes.func.isRequired
-  }).isRequired
+  userId: propTypes.number.isRequired
 };
 
 export default connect(

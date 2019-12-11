@@ -12,10 +12,10 @@ class DashboardPage extends React.Component {
     let single;
     if(destination.count > 0) {
       const accommodation = destination.destinations[0];
-      const totalrating = accommodation.Ratings
+      const totalrating = accommodation.Ratings.length > 0 ? accommodation.Ratings
       .map((rate) => rate.rating)
-      .reduce((prev, cur)=> prev + cur );
-      const rating = totalrating/accommodation.Ratings.length;
+      .reduce((prev, cur)=> prev + cur ) : 0;
+      const rating = totalrating ? totalrating/accommodation.Ratings.length : 0;
       const location = `${accommodation.Location.city} ${accommodation.Location.country}`;
       single = <SingleAccommodation 
         name={accommodation.name}

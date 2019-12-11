@@ -24,7 +24,7 @@ import ManageChatPane from "../chat/ManageChatPane";
 import { getProfile } from "../../redux/actions/profileAction";
 import menuCreator from "../../helpers/menuCreator";
 
-export const Navbar = ({ history, location, role }) => {
+export const Navbar = ({ history, location, role, id }) => {
   const classes = useStyles();
   const [showPane, setShowPane] = useState("hide");
   const [showChat, setShowChat] = useState('hide');
@@ -129,6 +129,7 @@ export const Navbar = ({ history, location, role }) => {
         </ul>
       </nav>
       <NotificationPane
+        userId={id}
         classes={showPane}
         handlePane={togglePane}
         history={history}
