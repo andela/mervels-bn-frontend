@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/self-closing-comp */
 import React from "react";
-// import Ratings from "./shared/Rating";
 import Button from "./shared/Button";
 import Select from "./shared/Select";
-// import imagePlaceholder from "../assets/hotel_one.jpg";
 import Input from "./shared/input";
 import SingleAccommodation from './accommodation';
 import Meta from './shared/meta';
@@ -15,12 +12,16 @@ class DashboardPage extends React.Component {
     let single;
     if(destination.count > 0) {
       const accommodation = destination.destinations[0];
+      const totalrating = accommodation.Ratings
+      .map((rate) => rate.rating)
+      .reduce((prev, cur)=> prev + cur );
+      const rating = totalrating/accommodation.Ratings.length;
       const location = `${accommodation.Location.city} ${accommodation.Location.country}`;
       single = <SingleAccommodation 
         name={accommodation.name}
         likes={accommodation.Likes.length}
         rooms={accommodation.Rooms.length}
-        rating = {accommodation.Ratings.averageRating}
+        rating = {rating}
         location={location}
         id={accommodation.id}
         key={accommodation.id}
@@ -39,14 +40,14 @@ class DashboardPage extends React.Component {
           <div className='grid grid-sm'>
             <div className="col-3" />
             <a href='/requests' className='card home-card col-3 col-sm-6 p-top-2'>
-              <i className="fab fa-wpforms"></i>
+              <i className="fab fa-wpforms"/>
               <br />
               <p className='text-home-card m-top-1' href="/requests">
                 Go to your requests
               </p>
             </a>
             <a href='/accommodations' className='card home-card col-3 col-sm-6 p-top-2'>
-              <i className="fas fa-hotel"></i>
+              <i className="fas fa-hotel"/>
               <br />
               <p className='text-home-card m-top-1' href="/requests">
                 View All Accommodations
@@ -137,7 +138,7 @@ class DashboardPage extends React.Component {
                           className={
                             trip.status === "Approved" ? "approved" : "rejected"
                           }
-                        ></span>
+                        />
                       </span>
                     </div>
                   </div>

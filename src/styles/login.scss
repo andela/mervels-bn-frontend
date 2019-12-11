@@ -52,8 +52,18 @@ $microscreen: 297px;
 
 .login-container {
   display: flex;
+  line-height: 30px;
   align-items: center;
   justify-content: center;
+  // background-image: url('../assets/bg1.png');
+  background-image: linear-gradient(
+      to bottom left,
+      rgba(#6eddf5, 0.8),
+      rgba(#6454f0, 0.8)
+    ),
+    url("../assets/bg1.png");
+  background-size: cover;
+  background-position: top;
   > div {
     width: 600px;
     text-align: center;
@@ -78,7 +88,7 @@ $microscreen: 297px;
     font-size: 15px;
     color: black;
     padding-left: 10px;
-    border: 1px solid #a5aab5;
+    border: 1px solid #7aaced;
     border-radius: 4px;
     @include medium {
       font-size: 10px;
@@ -111,13 +121,10 @@ $microscreen: 297px;
     width: 60%;
   }
   .foot-message {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 50px;
-    width: 100%;
-    padding-top: 10px;
-    background: color(back);
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
     @include medium {
       font-size: 10px;
     }

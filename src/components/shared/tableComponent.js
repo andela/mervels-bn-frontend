@@ -10,6 +10,19 @@ import TooltipComponent from './TooltipComponent';
 
 export default function TableComponent({ items, totalRequests, requestsPerPage, paginate, currentPage, route, viewRequest, destination }) {
     const classes = useStyles();
+    let status;
+    function getStatus(params) {
+        switch (params) {
+            case 'Approved':
+                return 'approved';
+            case 'Rejected':
+               return 'reject';
+            case 'Pending':
+               return 'pending';
+            default:
+                return null;
+    }
+    }
     return (
         <>
             <table className="table">
@@ -55,7 +68,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                         </li>)}</td>
                     <td className="table-col" id={request.id}>{moment(request.returnDate).format("MMM Do YY") === 'Invalid date' ? '-' : moment(request.returnDate).format("MMM Do YY")}</td>
                     <td className="table-col" id={request.id}>{request.status}
-                <div id="circle" className={request.status === 'Approved'? 'approved':'rejected'}></div>
+                <div id="circle" className={getStatus(request.status)}></div>
                 </td>
                 </tr>
             )}

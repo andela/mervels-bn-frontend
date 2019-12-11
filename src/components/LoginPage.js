@@ -96,7 +96,7 @@ export class LoginPage extends Component {
     const { password, email, submitting } = this.state;
     return (
       <div className="login-container">
-        <div className="local">
+        <div className="local bg-white">
           <img src={logo} alt="logo" />
           <form className="loginForm" onSubmit={this.handleSubmit}>
             <Input
@@ -116,15 +116,15 @@ export class LoginPage extends Component {
               required
             />
             <div className="forgot">
-              <a href="/forgotPassword">Forgot your password?</a>
+              <a href="/forgotPassword" className="other-link">Forgot your password?</a>
             </div>
             <Button ButtonId='login' classes='btnn btnn-primary log' text='LOGIN' buttonType='submit' submitting={submitting} onClick={this.handleSubmit} />
           </form>
           <div className="social">
             <SocialAuth />
-          </div>
-          <div className="foot-message">
+            <div className="foot-message">
           Dont have a Barefoot Nomad account? <a href="/signUp"><span className="other-link">Sign up now!</span></a>
+          </div>
           </div>
         </div>
       </div>

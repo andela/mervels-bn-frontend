@@ -25,12 +25,26 @@
     font-size: 13px;
   }
 }
+.sm-id {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(
+      to bottom left,
+      rgba(#6eddf5, 0.8),
+      rgba(#6454f0, 0.8)
+    ),
+    url("../assets/bg1.png");
+  background-size: cover;
+  background-position: top;
+}
+.bg-white {
+  background-color: rgba(10, 10, 10, 0.192);
+}
 
 .signup-page {
   form {
     margin-bottom: 0px;
-  }
-  .sep {
   }
 
   .barefoot-logo {
@@ -52,8 +66,15 @@
   }
 
   .foot-message {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 600;
     text-align: center;
+    color: white;
+  }
+  .hr-vertical {
+    height: 100%;
+    width: 1px;
+    background-color: rgb(56, 56, 56);
   }
 }
 
