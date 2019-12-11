@@ -104,7 +104,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
     "deploy": "node deploy.js",
-    "test": "jest --verbose --coverage",
+    "test": "jest --verbose --coverage -u",
     "test:cov": "jest --watchAll \"-- --coverage\"",
     "lint": "eslint .",
     "storybook:dev": "start-storybook -s ./src/stories/images",

@@ -12,7 +12,9 @@ const mockedComponent = class OneAccommodation extends Component {
       );
   }
 };
+let wrapper;
 describe('withAuthorization should render', () => {
+
   const allowedRoles = ['ADMIN', 'USER'];
   let withAuthorizationComponent;
   let AuthComponent;
@@ -29,31 +31,23 @@ describe('withAuthorization should render', () => {
     
   beforeEach(() => {
     AuthComponent = withAuthorizationComponent(mockedComponent);
-  });
-
-  beforeEach(() => {
     const middlewares = [thunk];
     const mockStore = configureMockStore(middlewares);
     store = mockStore({...props});
+    wrapper = mount(<AuthComponent store={store} {...props} />);
   });
   
-  it('wrapped component when user has role which is allowed', () => {
-    const wrapper = mount(<AuthComponent store={store} {...props} />);
+  test('wrapped component when user has role which is allowed', () => {
     expect(wrapper).not.toBe(null);
   });
 
-  it('wrapped component when user has role which is allowed', () => {
-    const wrapper = mount(<AuthComponent store={store} {...props} />);
+  test('wrapped component when user has role which is allowed', () => {
     wrapper.setProps({ authReducer: {user: {
         userRoles: 'ADMIN'
     }} });
     expect(wrapper).not.toBe(null);
   });
 });
-
-let wrapper;
-
-
 
 describe('Test enhanced component in isolation', () => {
   const props = {

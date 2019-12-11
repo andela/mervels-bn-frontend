@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 function ViewRoom({ name, type, price, classes }) {
     return (
-        <>
         <div className="one_card roomcard">
             <div className={classes[0]} />
             <div className={`room-info ${classes[1]}`}>
@@ -15,7 +14,6 @@ function ViewRoom({ name, type, price, classes }) {
                 <p>{price}USD/night</p>
             </div>
         </div>
-        </>
     );
 }
 ViewRoom.propTypes = {

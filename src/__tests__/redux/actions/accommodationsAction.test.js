@@ -40,7 +40,7 @@ describe('test Search Action', () => {
           },
         }
       };
-      moxios.wait(async () => {
+      moxios.wait(() => {
         const request = moxios.requests.mostRecent();
         request.respondWith({ status:200, response: { message: 'message', data: []}});
       });
