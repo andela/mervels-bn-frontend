@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
@@ -67,8 +69,9 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                             {moment(item).format("MMM Do YY")}
                         </li>)}</td>
                     <td className="table-col" id={request.id}>{moment(request.returnDate).format("MMM Do YY") === 'Invalid date' ? '-' : moment(request.returnDate).format("MMM Do YY")}</td>
-                    <td className="table-col" id={request.id}>{request.status}
-                <div id="circle" className={getStatus(request.status)}></div>
+                    <td className="table-col" id={request.id}>
+                        {request.status}
+                        <div id={request.id} className={request.status === 'Approved'? 'approved circle':'rejected circle'}/>
                 </td>
                 </tr>
             )}

@@ -36,7 +36,7 @@ export class ViewRequest extends Component {
 
     componentDidMount() {
         const { getSingleRequest: fetchRequest, match: { params }, history } = this.props;
-        if(!params.id) history.push('/requests');
+        if(!params.id || !Number.isInteger(Number(params.id))) history.push('/requests');
         fetchRequest(params.id);
     }
 

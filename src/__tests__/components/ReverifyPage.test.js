@@ -34,6 +34,14 @@ describe("ReVerify Email component", () => {
         expect(wrapper).toHaveLength(1); 
     });
 
+    it("should not render this page if logged in", ()=>{
+        const props = {history: {push: jest.fn()}};
+        localStorage.setItem('bareFootToken', 'generictoken');
+        const wrapper = render(props);
+        const {push} = wrapper.instance().props.history;
+        expect(push).toHaveBeenCalledWith('/dashboard');
+    });
+
     it("should handle the submission", () => {
         const wrapper = render();
         const event = { preventDefault: jest.fn() };
@@ -50,6 +58,7 @@ describe("ReVerify Email component", () => {
         const state= wrapper.instance().state; 
         expect(state.userEmail).toEqual('barefoot@nomad.com');
     });
+
     it("should handle successful reverification", () => {
         const reverifyData = {
             data: 'user token',
@@ -58,7 +67,6 @@ describe("ReVerify Email component", () => {
         const wrapper = render();
         wrapper.setProps({reverifyData});
         const {push} = wrapper.instance().props.history;
-        expect(push).toHaveBeenCalledTimes(1);
         expect(push).toHaveBeenCalledWith('/call4verify');
     });
 

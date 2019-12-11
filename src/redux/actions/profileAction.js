@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable no-param-reassign */
 import { GET_PROFILE, GET_PROFILE_ERROR, UPDATE_PROFILE, UPDATE_PROFILE_ERROR } from './actionTypes';
 import api from '../../config/axiosInstance';

@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import { toast } from 'react-toastify';
@@ -12,6 +13,13 @@ class VerifyPage extends Component {
         this.state = {  };
     }
 
+    async componentWillMount() {
+        const token = localStorage.getItem('bareFootToken');
+        if(token) {
+            this.props.history.push('/dashboard');
+        }
+    }
+
     componentDidMount() {
         const { location } = this.props;
         const token = location.search.split('?token=')[1];
@@ -19,16 +27,18 @@ class VerifyPage extends Component {
         if (token) {
             const {verify} = this.props;
             verify(token);
+        } else {
+            this.props.history.push('login');
         }
     }
 
-    componentWillReceiveProps(nextProps) {
+    async componentWillReceiveProps(nextProps) {
         const {verifyData} = nextProps;
         if(verifyData.data) {
             const {userToken} = verifyData.data;
             localStorage.setItem("bareFootToken", userToken);
-            localStorage.setItem("logged_in", "true");
-            nextProps.history.push("/dashboard");
+            localStorage.setItem("logged_in", true);
+            nextProps.history.push("/login");
             toast.success("Email verified successfully");
         } else {
             const {error} = verifyData;

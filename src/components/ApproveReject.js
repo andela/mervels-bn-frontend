@@ -29,14 +29,13 @@ class ApproveReject extends Component {
     }
 
     componentDidMount() {
-        // eslint-disable-next-line react/destructuring-assignment
-        const { location, singleRequest }  = this.props;
-        const requestId = location.pathname.split('approvals/')[1];
+        const { singleRequest, history, match: { params } }  = this.props;
+        if(!params.id || !Number.isInteger(Number(params.id))) history.push('/approvals');
         const {getSingleRequest} = this.props;
         if(singleRequest.data) {
             this.setState((prev) => ({...prev, request: singleRequest.data.request}));
         }
-        getSingleRequest(requestId);
+        getSingleRequest(params.id);
     }
 
     componentWillReceiveProps(nextProps) {

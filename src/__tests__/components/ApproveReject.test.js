@@ -123,7 +123,7 @@ describe('Approve Reject', () => {
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 401, message: 'some message'}, data: null}});  
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd'); 
+        localStorage.setItem('bareFootToken', 'abcd'); 
         expect(push).toHaveBeenCalledWith('/login');
     });
 
@@ -132,7 +132,7 @@ describe('Approve Reject', () => {
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 403, message: 'some message'}, data: null}});  
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd');
+        localStorage.setItem('bareFootToken', 'abcd');
         expect(push).toHaveBeenCalledWith('/AccessForbidden');
     });
         
@@ -141,7 +141,7 @@ describe('Approve Reject', () => {
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 404, message: 'some message'}, data: null}});  
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd');
+        localStorage.setItem('bareFootToken', 'abcd');
         expect(push).toHaveBeenCalledWith('/approvals');
     });
 
@@ -150,7 +150,7 @@ describe('Approve Reject', () => {
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 409, message: 'some message'}, data: null}});   
         const {history} = wrapper.instance().props; 
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd');
+        localStorage.setItem('bareFootToken', 'abcd');
         expect(push).toHaveBeenCalledWith('/approvals');
     });
 
@@ -159,25 +159,25 @@ describe('Approve Reject', () => {
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 500, message: 'some message'}, data: null}}); 
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd'); 
+        localStorage.setItem('bareFootToken', 'abcd'); 
         expect(push).toHaveBeenCalledWith('/500'); 
     });
 
     it('should handle other status error from server ', async () => {
-        const wrapper = render();  
+
+        const wrapper = render({match: {params: {id: 1}}});  
         wrapper.setProps({singleRequest: {}, approveReject: {error: {status: 501, message: 'some message'}, data: null}});   
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd');
         expect(push).toHaveBeenCalledTimes(0);
     });
 
     it('should handle successfull fetching of single request ', async () => {
         const wrapper = render();  
-        wrapper.setProps({singleRequest: {data: {status: 200, request}}, approveReject: {}});   
+        wrapper.setProps({singleRequest: {data: {status: 200, request}, error: null}, approveReject: {data: null}});   
         const {history} = wrapper.instance().props;
         const {push} = history;
-        expect(push).toHaveBeenCalledTimes(0);
+        expect(push).toHaveBeenCalledWith('/approvals');
     });
     
     it('should handle successfull fetching of single request with status not', async () => {
@@ -227,7 +227,7 @@ it('should handle 401 error from server ', async () => {
         wrapper.setProps({singleRequest: {error: {status: 500, request}}, approveReject: {}});
         const {history} = wrapper.instance().props;
         const {push} = history;
-        localStorage.setItem('barefootToken', 'abcd'); 
+        localStorage.setItem('bareFootToken', 'abcd'); 
         expect(push).toHaveBeenCalledWith('/500'); 
     });
 }); 
