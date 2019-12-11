@@ -6,7 +6,6 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import Badge from "@material-ui/core/Badge";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getProfile } from "../../redux/actions/profileAction";
 import {
   getNotifications
 } from "../../redux/actions/notificationActions";
@@ -19,12 +18,7 @@ export class Notifications extends React.Component {
   }
 
   componentDidMount() {
-    const { getProfile, getNotifications } = this.props;
-
-    // Gets User Profile
-    const { profile } = this.props;
-    if(profile.data.status !== '') getProfile();
-
+    const { getNotifications } = this.props;
     // Gets Users Notifications
     getNotifications();
   }
@@ -50,17 +44,14 @@ const mapStateToProps = ({ profile, notification }) => ({
 
 /** PropTypes  */
 Notifications.propTypes = {
-  getProfile: PropTypes.func.isRequired,
   getNotifications: PropTypes.func.isRequired,
   handlePane: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired,
   unread: PropTypes.number.isRequired,
 };
 export default connect(
   mapStateToProps,
   {
-    getProfile,
     getNotifications
   }
 )(Notifications);

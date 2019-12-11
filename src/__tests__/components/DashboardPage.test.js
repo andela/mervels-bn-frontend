@@ -3,16 +3,16 @@ import React from 'react';
 import {  mount } from 'enzyme';
 // import thunk from 'redux-thunk';
 // import configureStore from 'redux-mock-store';
-import { mostTravelled, trips } from "../../__mocks__/dashboard";
+import { mostTravelledRating, mostTravelledNoRating,trips } from "../../__mocks__/dashboard";
 import DashboardPage from "../../components/DashboardPage";
 
 // const mockedStore = configureStore([thunk]);
 
 
 describe('DashboardPage Should Render', ()=>{
-    const render = (params, fn=mount) => {
+    const render = (destination, params, fn=mount) => {
         const defaultProps = {
-            destination: {destinations: [mostTravelled], count: 2},
+            destination: {destinations: [destination], count: 2},
             trips: {total: 2, trips} ,
             computePeriod: jest.fn(),
             updateInput: jest.fn(),
@@ -23,9 +23,16 @@ describe('DashboardPage Should Render', ()=>{
         };
 
     it('Should render the DashboardPage', done =>{
-        const wrapper = render();
+        const wrapper = render(mostTravelledRating);
         expect(wrapper).toHaveLength(1);
 
+        done();
+    });
+
+    it('Should render the DashboardPagejhkjhjkhk', done =>{
+        const wrapper = render(mostTravelledNoRating);
+        console.log(wrapper.instance().props);
+        expect(wrapper).toHaveLength(1);
         done();
     });
 });

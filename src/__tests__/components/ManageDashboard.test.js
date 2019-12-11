@@ -5,7 +5,7 @@ import { shallow, mount } from "enzyme";
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import ManageDashboard,  { ManageDashboard as Dashboard } from "../../components/ManageDashboard";
-import { mostTravelled, trips } from "../../__mocks__/dashboard";
+import { trips, mostTravelledRating } from "../../__mocks__/dashboard";
 
 
 const middlewares = [thunk];
@@ -29,7 +29,7 @@ describe('with store', ()=>{
     beforeEach(()=>{
          store = mockStore({
              dashboard: {
-                mostTravelled: {count: 1, destinations: [mostTravelled] },
+                mostTravelled: {count: 1, destinations: [mostTravelledRating] },
                 tripStats: {total: 2, trips }
              }
         });
