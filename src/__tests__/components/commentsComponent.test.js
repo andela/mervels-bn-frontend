@@ -33,6 +33,7 @@ describe('RequestView Component', () => {
         getComment={jest.fn()}
         postComment={jest.fn()}
         requestId={1}
+        status='Pending'
         />,
       );
     });

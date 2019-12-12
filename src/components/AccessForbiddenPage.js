@@ -13,7 +13,7 @@ function AccessForbiddenPage(props) {
                     Forbidden<span className="blink">_</span>
                 </div>
                 <div className="txt m-top-2">
-                    <a href="/home">Go home</a>
+                    <a href="/dashboard">Go home</a>
                 </div>
             </div>
         </>

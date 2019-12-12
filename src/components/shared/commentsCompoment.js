@@ -48,7 +48,7 @@ class CommentsCompoment extends Component {
 
     render() {
       const{ comment, markup, error } = this.state;
-      const { comments, profile } =this.props;
+      const { comments, profile, status } =this.props;
       const obj = comments.comments;
       let display;
         if(Object.keys(obj).length === 0 && obj.constructor === Object){
@@ -77,10 +77,12 @@ class CommentsCompoment extends Component {
             <>
                     <div className="comment-container">
                     <h3 className="comment-title">Comments</h3>
-                    <form onSubmit={this.handleSubmit}>
-                      <TextArea value={comment} markup={markup} name='comment' onChange={(e) => this.handleChange(e)} error='' />
-                      <button className="btn btn-secondary" type="submit">Add Comment</button>
-                    </form>
+                    { status === 'Pending'?
+                      <form onSubmit={this.handleSubmit}>
+                        <TextArea value={comment} markup={markup} name='comment' onChange={(e) => this.handleChange(e)} error='' />
+                        <button className="btn btn-secondary" type="submit">Add Comment</button>
+                      </form> : ''
+                    }
                     <div className="comments">
                     {display}
                     </div>

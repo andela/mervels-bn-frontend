@@ -73,16 +73,15 @@ class BookRoom extends Component {
                     history.push('/login');
                 } else if(status === 403) {
                     toast.error(message);
-                    history.push('/home');
+                    history.push('/dashboard');
                 } else if(status === 404) {
                     toast.error(message);
                     history.push('/requests');
                 } else if(status === 409){
                     toast.error(message);
-                    history.push('/home');
+                    history.push('/requests');
                 } else {
                     toast.error(message);
-                    history.push('/home');
                 }
             }
         }
