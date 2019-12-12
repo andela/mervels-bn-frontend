@@ -75,7 +75,7 @@ describe('Accommodations Reducers', () => {
     const payload = {
       status: 200,
       user: {
-          role: 'supplier',
+          role: 'Accommodation Supplier',
           id: 2
       },
       accommodations: [

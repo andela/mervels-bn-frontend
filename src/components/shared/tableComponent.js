@@ -65,7 +65,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
                     </td>
                     <td className="table-col" id={request.id}>
                         {request.travelDate.map((item, _index) =>
-                        <li key={_index.toString()}>
+                        <li id={request.id} key={_index.toString()}>
                             {moment(item).format("MMM Do YY")}
                         </li>)}</td>
                     <td className="table-col" id={request.id}>{moment(request.returnDate).format("MMM Do YY") === 'Invalid date' ? '-' : moment(request.returnDate).format("MMM Do YY")}</td>

@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
   const { type, payload} = action;
   switch (type) {
     case GET_ACCOMMODATIONS_SUCCESS:
-      if(payload.user.role === 'supplier') {
+      if(payload.user.role === 'Accommodation Supplier') {
         const supAccommodations = payload.accommodations.filter((acc) => acc.owner === payload.user.id );
         return {
           ...state,

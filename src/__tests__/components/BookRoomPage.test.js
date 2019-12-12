@@ -73,7 +73,7 @@ describe('Unit tests', ()=>{
         const wrapper = render();
         wrapper.setProps({bookedroom: {error: {status: 403, message: 'error message'}, data: null}});
         const {push} = wrapper.instance().props.history;
-        expect(push).toHaveBeenCalledWith('/home');
+        expect(push).toHaveBeenCalledWith('/dashboard');
     });
 
     it('should handle 404 errors', () => {
@@ -87,14 +87,14 @@ describe('Unit tests', ()=>{
         const wrapper = render();
         wrapper.setProps({bookedroom: {error: {status: 409, message: 'error message'}, data: null}});
         const {push} = wrapper.instance().props.history;
-        expect(push).toHaveBeenCalledWith('/home');
+        expect(push).toHaveBeenCalledWith('/requests');
     });
 
     it('should handle 500 and other errors', () => {
         const wrapper = render();
         wrapper.setProps({bookedroom: {error: {status: 500, message: 'error message'}, data: null}});
         const {push} = wrapper.instance().props.history;
-        expect(push).toHaveBeenCalledWith('/home');
+        expect(push).toHaveBeenCalledTimes(0);
     });
     it('should handle cancel and go the previous page', () => {
         const wrapper = render();
