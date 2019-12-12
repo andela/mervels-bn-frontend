@@ -18,7 +18,7 @@ export default function TableComponent({ items, totalRequests, requestsPerPage, 
             case 'Approved':
                 return 'approved';
             case 'Rejected':
-               return 'reject';
+               return 'rejected';
             case 'Pending':
                return 'pending';
             default:
