@@ -32,7 +32,6 @@ export function ResetPasswordPage({
   userId,
   userToken,
   errors,
-  message,
   history
 }) {
   if(localStorage.getItem('bareFootToken')) {
@@ -144,7 +143,7 @@ function mapStateToProps({ resetPassword, errors }, ownProps) {
     userId,
     userToken,
     errors,
-    message: resetPassword.message
+    // message: resetPassword.message
   };
 }
 
@@ -154,7 +153,6 @@ ResetPasswordPage.propTypes = {
   resetPassword: PropTypes.func.isRequired,
   userId: PropTypes.string,
   userToken: PropTypes.string,
-  message: PropTypes.string,
   errors: PropTypes.object,
   history: PropTypes.object
 };
