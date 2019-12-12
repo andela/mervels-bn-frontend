@@ -8,6 +8,6 @@ addParameters({
     }
 })
 addDecorator(withInfo({
-inline: true
+inline: true,
 }));
 configure(require.context('../src/stories', true, /\.stories\.js$/), module);
