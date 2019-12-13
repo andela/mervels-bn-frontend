@@ -1,0 +1,53 @@
+@import "./variables";
+
+.navbar {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color: $primaryColor;
+  color: $navbarFontColor;
+  box-shadow: 0 0 15px #00000030;
+}
+
+.root {
+  margin: 16px;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: 500;
+  color: white;
+}
+.navbar > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu-item {
+  a {
+    cursor: pointer;
+    color: rgb(230, 230, 230);
+  }
+}
+
+.menu-item-active {
+  margin-bottom: -5px;
+  border-bottom: 3px rgb(255, 255, 255) solid;
+  a {
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+  }
+}

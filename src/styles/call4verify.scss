@@ -1,0 +1,118 @@
+.call4verif-container {
+  border: 0.5px solid whitesmoke;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 15px #00000030;
+  line-height: 40px;
+  border-radius: 6px;
+  .c4v-title {
+    display: inline;
+    margin: auto;
+    font-size: 30px;
+  }
+  text-align: center;
+  p {
+    font-size: 16px;
+  }
+}
+.c4v-contianer {
+  background-image: linear-gradient(
+      to bottom left,
+      rgba(#6eddf5, 0.8),
+      rgba(#6454f0, 0.8)
+    ),
+    url("../assets/bg1.png");
+  background-size: cover;
+  background-position: top;
+}
+.c4v {
+  width: 100%;
+  height: 100vh;
+  padding: 50px;
+  font-size: 20px;
+  .notice-exp {
+    color: #7d7d7d;
+  }
+
+  .barefoot-logo {
+    width: 10%;
+    display: block;
+    margin: 20px auto;
+  }
+  .verify-ok {
+    display: block;
+    width: 20%;
+    margin: auto;
+    button {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .c4v {
+    width: 85%;
+    margin: 20px auto;
+    font-size: 20px;
+    .notice-exp {
+      color: #7d7d7d;
+    }
+
+    .barefoot-logo {
+      width: 20%;
+      display: block;
+      margin: 20px auto;
+    }
+    .c4v-title {
+      font-size: 25px;
+    }
+    .verify-ok {
+      display: inline-block;
+      width: 40%;
+      margin: auto;
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+      }
+    }
+  }
+}
+.error-num {
+  font-size: 70px;
+}
+@media screen and (max-width: 400px) {
+  .c4v {
+    width: 100%;
+    margin: 20px auto;
+    font-size: 20px;
+    .notice-exp {
+      color: #7d7d7d;
+    }
+    .call4verif-container {
+      width: 100%;
+      margin: 0px;
+      padding: 0px;
+    }
+    .barefoot-logo {
+      width: 28%;
+      display: block;
+      margin: 20px auto;
+    }
+    .c4v-title {
+      font-size: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
+    .verify-ok {
+      display: block;
+      width: 50%;
+      button {
+        display: inline-block;
+        width: 100%;
+        margin: 0px;
+      }
+    }
+  }
+}

@@ -1,0 +1,84 @@
+.single-request-container {
+  width: 70%;
+  margin: auto;
+  margin-top: 5vh;
+}
+
+@media screen and (max-width: 800px) {
+  .single-request-container {
+    width: 95%;
+  }
+
+  .travel-reacon-container {
+    .title {
+      width: 90%;
+    }
+  }
+}
+
+.manager-options {
+  padding: 0px 5px;
+  i {
+    color: $primaryColor;
+    cursor: pointer;
+    span {
+      font-family: sans-serif;
+    }
+  }
+  i:hover {
+    opacity: 0.8;
+  }
+}
+
+.txt-reason-comment {
+  border: none;
+  line-height: 15px;
+  height: 50px;
+  font-size: 14px;
+  resize: none;
+}
+
+.manager-actions-container {
+  margin-left: 10px;
+  display: inline-flex;
+  align-content: space-between;
+}
+
+.visible {
+  display: block;
+  position: relative;
+}
+
+.hidden {
+  display: none;
+  position: relative;
+}
+
+.back-approvals {
+  display: inline-flex;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-weight: 500;
+  text-decoration: none;
+  color: $primaryColor;
+}
+
+.back-approvals:hover {
+  opacity: 0.8;
+}
+
+.reason {
+  box-shadow: $shadow;
+  .txt-reason-comment {
+    border-top: 1px solid whitesmoke;
+    border-left: 1px solid whitesmoke;
+    width: 96%;
+    padding: 5px;
+    height: 80px;
+  }
+  .reason-error {
+    color: red;
+    margin-left: 5px;
+  }
+}

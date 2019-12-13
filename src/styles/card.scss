@@ -1,0 +1,137 @@
+$Mediumscreen: 413px;
+$SmallScreen: 551px;
+
+@mixin medium {
+  @media (max-width: #{$Mediumscreen}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: #{$SmallScreen}) {
+    @content;
+  }
+}
+.card {
+  height: 16rem;
+  margin: 10px 40px;
+  padding: 0.2rem 0.2rem;
+  background-color: white;
+  box-shadow: 0 0 15px #00000030;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+
+  @include medium() {
+    margin: 0;
+  }
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card-body {
+  // height: 100%;
+  // width: 100%;
+  width: 100%;
+  height: 100%;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.card-details {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+
+  h2,
+  p {
+    display: block;
+    margin: 1px 0;
+  }
+}
+
+.card-title {
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.card-info-item {
+  display: block;
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  align-items: center;
+  // margin: 5px 0;
+
+  .label {
+    width: 40%;
+    display: block;
+    // border: 1px solid red;
+    font-weight: bold;
+    color: #333333;
+    text-align: left;
+    margin-left: 20px;
+  }
+
+  .label-item {
+    width: 50%;
+    display: block;
+    // border: 1px solid green;
+    text-align: left;
+  }
+}
+
+.card-info-item:last-child {
+  margin: 10px 0;
+}
+.card-info-item:nth-child(2),
+.card-info-item:nth-child(3),
+.card-info-item:nth-child(4) {
+  margin: 10px 0;
+}
+.card-lable {
+  font-weight: bold;
+  font-size: 15px;
+}
+.cicle {
+  background-color: yellow;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.b-black {
+  border: 1px solid black;
+}
+
+.b-green {
+  border: 1px solid green;
+}
+
+.card-image {
+  // height: 100%;
+  // width: 50%;
+  width: 100%;
+  height: 60%;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @include small {
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.card-footer {
+  width: 100%;
+}
+
+.gold {
+  color: gold;
+}

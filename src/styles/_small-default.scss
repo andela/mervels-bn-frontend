@@ -1,0 +1,69 @@
+/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/*  apply a natural box layout model to all elements  */
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin small-grid {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+}
+
+.large {
+  padding: 12px 30px;
+}
+
+.sidebar {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.signup-page {
+  .barefoot-logo {
+    width: 20%;
+    margin: 20px auto;
+    display: block;
+  }
+}
+
+.signup-form {
+  font-size: 15px;
+  width: auto;
+  .signup-btn {
+    width: 60%;
+    height: 30px;
+  }
+  input {
+    font-size: 13px;
+  }
+  .foot-message {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+@mixin small-mobile-grid {
+  .grid-sm {
+    display: grid;
+    grid-gap: 10px;
+  }
+  @for $x from 1 through 12 {
+    .col-sm-#{$x} {
+      grid-column: span #{$x} / auto;
+      display: inline-block;
+    }
+  }
+}
+
+@include small-mobile-grid;

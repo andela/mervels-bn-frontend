@@ -1,0 +1,243 @@
+@import "variables";
+@import "./login.scss";
+@import "index";
+
+@import "reset";
+
+@import "small-default";
+@import "table.scss";
+@import "buttons.scss";
+@import "navbar.scss";
+@import "card.scss";
+@import "input";
+@import "profile";
+@import "./styles.scss";
+@import "./signup.scss";
+@import "./call4verify.scss";
+@import "./reverify.scss";
+@import "./verify.scss";
+@import "./notification.scss";
+@import "./sidebar.scss";
+@import "./tooltip.scss";
+@import "./dashboard.scss";
+@import "text-area";
+@import "multicity";
+@import "confirmModal";
+@import "request";
+@import "./sidebar.scss";
+@import "./role.scss";
+@import "comments.scss";
+@import "chat.scss";
+@import "./accommodations";
+@import "./profile-menu.scss";
+@import "./bookCard.scss";
+@import "./bookRoomPage.scss";
+@import "./accommodationCard.scss";
+@import "./menu.scss";
+
+@media only screen and (min-width: 560px) {
+  @import "medium";
+} // end media query
+
+@media only screen and (min-width: 1140px) {
+  @import "large";
+} // end media query
+
+@media only screen and (max-width: 560px) {
+  @import "small-default";
+  @import "./navbar-mobile.scss";
+  .main-modal {
+    width: 90%;
+  }
+  .side-info {
+    height: 520px !important;
+  }
+}
+
+body,
+html {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.active {
+  background-color: #3773cc;
+  a {
+    color: white;
+  }
+}
+
+.a-pagination {
+  li {
+    margin: 1px;
+  }
+  li:hover {
+    background-color: #3773cc;
+    margin: 1px;
+    a {
+      color: white;
+    }
+  }
+}
+.other-link {
+  color: blue !important;
+}
+.active {
+  background-color: #3773cc;
+  a {
+    color: white;
+  }
+}
+li {
+  list-style: none;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+a {
+  text-decoration: none;
+  margin: 0 2px 0 2px;
+  color: rgb(87, 85, 85);
+  cursor: pointer;
+}
+
+.backdrop {
+  background: #eceaea;
+  padding: 12px 0;
+  box-shadow: 0 0 15px #00000030;
+}
+.circle {
+  width: 10px;
+  height: 10px;
+  margin-left: 8px;
+  display: inline-block;
+  border-radius: 50%;
+}
+.rejected {
+  background: red;
+}
+.approved {
+  background: greenyellow;
+}
+.pending {
+  background-color: orange;
+}
+.text-center {
+  text-align: center;
+}
+.text-danger {
+  color: red;
+}
+
+.page-header {
+  margin: 20px 0;
+}
+
+$sides: (top, bottom, left, right);
+
+@mixin padding-and-margin {
+  @for $i from 1 through 20 {
+    @each $side in $sides {
+      .m-#{$side + "-" + $i} {
+        margin-#{$side}: #{$i * 10}px;
+      }
+      .p-#{$side + "-" + $i} {
+        padding-#{$side}: #{$i * 10}px;
+      }
+    }
+  }
+  @for $i from 1 through 20 {
+    .m-#{$i} {
+      margin: #{$i * 10}px;
+    }
+    .p-#{$i} {
+      padding: #{$i * 10}px;
+    }
+  }
+}
+
+@include padding-and-margin;
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.text-blue {
+  color: #3579f7;
+}
+
+.white {
+  background-color: white;
+  box-shadow: 0 0 15px #00000030;
+  border-radius: 3px;
+}
+
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  margin: 5px;
+}
+
+.checkbox-text {
+  margin-left: 5px;
+}
+
+.likes-container {
+  line-height: 20px;
+}
+
+.likes-number {
+  font-size: 0.9em;
+  margin-bottom: 3px;
+}
+
+.not-liked {
+  color: #333333;
+  cursor: pointer;
+}
+
+.liked {
+  color: #306ad4;
+  cursor: pointer;
+}
+
+.reviews-title {
+  color: gray;
+}
+
+.one-review {
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 0 5px 0 #00000030;
+}
+
+.rating-container {
+  display: flex;
+  color: orange;
+  margin: 6px;
+}
+
+.starsCount {
+  padding: 10px;
+  font-weight: 200;
+}
+
+.link-blue {
+  color: #306ad4;
+  text-decoration: underline;
+}
+
+.settings {
+  background-color: white;
+}
+
+@import "./traveReason.scss";
+@import "./travelDetails.scss";
+@import "./singleRequestManager.scss";

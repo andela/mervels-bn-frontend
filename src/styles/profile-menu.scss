@@ -1,0 +1,69 @@
+.profile-menu-pane {
+  margin: -15px auto 0 auto;
+  border-radius: 5px;
+  width: 100vw;
+  height: 100vh;
+  padding: 2px;
+  text-align: left;
+  position: absolute;
+  z-index: 4;
+}
+
+.showProfileMenu {
+  opacity: 1;
+  background-color: transparent;
+}
+
+.hideProfileMenu {
+  transition: top 0.4s, opacity 0.4s;
+  opacity: 0;
+  display: none;
+}
+
+.modal-profile-menu {
+  position: absolute;
+  z-index: 3; /* Sit on top */
+  max-height: 330px;
+  font-size: 12px;
+  right: 0;
+  margin-right: 20px;
+  width: 200px;
+
+  @include medium() {
+    margin-left: 10px;
+    left: 0;
+    width: 310px;
+  }
+
+  @include small {
+    margin-left: 49%;
+    left: 0;
+    width: 50%;
+  }
+}
+
+.modal-profile-menu > .modal-content {
+  border-radius: 2px;
+  border: 1px rgb(221, 221, 221) solid;
+}
+
+.modal-profile-menu > .modal-content > .modal-body {
+  padding: 0;
+}
+
+.profile-menu-item {
+  cursor: pointer;
+  width: 100%;
+  padding: 8px;
+  font-weight: 500;
+  font-size: 13px;
+  text-align: left;
+  color: rgb(48, 47, 47);
+
+  &:hover,
+  &:focus {
+    color: rgb(48, 47, 47);
+    text-decoration: none;
+    background-color: #edeeee;
+  }
+}

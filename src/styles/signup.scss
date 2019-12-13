@@ -1,0 +1,121 @@
+.center-small {
+  width: 10px;
+  margin: auto;
+  font-size: 15px;
+}
+
+.input-error {
+  font-size: 15px;
+  display: block;
+  text-align: left;
+  color: red;
+}
+
+.signup-form {
+  font-size: 30px;
+  width: 100%;
+  margin: 20px;
+  .signup-btn {
+    width: 20%;
+    margin: auto;
+    display: block;
+    padding: 0px;
+  }
+  p {
+    font-size: 13px;
+  }
+}
+.sm-id {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(
+      to bottom left,
+      rgba(#6eddf5, 0.8),
+      rgba(#6454f0, 0.8)
+    ),
+    url("../assets/bg1.png");
+  background-size: cover;
+  background-position: top;
+}
+.bg-white {
+  background-color: rgba(10, 10, 10, 0.192);
+}
+
+.signup-page {
+  form {
+    margin-bottom: 0px;
+  }
+
+  .barefoot-logo {
+    width: 18%;
+    margin: 20px auto;
+    display: block;
+  }
+
+  margin: 20px auto;
+  width: 100%;
+
+  .socialbtn {
+    position: relative;
+    width: 25%;
+    margin: auto;
+    a {
+      width: 100%;
+    }
+  }
+
+  .foot-message {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    color: white;
+  }
+  .hr-vertical {
+    height: 100%;
+    width: 1px;
+    background-color: rgb(56, 56, 56);
+  }
+}
+
+@media screen and (min-width: 1020px) {
+  .signup-form {
+    .signup-btn {
+      width: 30%;
+    }
+    .foot-message {
+      font-size: 15px;
+      position: relative;
+      top: 16vh;
+      text-align: center;
+    }
+  }
+  .signup-page {
+    .sm-1 {
+      padding-top: 219px;
+      //margin-left: 15px;
+    }
+    .socialbtn {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .signup-form {
+    width: 40%;
+    .signup-btn {
+      width: 30%;
+    }
+    .foot-message {
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+
+  .signup-page {
+    .socialbtn {
+      width: 70%;
+    }
+  }
+}

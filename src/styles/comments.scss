@@ -1,0 +1,46 @@
+.comment-container {
+  padding: 20px;
+  margin: 6px;
+  border-radius: 6px;
+  .comments {
+    height: auto;
+    min-height: 101%;
+    height: 200px;
+    overflow-x: hidden;
+  }
+  .comment {
+    padding: 28px 9px;
+    margin: 6px;
+    box-shadow: 0 0 15px #00000030;
+    border-radius: 10px;
+  }
+  .comment-title {
+    margin-bottom: 15px;
+  }
+  .comment-details {
+    .comment-details-owner {
+      color: #3366cc;
+      padding-right: 15vw;
+      font-size: large;
+      font-weight: 600;
+    }
+    .comment-details-time {
+      color: #4d4b4b;
+      font-size: 0.8em;
+      font-weight: 400;
+    }
+  }
+  .comment-body {
+    padding: 8px;
+    font-weight: 100;
+  }
+}
+
+.comment-actions {
+  margin: 30vw;
+  padding: 3px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(230, 89, 105);
+  box-shadow: 0 0 15px #00000030;
+}

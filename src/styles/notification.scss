@@ -1,0 +1,215 @@
+$Mediumscreen: 413px;
+$SmallScreen: 551px;
+
+@mixin medium {
+  @media (max-width: #{$Mediumscreen}) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media (max-width: #{$SmallScreen}) {
+    @content;
+  }
+}
+/** Showing and Hiding the modal **/
+.show {
+  opacity: 1;
+  background-color: transparent;
+}
+
+.hide {
+  transition: top 0.4s, opacity 0.4s;
+  opacity: 0;
+  display: none !important;
+}
+
+/* The Modal (background) */
+.modal {
+  position: absolute;
+  z-index: 3; /* Sit on top */
+  max-height: 330px;
+  font-size: 12px;
+  right: 0;
+  margin-right: 20px;
+  width: 440px;
+
+  @include medium() {
+    margin-left: 10px;
+    left: 0;
+    width: 310px;
+  }
+
+  @include small {
+    margin-left: 10px;
+    left: 0;
+    width: 90%;
+  }
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  border: 1px solid #e0e0e0;
+  margin: auto;
+  padding: 0;
+  width: 100%;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: 10px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: 10px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 2px 16px;
+}
+
+.modal-footer {
+  height: 30px;
+  color: rgb(72, 75, 255);
+  padding: 10px;
+  text-align: center;
+} /* The Modal (background) */
+
+.modal-footer span {
+  margin: 20px;
+  text-align: center;
+}
+
+.modal-footer a {
+  color: #3873cc;
+  text-decoration: none;
+}
+
+.modal-footer a:visited {
+  text-decoration: none;
+  color: #3873cc;
+}
+
+.modal-body {
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+.notification {
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  padding: 2px;
+  text-align: center;
+  position: absolute;
+  z-index: 4;
+}
+
+.effect1 {
+  -webkit-box-shadow: 10px 10px 6px -10px #777;
+  -moz-box-shadow: 10px 10px 6px -10px #777;
+  box-shadow: 10px 10px 6px -10px #777;
+}
+
+.footer {
+  height: 50px;
+  width: 100%;
+  border: 1px solid green;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  width: 98%;
+  height: 50px;
+  border-bottom: 1px solid rgb(207, 207, 207);
+  margin-top: 5px;
+  overflow-x: none;
+  font-size: 12px;
+
+  .image {
+    width: 20%;
+    height: 90%;
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .image img {
+    width: 60%;
+    height: 90%;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 90%;
+    display: inline-block;
+    text-align: left;
+  }
+
+  .details {
+    display: inline-block;
+    width: 100%;
+    height: 50%;
+    color: rgb(75, 75, 75);
+  }
+  .date {
+    display: inline-block;
+    width: 100%;
+    margin-top: 2px;
+    height: 20%;
+    color: rgb(139, 139, 139);
+  }
+
+  p {
+    text-align: center;
+    margin: 15px;
+    color: rgb(139, 139, 139);
+  }
+}
+
+.item :hover {
+  cursor: pointer;
+}
+
+.unread {
+  background-color: #edf4ff;
+}
+
+.notification-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #3873cc;
+}

@@ -1,0 +1,67 @@
+.reverify-page {
+  background-image: linear-gradient(
+      to bottom left,
+      rgba(#6eddf5, 0.8),
+      rgba(#6454f0, 0.8)
+    ),
+    url("../assets/bg1.png");
+  height: 100vh;
+  width: 100%;
+  margin: auto;
+  background-color: white;
+  line-height: 50px;
+  .barefoot-logo {
+    width: 8%;
+    margin: auto;
+    display: block;
+  }
+  .reverify-form {
+    width: 40%;
+    margin: auto;
+  }
+  .reverify-btn {
+    width: 25%;
+    margin: auto;
+    display: block;
+  }
+
+  .frm-cover {
+    width: 100%;
+    padding: 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .reverify-page {
+    .barefoot-logo {
+      width: 65%;
+    }
+    .reverify-form {
+      width: 50%;
+    }
+    .reverify-btn {
+      width: 35%;
+      margin: auto;
+      display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .reverify-page {
+    .barefoot-logo {
+      width: 15%;
+    }
+    .reverify-form {
+      width: 70%;
+      input {
+        font-size: 13px;
+        height: 25px;
+      }
+    }
+    .reverify-btn {
+      width: 35%;
+      height: 30px;
+    }
+  }
+}

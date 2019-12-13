@@ -1,0 +1,78 @@
+.bookcards-container {
+  background-color: white;
+  max-height: 33vh;
+  border-radius: 2px;
+  box-shadow: $shadow;
+  width: 60%;
+  margin: 20px auto 10px;
+  overflow-y: auto;
+}
+.book-error {
+  width: 60%;
+  margin: auto;
+}
+
+.bookcards-container::-webkit-scrollbar {
+  -webkit-appearance: scrollbargripper-vertical;
+}
+
+.bookcards-container::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.bookcards-container ::-webkit-scrollbar:horizontal {
+  height: 11px;
+}
+
+.bookcards-container ::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white; /* should match background, can't be transparent */
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.book-buttons-container {
+  width: 250px;
+  margin: 2px auto;
+}
+
+.accommodations-container {
+  width: 90%;
+  margin: auto;
+  max-height: 40vh;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+  .acc-card {
+    width: 30%;
+    min-width: 300px;
+    display: inline-block;
+    margin: 20px;
+    * {
+      width: 100%;
+    }
+    img {
+      max-height: 30vh;
+    }
+  }
+}
+
+.book-title {
+  font-size: 2em;
+}
+
+@media only screen and (max-width: 800px) {
+  .bookcards-container {
+    max-height: 58vh;
+    width: 98%;
+    select,
+    input {
+      padding: 5px;
+    }
+  }
+  .book-buttons-container {
+    width: 225px;
+  }
+  .book-title {
+    font-size: 1.5em;
+  }
+}
