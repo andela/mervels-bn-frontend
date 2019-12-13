@@ -1,6 +1,6 @@
 # BarefootNomad - An application to help improve the booking experience
 
-[![Build Status](https://travis-ci.org/andela/mervels-bn-frontend.svg?branch=develop)](https://travis-ci.org/andela/mervels-bn-frontend) [![CircleCI](https://circleci.com/gh/andela/mervels-bn-frontend/tree/develop.svg?style=svg)](https://circleci.com/gh/andela/mervels-bn-frontend/tree/develop) [![Maintainability](https://api.codeclimate.com/v1/badges/433c3a79ba10b14ab5b8/maintainability)](https://codeclimate.com/github/andela/mervels-bn-frontend/maintainability)
+[![Build Status](https://travis-ci.org/andela/mervels-bn-frontend.svg?branch=develop)](https://travis-ci.org/andela/mervels-bn-frontend)
 [![Coverage Status](https://coveralls.io/repos/github/andela/mervels-bn-frontend/badge.svg?branch=develop)](https://coveralls.io/github/andela/mervels-bn-frontend?branch=develop)
 
 ## Vision
